@@ -1,0 +1,6 @@
+{
+  "name": "Modor — Mode & Mémoire",
+  "description": "Encyclopédie interactive de l'histoire de la mode féminine en France, de la Renaissance au XXIe siècle. Silhouettes, vêtements d'époque, créateurs et anatomie du costume.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

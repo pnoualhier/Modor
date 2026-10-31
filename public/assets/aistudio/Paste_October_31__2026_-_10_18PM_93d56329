@@ -1,0 +1,1123 @@
+# PROMPT — Développement complet de l'application PWA « Modor »
+## Encyclopédie interactive de l'histoire de la mode féminine en France
+
+---
+
+# 1. TA MISSION
+
+Tu es un ingénieur logiciel senior spécialisé dans le développement d'applications PWA, React, TypeScript, UX/UI, visualisation interactive et conception de bases de données documentaires.
+
+Tu dois concevoir, développer, tester et documenter une application web progressive (PWA) consacrée à :
+
+**L'histoire de la mode féminine en France, de la Renaissance au XXIe siècle.**
+
+Nom provisoire de l'application : **Modor**
+
+L'application doit être une encyclopédie historique, visuelle, interactive et pédagogique.
+
+Elle doit permettre de découvrir :
+- L'évolution des vêtements féminins siècle après siècle.
+- Les transformations des silhouettes.
+- Les robes et vêtements caractéristiques de chaque époque.
+- Les sous-vêtements et structures qui façonnent les silhouettes.
+- Les accessoires, coiffures et chaussures.
+- Les matières et techniques textiles.
+- Les grands créateurs et maisons de couture.
+- Les transformations sociales et culturelles ayant influencé la mode.
+
+L'utilisateur doit pouvoir observer, comprendre et comparer les vêtements féminins de différentes époques grâce à des illustrations de qualité.
+
+**IMPORTANT : tu dois réellement développer l'application. Ne te limite pas à produire une architecture théorique, un prototype graphique ou une liste de recommandations.**
+
+---
+
+# 2. PRINCIPES TECHNIQUES NON NÉGOCIABLES
+
+L'application doit respecter les principes suivants :
+
+- Aucune infrastructure backend.
+- Aucune base de données distante.
+- Aucun compte utilisateur obligatoire.
+- Aucune authentification.
+- Aucune API payante.
+- Aucun abonnement nécessaire.
+- Fonctionnement hors ligne.
+- Données historiques intégrées localement.
+- Architecture modulaire et maintenable.
+- Hébergement statique.
+- Installation comme application sur ordinateur, tablette et smartphone.
+- Respect de la confidentialité des données.
+
+Privilégier les solutions gratuites, libres et open source.
+
+## Technologies
+
+Utiliser prioritairement :
+
+| Domaine | Technologie |
+|---|---|
+| Framework | React |
+| Langage | TypeScript strict |
+| Build | Vite |
+| Interface | CSS moderne et composants React |
+| Routage | React Router |
+| Données | JSON local typé |
+| Stockage | IndexedDB |
+| Préférences simples | LocalStorage |
+| PWA | Service Worker |
+| Cache | Workbox ou solution équivalente |
+| Tests unitaires | Vitest |
+| Tests composants | React Testing Library |
+| Tests E2E | Playwright |
+| Qualité | ESLint + Prettier |
+| Hébergement | Cloudflare Pages |
+
+Avant toute installation, examiner les dépendances déjà présentes dans le projet et conserver celles qui sont pertinentes.
+
+Ne pas ajouter inutilement des bibliothèques lourdes.
+
+---
+
+# 3. PHASE PRÉALABLE : AUDIT DU PROJET
+
+Avant de coder :
+
+1. Examiner intégralement le dépôt existant.
+2. Identifier les technologies et dépendances déjà utilisées.
+3. Examiner l'organisation des fichiers.
+4. Identifier les fonctionnalités déjà implémentées.
+5. Vérifier les scripts de compilation et les tests.
+6. Repérer les éventuelles erreurs techniques.
+7. Déterminer les adaptations nécessaires.
+
+Ne pas supprimer arbitrairement des fonctionnalités ou fichiers existants.
+
+Si le dépôt est vide, créer intégralement le projet.
+
+Après cet audit, poursuivre directement avec le développement.
+
+Ne pas attendre une validation intermédiaire de ma part.
+
+---
+
+# 4. IDENTITÉ VISUELLE ET EXPÉRIENCE UTILISATEUR
+
+Créer une application élégante, moderne, raffinée et visuellement attractive.
+
+L'inspiration doit provenir des catalogues de musées, des livres d'histoire de la mode et des magazines éditoriaux haut de gamme.
+
+## Direction artistique
+
+Palette proposée :
+
+- Ivoire : #F7F4ED
+- Noir profond : #242321
+- Beige : #D9CBB7
+- Rose poudré : #D9B8B3
+- Vert sauge : #A6AA99
+- Gris : #77736D
+
+Typographie :
+- Police serif élégante pour les titres.
+- Police sans-serif lisible pour les contenus.
+- Hiérarchie typographique cohérente.
+
+Principes :
+- Fond clair.
+- Illustrations mises en valeur.
+- Cartes élégantes.
+- Espaces généreux.
+- Présentation éditoriale.
+- Animations discrètes.
+- Navigation intuitive.
+- Pas d'interface surchargée.
+- Pas d'apparence de tableau de bord administratif.
+
+L'application doit avoir une véritable identité visuelle.
+
+Créer notamment :
+- Un logo typographique Mode & Mémoire.
+- Une identité graphique cohérente.
+- Des illustrations de couverture.
+- Des cartes historiques.
+- Des composants de comparaison.
+- Des vues détaillées des vêtements.
+
+## Responsive design
+
+Développer en Mobile First.
+
+Sur ordinateur :
+- Grandes illustrations.
+- Comparaisons côte à côte.
+- Navigation complète.
+- Galerie en plusieurs colonnes.
+
+Sur mobile :
+- Navigation inférieure fixe.
+- Fiches verticales.
+- Images adaptées à l'écran.
+- Comparateur utilisable sans défilement horizontal excessif.
+- Commandes tactiles suffisamment grandes.
+
+Respecter WCAG 2.2 AA.
+
+---
+
+# 5. STRUCTURE HISTORIQUE OBLIGATOIRE
+
+L'application doit couvrir les périodes suivantes.
+
+## XVIe siècle : Renaissance (1500-1600)
+
+Contenus :
+- Robes Renaissance.
+- Corsages ajustés.
+- Vertugadins.
+- Fraises.
+- Manches volumineuses.
+- Broderies.
+- Velours et soies.
+- Coiffures et accessoires.
+
+Expliquer les influences italiennes et espagnoles sur les vêtements portés à la cour de France.
+
+## XVIIe siècle : Baroque et classicisme (1600-1700)
+
+Contenus :
+- Mode sous Louis XIII et Louis XIV.
+- Robes de cour.
+- Corsages structurés.
+- Jupons.
+- Dentelles.
+- Rubans.
+- Coiffures.
+- Accessoires aristocratiques.
+
+Expliquer le rôle de Versailles et de la monarchie dans le développement de la mode française.
+
+## XVIIIe siècle : Rococo et Lumières (1700-1789)
+
+Contenus :
+- Robe à la française.
+- Robe à l'anglaise.
+- Robe à la polonaise.
+- Paniers.
+- Corps à baleines.
+- Manches à pagode.
+- Coiffures monumentales.
+- Accessoires.
+
+Présenter Rose Bertin et Marie-Antoinette.
+
+## Révolution et Directoire (1789-1800)
+
+Contenus :
+- Simplification des vêtements.
+- Disparition progressive des paniers.
+- Abandon de certaines structures rigides.
+- Robes inspirées de l'Antiquité.
+- Taille haute.
+- Mousseline et tissus légers.
+
+## XIXe siècle (1800-1900)
+
+Ce siècle doit être particulièrement détaillé.
+
+Créer plusieurs périodes :
+
+### 1800-1820 : Empire
+- Taille haute.
+- Robes fluides.
+- Mousseline.
+- Influence antique.
+
+### 1820-1840 : Restauration et romantisme
+- Taille naturelle.
+- Manches volumineuses.
+- Jupes progressivement élargies.
+
+### 1840-1870 : Crinoline
+- Corsets.
+- Jupons.
+- Crinolines.
+- Robes volumineuses.
+- Corsages ajustés.
+
+### 1870-1890 : Tournure
+- Volume concentré à l'arrière.
+- Polonaise.
+- Tournure.
+- Corsages structurés.
+
+### 1890-1900 : Fin du siècle
+- Manches gigot.
+- Silhouette en sablier.
+- Vêtements de promenade.
+- Robes de soirée.
+
+Présenter Charles Frederick Worth, Jeanne Paquin et les transformations de la couture parisienne.
+
+## XXe siècle
+
+Découper par décennies.
+
+### 1900-1910
+Belle Époque, corset en S, grandes robes et chapeaux.
+
+### 1910-1920
+Simplification progressive, Première Guerre mondiale et vêtements pratiques.
+
+### Années 1920
+Garçonne, robes droites, taille basse, cheveux courts.
+
+### Années 1930
+Glamour, robes fluides, coupe en biais.
+
+### Années 1940
+Restrictions, vêtements utilitaires, mode de guerre et New Look de Dior en 1947.
+
+### Années 1950
+Taille cintrée, jupes amples, tailleurs, robes de cocktail.
+
+### Années 1960
+Mini-jupe, robes trapèze, André Courrèges, Yves Saint Laurent, modernité.
+
+### Années 1970
+Pattes d'éléphant, bohème, denim, pantalons féminins, diversité des styles.
+
+### Années 1980
+Épaules larges, power dressing, Thierry Mugler, Claude Montana et Jean Paul Gaultier.
+
+### Années 1990
+Minimalisme, denim, sobriété, vêtements près du corps.
+
+## XXIe siècle
+
+### Années 2000
+Mondialisation, jeans taille basse, logos, influence des célébrités.
+
+### Années 2010
+Streetwear, réseaux sociaux, nouveaux créateurs, diversité.
+
+### Années 2020
+Seconde main, mode responsable, upcycling, inclusivité, nouvelles silhouettes et influences numériques.
+
+IMPORTANT : les périodes sont des repères pédagogiques. Expliquer les chevauchements, les transitions et les différences sociales. Ne jamais laisser penser qu'une tendance était universelle.
+
+---
+
+# 6. FONCTIONNALITÉ MAJEURE : CHRONOLOGIE INTERACTIVE
+
+Développer une véritable chronologie interactive.
+
+Chaque période doit disposer de :
+
+- Son nom.
+- Ses dates.
+- Une illustration représentative.
+- Une courte description.
+- Une indication de siècle.
+- Un lien vers sa fiche détaillée.
+
+Fonctionnalités :
+- Navigation chronologique.
+- Filtrage par siècle.
+- Filtrage par décennie.
+- Défilement.
+- Accès direct à une période.
+- Navigation précédente/suivante.
+
+La chronologie doit être agréable à utiliser sur mobile et ordinateur.
+
+Elle constitue l'un des points d'entrée essentiels de l'application.
+
+---
+
+# 7. FICHES HISTORIQUES DÉTAILLÉES
+
+Créer une fiche complète pour chaque période.
+
+Chaque fiche doit contenir :
+
+1. Titre et dates.
+2. Illustration principale.
+3. Contexte historique.
+4. Contexte social.
+5. Silhouette féminine caractéristique.
+6. Description des robes.
+7. Description des vêtements.
+8. Sous-vêtements et structures.
+9. Accessoires.
+10. Coiffures.
+11. Chaussures.
+12. Matières textiles.
+13. Couleurs et motifs.
+14. Usages vestimentaires.
+15. Différences sociales.
+16. Créateurs et personnalités.
+17. Évolution vers la période suivante.
+18. Illustrations complémentaires.
+19. Sources historiques.
+
+Ne pas créer de fiches superficielles.
+
+Les textes doivent être rédigés en français, avec une qualité éditoriale adaptée à une encyclopédie.
+
+Expliquer les termes historiques lorsqu'ils apparaissent.
+
+---
+
+# 8. CATALOGUE DES VÊTEMENTS
+
+Créer une encyclopédie indépendante des vêtements féminins.
+
+Catégories :
+
+- Robes.
+- Jupes.
+- Corsages.
+- Corsets.
+- Sous-vêtements.
+- Jupons.
+- Structures vestimentaires.
+- Vestes.
+- Manteaux.
+- Pantalons.
+- Accessoires.
+- Chaussures.
+- Coiffures.
+
+Exemples de fiches indispensables :
+
+- Vertugadin.
+- Fraise.
+- Robe à la française.
+- Robe à l'anglaise.
+- Panier.
+- Corps à baleines.
+- Robe Empire.
+- Manche gigot.
+- Crinoline.
+- Tournure.
+- Corset.
+- Jupon.
+- Robe Belle Époque.
+- Robe garçonne.
+- Robe charleston.
+- Robe en biais.
+- New Look.
+- Tailleur féminin.
+- Smoking féminin.
+- Mini-jupe.
+- Pantalon pattes d'éléphant.
+- Tailleur des années 1980.
+
+Chaque fiche doit comporter :
+- Illustration.
+- Nom.
+- Définition.
+- Dates d'apparition et d'utilisation estimées.
+- Périodes associées.
+- Construction.
+- Fonction.
+- Matières.
+- Usages.
+- Contexte social.
+- Évolution.
+- Sources.
+
+Les vêtements doivent être reliés aux périodes correspondantes.
+
+---
+
+# 9. COMPARATEUR DE SILHOUETTES
+
+C'est une fonctionnalité essentielle.
+
+Créer un comparateur permettant de sélectionner deux périodes et de visualiser leurs silhouettes côte à côte.
+
+Exemples :
+- Renaissance / XVIIIe siècle.
+- XVIIIe siècle / Empire.
+- Crinoline / Tournure.
+- Belle Époque / Années 1920.
+- Années 1920 / Années 1950.
+- Années 1950 / Années 1960.
+- Années 1980 / Années 1990.
+- Années 1990 / Années 2020.
+
+Le comparateur doit montrer :
+- La forme générale.
+- La position de la taille.
+- Le volume des hanches.
+- Le volume des jupes.
+- La forme des épaules.
+- Les manches.
+- Les accessoires.
+- Les structures internes.
+
+Afficher une explication des différences.
+
+Prévoir :
+- Comparaison à deux périodes.
+- Galerie comparative à trois ou quatre périodes.
+- Possibilité d'échanger les périodes.
+- Affichage des dates.
+- Légendes.
+- Zoom des illustrations.
+
+IMPORTANT :
+
+Ne pas comparer uniquement des photographies disparates.
+
+Privilégier des illustrations de silhouettes réalisées selon une même convention graphique :
+- Même posture.
+- Même échelle.
+- Même cadrage.
+- Vue de face.
+- Fond neutre.
+
+Cela permettra une comparaison réellement pertinente.
+
+---
+
+# 10. MODULE « ANATOMIE D'UNE SILHOUETTE »
+
+Créer un module pédagogique particulièrement soigné.
+
+Afficher une silhouette féminine illustrée avec des zones interactives.
+
+L'utilisateur sélectionne :
+- Coiffure.
+- Col.
+- Manches.
+- Corsage.
+- Corset.
+- Taille.
+- Jupe.
+- Jupon.
+- Crinoline ou panier.
+- Chaussures.
+
+La sélection affiche :
+- Le nom de l'élément.
+- Son rôle.
+- Sa construction.
+- Ses matériaux.
+- Son histoire.
+- Une illustration détaillée.
+- Les périodes d'utilisation.
+
+Prévoir plusieurs silhouettes selon les époques.
+
+Les zones interactives doivent être utilisables au toucher sur mobile et au clic sur ordinateur.
+
+Ne pas simuler une interaction si les éléments graphiques ne sont pas réellement identifiables.
+
+---
+
+# 11. GALERIE VISUELLE
+
+Créer une galerie de toutes les illustrations.
+
+Filtres :
+- Siècle.
+- Décennie.
+- Période.
+- Vêtement.
+- Silhouette.
+- Créateur.
+- Accessoire.
+
+Fonctionnalités :
+- Grille d'images.
+- Miniatures.
+- Agrandissement.
+- Navigation.
+- Légendes.
+- Crédits.
+- Accès aux fiches associées.
+
+Optimiser les images avec WebP ou AVIF lorsque pertinent.
+
+Prévoir un chargement différé.
+
+---
+
+# 12. CRÉATEURS ET MAISONS DE COUTURE
+
+Créer une section consacrée aux personnalités importantes.
+
+Inclure notamment :
+
+- Rose Bertin.
+- Charles Frederick Worth.
+- Jeanne Paquin.
+- Paul Poiret.
+- Coco Chanel.
+- Madeleine Vionnet.
+- Elsa Schiaparelli.
+- Christian Dior.
+- Hubert de Givenchy.
+- Pierre Balmain.
+- Yves Saint Laurent.
+- André Courrèges.
+- Claude Montana.
+- Thierry Mugler.
+- Jean Paul Gaultier.
+- Karl Lagerfeld.
+- Jacquemus.
+- Marine Serre.
+
+Cette liste n'est pas exhaustive.
+
+Distinguer les créateurs français des créateurs étrangers ayant exercé une influence majeure sur la mode parisienne.
+
+Chaque fiche comprend :
+- Portrait.
+- Biographie.
+- Dates.
+- Maison.
+- Périodes.
+- Innovations.
+- Créations emblématiques.
+- Influence historique.
+- Sources.
+
+Ne pas attribuer à un créateur une création ou une innovation sans vérification documentaire.
+
+---
+
+# 13. QUIZ ET APPRENTISSAGE
+
+Développer un module de quiz.
+
+Fonctionnalités :
+- Quiz par siècle.
+- Quiz par décennie.
+- Quiz général.
+- Questions illustrées.
+- QCM.
+- Réponse correcte.
+- Explication historique.
+- Score.
+- Progression.
+- Recommencer.
+
+Les questions doivent être fondées sur les contenus réellement présents dans l'application.
+
+Prévoir plusieurs niveaux de difficulté.
+
+---
+
+# 14. RECHERCHE ET FAVORIS
+
+Créer une recherche globale.
+
+La recherche doit couvrir :
+- Périodes.
+- Vêtements.
+- Accessoires.
+- Créateurs.
+- Matières.
+- Événements.
+
+Créer également un système de favoris.
+
+Stocker localement :
+- Périodes favorites.
+- Vêtements favoris.
+- Créateurs favoris.
+- Historique de consultation.
+- Progression des quiz.
+
+Prévoir l'export et l'import des données utilisateur en JSON.
+
+---
+
+# 15. ILLUSTRATIONS : EXIGENCE PRIORITAIRE
+
+La richesse visuelle constitue un élément fondamental de cette application.
+
+L'application ne doit pas se contenter de textes et de cartes vides.
+
+## Sources prioritaires
+
+Rechercher et exploiter les collections suivantes :
+
+- Palais Galliera.
+- Musée des Arts décoratifs de Paris.
+- Bibliothèque nationale de France / Gallica.
+- Europeana.
+- Metropolitan Museum of Art.
+- Collections publiques de musées français.
+- Archives de journaux de mode historiques.
+
+Privilégier :
+- Images du domaine public.
+- Images CC0.
+- Images sous licence autorisant la réutilisation.
+- Images de collections institutionnelles dont les conditions sont vérifiées.
+
+## Règles impératives
+
+1. Ne jamais intégrer une image sans connaître sa provenance.
+2. Ne jamais considérer automatiquement qu'une image trouvée sur Internet est libre de droits.
+3. Conserver le nom de l'institution.
+4. Conserver le nom de l'auteur lorsqu'il est connu.
+5. Conserver la date.
+6. Conserver l'URL de provenance.
+7. Conserver la licence.
+8. Afficher les crédits dans l'application.
+9. Prévoir une image de remplacement en cas d'indisponibilité.
+10. Ne pas dépendre de ressources externes pour le fonctionnement hors ligne.
+
+## Illustrations originales
+
+Lorsque les collections patrimoniales ne permettent pas de disposer d'une illustration adaptée, créer des illustrations pédagogiques originales.
+
+Ces illustrations doivent représenter des vêtements historiquement documentés.
+
+Utiliser des illustrations cohérentes entre les périodes afin de permettre les comparaisons.
+
+Distinguer clairement :
+- Illustration historique authentique.
+- Reconstitution contemporaine.
+- Schéma pédagogique.
+
+Ne jamais présenter une illustration générée comme un vêtement authentique conservé dans un musée.
+
+Ne pas intégrer de fausses références documentaires.
+
+Si aucune image exploitable n'est disponible, afficher un emplacement illustratif clairement identifié plutôt que d'inventer une provenance.
+
+---
+
+# 16. MODÈLE DE DONNÉES
+
+Créer une architecture JSON locale, typée et validée.
+
+Entités minimales :
+
+- periods
+- garments
+- accessories
+- materials
+- designers
+- fashionHouses
+- events
+- images
+- sources
+- quizzes
+- comparisons
+
+Chaque entité doit posséder un identifiant unique et des relations cohérentes.
+
+Exemple de période :
+
+{
+  "id": "XIX_1860_1870",
+  "century": 19,
+  "title": "Second Empire",
+  "startYear": 1852,
+  "endYear": 1870,
+  "description": "La mode de la crinoline",
+  "historicalContext": "...",
+  "socialContext": "...",
+  "silhouette": {
+    "waist": "fine",
+    "skirt": "very_wide",
+    "shoulders": "natural",
+    "volume": "circular"
+  },
+  "garmentIds": ["GAR_CORSET", "GAR_CRINOLINE"],
+  "designerIds": [],
+  "imageIds": [],
+  "sourceIds": []
+}
+
+Créer des interfaces TypeScript complètes.
+
+Utiliser Zod ou une solution équivalente pour valider les fichiers JSON au chargement ou lors des tests.
+
+Prévoir des contrôles automatiques pour :
+- Identifiants dupliqués.
+- Relations inexistantes.
+- Images manquantes.
+- Sources manquantes.
+- Dates incohérentes.
+- Champs obligatoires absents.
+- URLs invalides.
+- Licences non renseignées.
+
+Ne jamais publier une fiche historique sans sources documentaires suffisantes.
+
+---
+
+# 17. ARCHITECTURE DU PROJET
+
+Organiser le projet de manière modulaire.
+
+Architecture indicative :
+
+src/
+  app/
+  components/
+    navigation/
+    timeline/
+    silhouettes/
+    comparison/
+    gallery/
+    garments/
+    designers/
+    quizzes/
+  pages/
+    Home/
+    Timeline/
+    PeriodDetail/
+    Garments/
+    GarmentDetail/
+    Designers/
+    DesignerDetail/
+    Gallery/
+    Compare/
+    Anatomy/
+    Quiz/
+    Favorites/
+    Settings/
+  data/
+    periods/
+    garments/
+    designers/
+    accessories/
+    events/
+    images/
+    sources/
+    quizzes/
+  services/
+    storage/
+    search/
+    validation/
+    export/
+  hooks/
+  types/
+  utils/
+  styles/
+
+public/
+  images/
+    historical/
+    reconstructions/
+    silhouettes/
+    thumbnails/
+  icons/
+  manifest.webmanifest
+
+Adapter cette organisation si le projet existant nécessite une autre structure cohérente.
+
+---
+
+# 18. PWA ET FONCTIONNEMENT HORS LIGNE
+
+Développer une véritable PWA installable.
+
+Exigences :
+- Manifest complet.
+- Icônes adaptées.
+- Service Worker fonctionnel.
+- Cache des ressources applicatives.
+- Cache des données JSON.
+- Consultation hors ligne.
+- Gestion des mises à jour.
+- Page ou indicateur d'état hors ligne.
+- Gestion des erreurs réseau.
+- Chargement progressif des images.
+
+L'utilisateur doit pouvoir consulter les périodes et les fiches historiques après une première installation et mise en cache des contenus.
+
+Ne pas déclarer que l'application fonctionne hors ligne si certaines fonctionnalités essentielles dépendent encore d'Internet.
+
+Prévoir une gestion de l'espace occupé par les images.
+
+---
+
+# 19. CONFIDENTIALITÉ ET SÉCURITÉ
+
+- Aucun compte.
+- Aucune authentification.
+- Aucun serveur métier.
+- Aucune collecte de données personnelles.
+- Aucun traceur publicitaire.
+- Aucune transmission des favoris.
+- Aucun appel obligatoire à une API distante.
+- Validation des imports JSON.
+- Limitation de la taille des fichiers importés.
+- Gestion des erreurs.
+- Aucune exécution de contenu importé.
+
+Les données utilisateur doivent rester sur l'appareil.
+
+---
+
+# 20. TESTS ET VALIDATION
+
+Ne pas considérer l'application comme terminée avant d'avoir exécuté les tests.
+
+## Tests techniques
+
+- Compilation TypeScript.
+- Build Vite.
+- ESLint.
+- Tests unitaires.
+- Tests des composants.
+- Tests de navigation.
+- Tests du comparateur.
+- Tests du module anatomie.
+- Tests de recherche.
+- Tests des favoris.
+- Tests des quiz.
+- Tests de validation JSON.
+- Tests du stockage IndexedDB.
+- Tests d'import/export.
+- Tests PWA.
+- Tests hors ligne.
+- Tests responsive.
+- Tests Playwright.
+
+## Tests fonctionnels
+
+Vérifier notamment :
+
+1. Toutes les périodes sont accessibles.
+2. Toutes les fiches sont correctement reliées.
+3. Les images sont affichées.
+4. Les crédits sont visibles.
+5. Les comparaisons utilisent les bonnes illustrations.
+6. Les filtres fonctionnent.
+7. La recherche retourne des résultats.
+8. Les favoris persistent après fermeture.
+9. Les quiz donnent des corrections pertinentes.
+10. Les pages restent accessibles hors ligne.
+11. L'application est installable.
+12. La navigation mobile fonctionne correctement.
+
+Ne pas masquer les erreurs de compilation ou désactiver les tests pour obtenir artificiellement un résultat positif.
+
+---
+
+# 21. DÉPLOIEMENT
+
+Préparer le projet pour un hébergement Cloudflare Pages.
+
+Exigences :
+- Build statique.
+- Configuration de publication correcte.
+- Gestion du routage SPA.
+- Fichier de configuration si nécessaire.
+- Headers de sécurité appropriés.
+- Cache des ressources statiques.
+- Documentation de déploiement.
+
+Ne pas introduire de dépendance à un serveur Node.js en production si elle n'est pas indispensable.
+
+---
+
+# 22. DOCUMENTATION
+
+Créer un README.md complet en français comprenant :
+
+- Présentation de l'application.
+- Fonctionnalités.
+- Technologies.
+- Architecture.
+- Installation.
+- Commandes de développement.
+- Compilation.
+- Tests.
+- Déploiement Cloudflare Pages.
+- Fonctionnement hors ligne.
+- Gestion des données.
+- Ajout d'une période.
+- Ajout d'un vêtement.
+- Ajout d'un créateur.
+- Ajout d'une illustration.
+- Gestion des licences et crédits.
+- Sauvegarde des données utilisateur.
+
+Créer également une documentation éditoriale expliquant comment enrichir les contenus historiques sans modifier le code de l'application.
+
+---
+
+# 23. MÉTHODE DE TRAVAIL IMPOSÉE
+
+Travailler par étapes, mais réaliser l'ensemble du projet sans attendre de validation entre les phases.
+
+### Étape 1
+Audit du dépôt et analyse de l'existant.
+
+### Étape 2
+Conception et mise en place de l'architecture.
+
+### Étape 3
+Développement de l'interface et de la navigation.
+
+### Étape 4
+Création de la chronologie et des fiches historiques.
+
+### Étape 5
+Création et intégration des illustrations.
+
+### Étape 6
+Développement du catalogue des vêtements.
+
+### Étape 7
+Développement du comparateur.
+
+### Étape 8
+Développement du module anatomie des silhouettes.
+
+### Étape 9
+Galerie, créateurs, recherche et favoris.
+
+### Étape 10
+Quiz et progression.
+
+### Étape 11
+PWA et fonctionnement hors ligne.
+
+### Étape 12
+Tests, corrections et optimisation.
+
+### Étape 13
+Documentation et préparation du déploiement.
+
+À chaque étape :
+- Vérifier le code.
+- Tester les fonctionnalités.
+- Corriger les erreurs.
+- Ne pas laisser de fonctionnalités factices.
+- Ne pas remplacer une vraie fonctionnalité par un simple bouton décoratif.
+
+Si une fonctionnalité ne peut pas être terminée, documenter précisément la limitation plutôt que de prétendre qu'elle fonctionne.
+
+---
+
+# 24. EXIGENCES PARTICULIÈRES SUR LA QUALITÉ DES CONTENUS
+
+Ce projet est autant un projet documentaire qu'un projet informatique.
+
+Il est impératif de ne pas produire une application remplie de contenus artificiels.
+
+Je veux :
+- Des périodes historiques réellement documentées.
+- Des vêtements historiquement attestés.
+- Des créateurs correctement identifiés.
+- Des dates cohérentes.
+- Des explications pédagogiques.
+- Des illustrations pertinentes.
+- Des sources consultables.
+- Une distinction claire entre faits historiques et reconstitutions.
+
+Ne pas utiliser des textes génériques répétés d'une fiche à l'autre.
+
+Ne pas inventer des citations ou des références.
+
+Ne pas confondre mode française, mode parisienne et vêtements effectivement portés par l'ensemble des femmes en France.
+
+Distinguer les vêtements de cour, bourgeois, populaires, professionnels, de loisirs et de cérémonie lorsque les informations le permettent.
+
+---
+
+# 25. LIVRABLE FINAL ATTENDU
+
+À la fin de la mission, je veux disposer d'une application réellement utilisable et déployable.
+
+Les livrables comprennent :
+
+1. Le code source complet.
+2. L'interface graphique finalisée.
+3. La chronologie historique.
+4. Les fiches historiques.
+5. Le catalogue des vêtements.
+6. Les fiches des créateurs.
+7. La galerie illustrée.
+8. Le comparateur de silhouettes.
+9. Le module anatomie d'une silhouette.
+10. Les quiz.
+11. Le système de favoris.
+12. La recherche.
+13. La PWA installable.
+14. Le fonctionnement hors ligne.
+15. Les tests automatisés.
+16. Le README.
+17. La documentation des sources et licences.
+18. La configuration Cloudflare Pages.
+
+Créer une application avec un contenu initial suffisamment riche pour qu'elle soit immédiatement intéressante à utiliser.
+
+Ne pas livrer uniquement une coquille technique contenant quelques fiches de démonstration.
+
+---
+
+# 26. RAPPORT FINAL OBLIGATOIRE
+
+À la fin du développement, produire un rapport détaillé indiquant :
+
+### A. Réalisations
+- Fonctionnalités effectivement développées.
+- Pages créées.
+- Composants créés.
+- Données historiques intégrées.
+- Illustrations intégrées.
+
+### B. Contenus
+- Nombre de périodes.
+- Nombre de fiches vêtements.
+- Nombre de créateurs.
+- Nombre d'accessoires.
+- Nombre d'illustrations.
+- Nombre de sources documentaires.
+- Répartition des images par type de licence.
+
+### C. Qualité technique
+- Résultat de la compilation.
+- Résultat des tests.
+- Résultat des contrôles TypeScript.
+- Résultat ESLint.
+- Vérification PWA.
+- Vérification hors ligne.
+- Vérification responsive.
+
+### D. Éléments non terminés
+Lister précisément :
+- Les fonctionnalités manquantes.
+- Les illustrations manquantes.
+- Les contenus à documenter.
+- Les éventuelles limites techniques.
+- Les problèmes de droits d'utilisation.
+
+### E. Déploiement
+Fournir les instructions exactes pour publier l'application sur Cloudflare Pages.
+
+Ne jamais déclarer une fonctionnalité terminée sans l'avoir réellement implémentée et vérifiée.
+
+---
+
+# CONSIGNE FINALE
+
+Je souhaite une application de grande qualité, aussi bien sur le plan historique que graphique et technique.
+
+La priorité absolue est de réunir trois qualités :
+
+**1. Une encyclopédie historique fiable :** raconter avec précision l'évolution des vêtements féminins en France.
+
+**2. Une expérience visuelle exceptionnelle :** permettre de voir les robes, les accessoires et les transformations des silhouettes.
+
+**3. Une expérience interactive :** comparer les époques, explorer les vêtements et comprendre comment les silhouettes étaient construites.
+
+L'application doit être suffisamment riche pour intéresser un passionné de mode, un étudiant en histoire du costume ou une personne qui souhaite simplement découvrir l'évolution des vêtements féminins.
+
+Privilégier la qualité du contenu, la pertinence des illustrations, la fluidité de navigation et la fiabilité historique plutôt que la multiplication de fonctionnalités secondaires.
+
+**Commence par auditer le dépôt, puis développe réellement l'application jusqu'à obtenir une version fonctionnelle, testée, documentée et prête à être déployée.**
