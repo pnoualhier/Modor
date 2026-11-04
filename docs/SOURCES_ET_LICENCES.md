@@ -67,7 +67,7 @@ Toutes les œuvres iconographiques et textuelles intégrées relèvent exclusive
 
 Chaque planche stockée dans `/public/images/historical/` dispose d'un cartouche de référence museum-grade :
 
-### 4.1. Portraits des 23 Grands Créateurs de Mode (100% Libres de Droit)
+### 4.1. Portraits des 23 Grands Créateurs de Mode
 
 | Créateur / Créatrice | Fichier Local | Institution de Référence | Statut Juridique |
 | :--- | :--- | :--- | :--- |

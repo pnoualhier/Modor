@@ -3,6 +3,7 @@ import { HISTORICAL_PERIODS } from '../../data/periods';
 import { HISTORICAL_GARMENTS } from '../../data/garments';
 import { HISTORICAL_DESIGNERS } from '../../data/designers';
 import { ImageCredit } from '../../types';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ExternalLink, X, ZoomIn, Image as ImageIcon, Filter, BookOpen, Camera } from 'lucide-react';
 
 interface VisualGalleryProps {
@@ -133,20 +134,21 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
             >
               {/* Image Preview Box */}
               <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
-                <img
+                <ImageWithFallback
                   src={image.imageUrl}
                   alt={image.title}
+                  fallbackTitle={image.title}
+                  fallbackSubtitle={image.institution}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
+                  containerClassName="w-full h-full"
                 />
 
-                <div className="absolute top-2.5 right-2.5 bg-black/75 backdrop-blur-xs text-[#F7F4ED] text-[10px] font-mono px-2 py-0.5 rounded flex items-center gap-1 border border-white/20">
+                <div className="absolute top-2.5 right-2.5 bg-black/75 backdrop-blur-xs text-[#F7F4ED] text-[10px] font-mono px-2 py-0.5 rounded flex items-center gap-1 border border-white/20 pointer-events-none">
                   <Camera className="w-3 h-3 text-amber-300" />
                   <span className="truncate max-w-[140px]">{image.license}</span>
                 </div>
 
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-2 text-white">
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-2 text-white pointer-events-none">
                   <p className="text-[10px] truncate text-white/90 font-serif italic">
                     {image.institution}
                   </p>
@@ -214,11 +216,12 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
 
             {/* Artwork Canvas */}
             <div className="w-full bg-[#F4EDE1] rounded-xl border border-[#D9CBB7] overflow-hidden p-4 flex flex-col items-center justify-center text-center space-y-3">
-              <img
+              <ImageWithFallback
                 src={selectedImage.image.imageUrl}
                 alt={selectedImage.image.title}
+                fallbackTitle={selectedImage.image.title}
+                fallbackSubtitle={selectedImage.image.institution}
                 className="max-h-[50vh] w-auto object-contain rounded-lg shadow-md"
-                referrerPolicy="no-referrer"
               />
               <div className="text-xs text-[#77736D] max-w-md pt-2 italic">
                 {selectedImage.image.caption}

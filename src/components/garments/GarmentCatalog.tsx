@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { HISTORICAL_GARMENTS } from '../../data/garments';
+import { HISTORICAL_SOURCES } from '../../data/sources';
 import { Garment, GarmentCategory } from '../../types';
-import { Search, Heart, X, ZoomIn, Camera, Sparkles } from 'lucide-react';
+import { Search, Heart, X, ZoomIn, Camera, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 
 interface GarmentCatalogProps {
   onSelectPeriod: (periodId: string) => void;
@@ -54,6 +56,10 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
     }
     return true;
   });
+
+  const associatedGarmentSources = selectedGarment
+    ? HISTORICAL_SOURCES.filter((s) => selectedGarment.sourceIds.includes(s.id))
+    : [];
 
   // Handle Escape key to close modal
   React.useEffect(() => {
@@ -172,15 +178,15 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
               {/* Garment Archival Illustration / Photo */}
               {primaryImage && (
                 <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
-                  <img
+                  <ImageWithFallback
                     src={primaryImage.imageUrl}
                     alt={primaryImage.title || garment.name}
+                    fallbackTitle={garment.name}
+                    fallbackSubtitle={garment.eraDates}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
                   />
                   {/* Provenance badge at bottom */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2.5 text-white flex items-center justify-between">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2.5 text-white flex items-center justify-between pointer-events-none">
                     <p className="text-[10px] text-white/90 truncate font-serif italic max-w-[75%]">
                       {primaryImage.institution}
                     </p>
@@ -326,11 +332,12 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
             {selectedGarment.images && selectedGarment.images[0] && (
               <div className="rounded-xl overflow-hidden border border-[#D9CBB7]/60 bg-[#F4EDE1]">
                 <div className="relative aspect-16/10 w-full bg-black/5 overflow-hidden group">
-                  <img
+                  <ImageWithFallback
                     src={selectedGarment.images[0].imageUrl}
                     alt={selectedGarment.images[0].title}
+                    fallbackTitle={selectedGarment.name}
+                    fallbackSubtitle={selectedGarment.category}
                     className="w-full h-full object-contain md:object-cover"
-                    referrerPolicy="no-referrer"
                   />
                   <button
                     onClick={() => {
@@ -421,6 +428,45 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
                 </span>
                 <p className="text-[#77736D] leading-relaxed">{selectedGarment.evolution}</p>
               </div>
+            </div>
+
+            {/* Documentary Sources Section */}
+            <div className="pt-3 border-t border-[#D9CBB7]/40 space-y-2">
+              <span className="font-bold text-[#242321] uppercase tracking-wide flex items-center gap-1.5 text-xs">
+                <BookOpen className="w-3.5 h-3.5 text-[#9A3412]" />
+                <span>Sources Documentaires & Références :</span>
+              </span>
+              {associatedGarmentSources.length > 0 ? (
+                <div className="space-y-1.5">
+                  {associatedGarmentSources.map((src) => (
+                    <div
+                      key={src.id}
+                      className="bg-[#F7F4ED] p-2.5 rounded-lg border border-[#D9CBB7]/40 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-1.5"
+                    >
+                      <div>
+                        <span className="font-semibold text-[#242321]">{src.title}</span> —{' '}
+                        <span className="text-[#77736D]">{src.institution} ({src.year})</span>
+                        <div className="text-[10px] text-[#77736D] font-mono mt-0.5">Licence : {src.license}</div>
+                      </div>
+                      {src.url && (
+                        <a
+                          href={src.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] text-[#9A3412] hover:underline shrink-0"
+                        >
+                          <span>Fonds d'archive</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-[11px] text-[#77736D] italic">
+                  Sources documentaires en cours de numérisation et d'indexation.
+                </p>
+              )}
             </div>
 
             {/* Associated Period Links */}

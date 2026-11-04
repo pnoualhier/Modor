@@ -27,6 +27,8 @@ export interface ImageCredit {
   svgFallback?: string;
   caption: string;
   type: 'patrimoine' | 'schema' | 'reconstitution';
+  credit?: string;
+  restrictions?: string;
 }
 
 export interface SilhouetteMetrics {

@@ -7,6 +7,7 @@ import { HISTORICAL_SOURCES } from '../../data/sources';
 import { SILHOUETTE_DEFINITIONS } from '../../data/silhouettes';
 import { SilhouetteFigure } from '../silhouettes/SilhouetteFigure';
 import { StorageService } from '../../services/storage';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -299,13 +300,15 @@ export const PeriodDetailView: React.FC<PeriodDetailViewProps> = ({
                     className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group flex items-center gap-3"
                   >
                     {garment.images?.[0] && (
-                      <img
-                        src={garment.images[0].imageUrl}
-                        alt={garment.name}
-                        className="w-12 h-12 rounded-lg object-cover border border-[#D9CBB7] shrink-0"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
+                      <div className="w-12 h-12 rounded-lg overflow-hidden border border-[#D9CBB7] shrink-0 bg-[#EFE8DC]">
+                        <ImageWithFallback
+                          src={garment.images[0].imageUrl}
+                          alt={garment.name}
+                          fallbackTitle={garment.name}
+                          className="w-full h-full object-cover"
+                          containerClassName="w-full h-full"
+                        />
+                      </div>
                     )}
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">
@@ -334,12 +337,15 @@ export const PeriodDetailView: React.FC<PeriodDetailViewProps> = ({
                     className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group flex items-center gap-3"
                   >
                     {designer.images && designer.images[0] && (
-                      <img
-                        src={designer.images[0].imageUrl}
-                        alt={designer.name}
-                        className="w-11 h-11 rounded-full object-cover border border-[#D9CBB7] shrink-0 shadow-2xs"
-                        referrerPolicy="no-referrer"
-                      />
+                      <div className="w-11 h-11 rounded-full overflow-hidden border border-[#D9CBB7] shrink-0 shadow-2xs bg-[#EFE8DC]">
+                        <ImageWithFallback
+                          src={designer.images[0].imageUrl}
+                          alt={designer.name}
+                          fallbackTitle={designer.name}
+                          className="w-full h-full object-cover"
+                          containerClassName="w-full h-full"
+                        />
+                      </div>
                     )}
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">

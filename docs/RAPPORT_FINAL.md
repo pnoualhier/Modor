@@ -8,7 +8,7 @@ Toutes les exigences architecturales, documentaires, techniques et d'accessibili
 - **Architecture 100% Statique et Sans Serveur** : Déployable directement sur Cloudflare Pages sans aucun backend d'exécution en production.
 - **PWA Autonome & Hors-Ligne** : Service Worker configuré avec mise en cache complète des composants, polices et des 67 planches documentaires locales (incluant les portraits des 23 créateurs).
 - **Conformité Accessibilité WCAG 2.2 Niveau AA** : Ratios de contraste certifiés (13.4:1 pour le texte noir sur ivoire), support complet du clavier, lien d'évitement, annonces vocales ARIA et désactivation des animations pour les utilisateurs sensibles (`prefers-reduced-motion`).
-- **Zéro Échec de Compilation et Intégrité Validée** : 19/19 tests Vitest au vert, 0 erreur ESLint, 0 erreur de typecheck TypeScript.
+- **Zéro Échec de Compilation et Intégrité Validée** : 34/34 tests Vitest au vert, 0 erreur ESLint, 0 erreur de typecheck TypeScript.
 
 ---
 
@@ -18,12 +18,12 @@ Toutes les exigences architecturales, documentaires, techniques et d'accessibili
 | :--- | :--- | :--- |
 | **Périodes Historiques Détaillées** | **22 périodes** | Du XVIe siècle (Renaissance) au XXIe siècle (2020–2026), avec chacune les 19 rubriques obligatoires. |
 | **Vêtements & Structures Indispensables** | **22 pièces** | Vertugadin, Fraise, Corps à baleines, Robe à la française, Panier, Robe Empire, Manche gigot, Crinoline, Tournure, Corset, New Look, Tailleur féminin, Le Smoking, Mini-jupe, Pantalon patte d'éléphant, Tailleur années 80, etc. |
-| **Créateurs & Maisons de Couture** | **23 couturiers** | De Rose Bertin et Charles Frederick Worth à Jacquemus et Marine Serre, avec pour chacun un portrait d'archive 100% libre de droit (Domaine Public / CC0). |
+| **Créateurs & Maisons de Couture** | **23 couturiers** | De Rose Bertin et Charles Frederick Worth à Jacquemus et Marine Serre, avec pour chacun un portrait d'archive issu des fonds publics (Domaine Public / CC0). |
 | **Institutions et Sources Référencées** | **7 institutions** | Palais Galliera, BnF Gallica, Musée des Arts Décoratifs, Met Museum, Bocher, Leloir, Pauper & Bruna. |
 | **Modèles de Silhouettes Vectorielles** | **13 époques** | Moteur SVG paramétrique avec couches de sous-structure et guides calipers comparatifs. |
 | **Modèles d'Anatomie Interactive** | **4 modèles** | Renaissance, Rococo, Crinoline, New Look (minimum 5 hotspots interactifs chacun). |
 | **Questions de Quiz Pédagogiques** | **18 questions** | 3 questions par siècle (XVIe au XXIe), avec anecdotes culturelles et explications historiques détaillées. |
-| **Planches Documentaires Locales** | **67 planches** | Générées au format vectoriel SVG et matriciel JPEG haute définition dans `/public/images/historical/`, incluant les 23 portraits de créateurs. |
+| **Planches Documentaires Locales** | **67 planches** | Fichiers locaux vérifiés dans `/public/images/historical/`, incluant les 23 portraits de créateurs et l'ensemble des vêtements historiques. |
 
 ---
 
@@ -40,11 +40,13 @@ VÉRIFICATION TECHNIQUE ET QUALITÉ DU CODE
    Statut : SUCCÈS (0 avertissement, 0 erreur)
 
 3. Suite de Tests Automatisés (vitest run)
-   Statut : SUCCÈS (19 tests passés avec succès)
-   - integrity.test.ts   : 9/9 passés
-   - search.test.ts      : 5/5 passés
-   - validation.test.ts  : 3/3 passés
-   - anatomy.test.ts     : 2/2 passés
+   Statut : SUCCÈS (34/34 tests passés avec succès sur 6 suites)
+   - integrity.test.ts        : 9/9 passés
+   - search.test.ts           : 5/5 passés
+   - validation.test.ts       : 3/3 passés
+   - anatomy.test.ts          : 2/2 passés
+   - images-integrity.test.ts : 5/5 passés
+   - storage.test.ts          : 10/10 passés
 
 4. Compilation de Production Vite (vite build)
    Statut : SUCCÈS (PWA manifest, Service Worker et bundles générés)

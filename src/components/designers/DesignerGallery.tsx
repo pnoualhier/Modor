@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { HISTORICAL_DESIGNERS } from '../../data/designers';
+import { HISTORICAL_SOURCES } from '../../data/sources';
 import { Designer } from '../../types';
-import { Sparkles, Heart, ExternalLink, X, Quote, Award, ShieldCheck, ZoomIn, Camera } from 'lucide-react';
+import { ImageWithFallback } from '../common/ImageWithFallback';
+import { Sparkles, Heart, ExternalLink, X, Quote, Award, ShieldCheck, ZoomIn, Camera, BookOpen } from 'lucide-react';
 
 interface DesignerGalleryProps {
   onSelectPeriod: (periodId: string) => void;
@@ -102,15 +104,16 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               {/* Designer Archival Portrait Image */}
               {primaryImage && (
                 <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
-                  <img
+                  <ImageWithFallback
                     src={primaryImage.imageUrl}
                     alt={primaryImage.title || `Portrait de ${designer.name}`}
+                    fallbackTitle={designer.name}
+                    fallbackSubtitle={designer.fashionHouse}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
+                    containerClassName="w-full h-full"
                   />
                   {/* Institution provenance badge at bottom */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2.5 text-white">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2.5 text-white pointer-events-none">
                     <p className="text-[10px] text-white/90 truncate font-serif italic">
                       {primaryImage.institution}
                     </p>
@@ -249,11 +252,13 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               <div className="bg-[#F7F4ED] rounded-xl border border-[#D9CBB7]/60 p-4 space-y-3">
                 <div className="flex flex-col sm:flex-row gap-5 items-center">
                   <div className="relative w-full sm:w-56 aspect-3/4 shrink-0 rounded-lg overflow-hidden border border-[#D9CBB7] shadow-xs group bg-[#EFE8DC]">
-                    <img
+                    <ImageWithFallback
                       src={selectedDesigner.images[0].imageUrl}
                       alt={selectedDesigner.images[0].title}
+                      fallbackTitle={selectedDesigner.name}
+                      fallbackSubtitle={selectedDesigner.images[0].institution}
                       className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
+                      containerClassName="w-full h-full"
                     />
                     <button
                       onClick={() => {
@@ -265,7 +270,7 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
                           license: img.license,
                         });
                       }}
-                      className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 text-xs font-medium"
+                      className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 text-xs font-medium cursor-pointer"
                     >
                       <ZoomIn className="w-4 h-4" />
                       <span>Agrandir</span>
@@ -360,6 +365,40 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               <p className="text-[#77736D] leading-relaxed">{selectedDesigner.historicalInfluence}</p>
             </div>
 
+            {/* Documentary Sources */}
+            {selectedDesigner.sourceIds && selectedDesigner.sourceIds.length > 0 && (
+              <div className="space-y-2 text-xs bg-[#F7F4ED] p-4 rounded-xl border border-[#D9CBB7]/40">
+                <span className="font-bold text-[#242321] uppercase tracking-wide flex items-center gap-1.5 text-xs">
+                  <BookOpen className="w-4 h-4 text-[#9A3412]" />
+                  <span>Sources & Fonds de Documentation :</span>
+                </span>
+                <div className="space-y-1.5 pt-1">
+                  {selectedDesigner.sourceIds.map((sId) => {
+                    const src = HISTORICAL_SOURCES.find((s) => s.id === sId);
+                    if (!src) return null;
+                    return (
+                      <div key={src.id} className="flex items-center justify-between text-[11px] text-[#55524E]">
+                        <div>
+                          <span className="font-medium text-[#242321]">{src.title}</span> — {src.institution} ({src.year})
+                        </div>
+                        {src.url && (
+                          <a
+                            href={src.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[#9A3412] hover:underline"
+                          >
+                            <span>Consulter</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             {/* Modal Actions */}
             <div className="pt-4 border-t border-[#D9CBB7]/40 flex items-center justify-between">
               {selectedDesigner.periodIds.length > 0 ? (
@@ -418,11 +457,10 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               </button>
             </div>
             <div className="p-4 bg-[#F4EDE1] flex items-center justify-center max-h-[70vh]">
-              <img
+              <ImageWithFallback
                 src={zoomedImage.url}
                 alt={zoomedImage.title}
                 className="max-h-[65vh] w-auto object-contain rounded-lg shadow-md"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>

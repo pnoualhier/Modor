@@ -61,4 +61,6 @@ npm run build
 | `src/test/search.test.ts` | 5 tests | **PASSÉ (0 erreur)** |
 | `src/test/validation.test.ts` | 3 tests | **PASSÉ (0 erreur)** |
 | `src/test/anatomy.test.ts` | 2 tests | **PASSÉ (0 erreur)** |
-| **Total Global** | **19 tests** | **100% SUCCÈS** |
+| `src/test/images-integrity.test.ts` | 5 tests | **PASSÉ (0 erreur)** |
+| `src/test/storage.test.ts` | 10 tests | **PASSÉ (0 erreur)** |
+| **Total Global** | **34 tests** | **100% SUCCÈS** |

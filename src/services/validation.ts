@@ -5,6 +5,7 @@ import { HISTORICAL_SOURCES } from '../data/sources';
 import { SILHOUETTE_DEFINITIONS } from '../data/silhouettes';
 import { QUIZ_QUESTIONS } from '../data/quizzes';
 import { ANATOMY_MODELS } from '../data/anatomy';
+import { ImageCredit } from '../types';
 
 export type IssueLevel = 'error' | 'warning' | 'info';
 
@@ -31,6 +32,7 @@ export interface ValidationReport {
     quizzesCount: number;
     anatomyModelsCount: number;
     totalImagesReferenced: number;
+    imagesWithCompleteProvenance: number;
   };
 }
 
@@ -55,6 +57,59 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
   const silhouetteIds = new Set<string>();
   const quizIds = new Set<string>();
   const referencedImageUrls = new Set<string>();
+  let imagesWithCompleteProvenance = 0;
+
+  function validateImageMetadata(
+    img: ImageCredit,
+    parentType: ValidationIssue['entityType'],
+    parentId: string
+  ) {
+    if (!img.id) {
+      addIssue('error', 'MISSING_IMAGE_ID', `Image sans identifiant dans ${parentType} ${parentId}`, 'image', parentId);
+    }
+
+    if (!img.imageUrl) {
+      addIssue('error', 'MISSING_IMAGE_URL', `Image ${img.id || 'sans id'} dans ${parentType} ${parentId} sans URL`, 'image', img.id || parentId);
+      return;
+    }
+
+    referencedImageUrls.add(img.imageUrl);
+
+    if (!img.imageUrl.startsWith('/images/')) {
+      addIssue('warning', 'EXTERNAL_IMAGE_URL', `Image ${img.imageUrl} n'est pas dans le répertoire local /images/`, 'image', img.id);
+    }
+
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.svg', '.webp', '.gif'];
+    const hasValidExt = validExtensions.some((ext) => img.imageUrl.toLowerCase().endsWith(ext));
+    if (!hasValidExt) {
+      addIssue('warning', 'UNRECOGNIZED_IMAGE_EXTENSION', `Format d'image non conventionnel : ${img.imageUrl}`, 'image', img.id);
+    }
+
+    if (!img.title || img.title.trim() === '') {
+      addIssue('error', 'MISSING_IMAGE_TITLE', `Image ${img.id} sans titre descriptif`, 'image', img.id);
+    }
+
+    if (!img.institution || img.institution.trim() === '') {
+      addIssue('error', 'MISSING_IMAGE_INSTITUTION', `Image ${img.id} sans institution de provenance`, 'image', img.id);
+    }
+
+    if (!img.license || img.license.trim() === '') {
+      addIssue('error', 'MISSING_IMAGE_LICENSE', `Image ${img.id} sans statut juridique / licence explicite`, 'image', img.id);
+    }
+
+    if (!img.caption || img.caption.trim() === '') {
+      addIssue('warning', 'MISSING_IMAGE_CAPTION', `Image ${img.id} sans légende historique détaillée`, 'image', img.id);
+    }
+
+    if (!img.type || !['patrimoine', 'schema', 'reconstitution'].includes(img.type)) {
+      addIssue('warning', 'INVALID_IMAGE_TYPE', `Image ${img.id} type d'illustration non reconnu : ${img.type}`, 'image', img.id);
+    }
+
+    // Check complete provenance
+    if (img.title && img.institution && img.license && img.caption && img.imageUrl) {
+      imagesWithCompleteProvenance++;
+    }
+  }
 
   // 1. Sources check
   HISTORICAL_SOURCES.forEach((source) => {
@@ -64,6 +119,9 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
     sourceIds.add(source.id);
     if (!source.title || !source.institution) {
       addIssue('error', 'INCOMPLETE_SOURCE', `Source ${source.id} sans titre ou institution`, 'source', source.id);
+    }
+    if (source.url && !source.url.startsWith('http://') && !source.url.startsWith('https://')) {
+      addIssue('warning', 'MALFORMED_SOURCE_URL', `Source ${source.id} possède une URL non HTTP(S) : ${source.url}`, 'source', source.id);
     }
   });
 
@@ -82,22 +140,21 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
       addIssue('warning', 'ORPHAN_GARMENT', `Vêtement ${garment.id} n'est rattaché à aucune période`, 'garment', garment.id);
     }
 
-    garment.sourceIds.forEach((srcId) => {
-      if (!sourceIds.has(srcId)) {
-        addIssue('warning', 'MISSING_SOURCE_REF', `Vêtement ${garment.id} référence une source inexistante : ${srcId}`, 'garment', garment.id);
-      }
-    });
-
-    garment.images.forEach((img) => {
-      if (!img.imageUrl) {
-        addIssue('error', 'MISSING_IMAGE_URL', `Image ${img.id} du vêtement ${garment.id} sans URL`, 'image', img.id);
-      } else {
-        referencedImageUrls.add(img.imageUrl);
-        if (!img.imageUrl.startsWith('/images/')) {
-          addIssue('warning', 'EXTERNAL_IMAGE_URL', `Image ${img.imageUrl} n'est pas dans le répertoire local /images/`, 'image', img.id);
+    if (!garment.sourceIds || garment.sourceIds.length === 0) {
+      addIssue('warning', 'UNREFERENCED_GARMENT_SOURCE', `Vêtement ${garment.id} sans source documentaire bibliographique rattachée`, 'garment', garment.id);
+    } else {
+      garment.sourceIds.forEach((srcId) => {
+        if (!sourceIds.has(srcId)) {
+          addIssue('warning', 'MISSING_SOURCE_REF', `Vêtement ${garment.id} référence une source inexistante : ${srcId}`, 'garment', garment.id);
         }
-      }
-    });
+      });
+    }
+
+    if (!garment.images || garment.images.length === 0) {
+      addIssue('warning', 'GARMENT_WITHOUT_IMAGE', `Vêtement ${garment.id} sans image d'illustration`, 'garment', garment.id);
+    } else {
+      garment.images.forEach((img) => validateImageMetadata(img, 'garment', garment.id));
+    }
   });
 
   // 3. Designers check
@@ -115,22 +172,17 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
       addIssue('error', 'INVALID_DATES', `Créateur ${designer.id} : date de naissance supérieure au décès`, 'designer', designer.id);
     }
 
-    designer.sourceIds.forEach((srcId) => {
-      if (!sourceIds.has(srcId)) {
-        addIssue('warning', 'MISSING_SOURCE_REF', `Créateur ${designer.id} référence une source inexistante : ${srcId}`, 'designer', designer.id);
-      }
-    });
-
-    designer.images?.forEach((img) => {
-      if (!img.imageUrl) {
-        addIssue('error', 'MISSING_IMAGE_URL', `Image ${img.id} du créateur ${designer.id} sans URL`, 'image', img.id);
-      } else {
-        referencedImageUrls.add(img.imageUrl);
-        if (!img.imageUrl.startsWith('/images/')) {
-          addIssue('warning', 'EXTERNAL_IMAGE_URL', `Image ${img.imageUrl} n'est pas locale`, 'image', designer.id);
+    if (!designer.sourceIds || designer.sourceIds.length === 0) {
+      addIssue('warning', 'UNREFERENCED_DESIGNER_SOURCE', `Créateur ${designer.id} sans source documentaire bibliographique rattachée`, 'designer', designer.id);
+    } else {
+      designer.sourceIds.forEach((srcId) => {
+        if (!sourceIds.has(srcId)) {
+          addIssue('warning', 'MISSING_SOURCE_REF', `Créateur ${designer.id} référence une source inexistante : ${srcId}`, 'designer', designer.id);
         }
-      }
-    });
+      });
+    }
+
+    designer.images?.forEach((img) => validateImageMetadata(img, 'designer', designer.id));
   });
 
   // 4. Periods check
@@ -168,16 +220,7 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
       }
     });
 
-    period.images?.forEach((img) => {
-      if (!img.imageUrl) {
-        addIssue('error', 'MISSING_IMAGE_URL', `Image ${img.id} de la période ${period.id} sans URL`, 'image', img.id);
-      } else {
-        referencedImageUrls.add(img.imageUrl);
-        if (!img.imageUrl.startsWith('/images/')) {
-          addIssue('warning', 'EXTERNAL_IMAGE_URL', `Image ${img.imageUrl} n'est pas locale`, 'image', period.id);
-        }
-      }
-    });
+    period.images?.forEach((img) => validateImageMetadata(img, 'period', period.id));
   });
 
   // 5. Bidirectional garments -> periods check
@@ -250,7 +293,8 @@ export function validateEncyclopediaIntegrity(): ValidationReport {
       silhouettesCount: SILHOUETTE_DEFINITIONS.length,
       quizzesCount: QUIZ_QUESTIONS.length,
       anatomyModelsCount: ANATOMY_MODELS.length,
-      totalImagesReferenced: referencedImageUrls.size
+      totalImagesReferenced: referencedImageUrls.size,
+      imagesWithCompleteProvenance
     }
   };
 }
