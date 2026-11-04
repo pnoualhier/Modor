@@ -46,7 +46,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_FRAISE',
         title: 'Fraise tuyautée à godrons en fine batiste',
-        institution: 'Musée Carnavalet / BnF',
+        institution: 'Wikipédia / Wikimedia Commons (Musée Carnavalet)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/fraise_renaissance.jpg',
         caption: 'Fraise tuyautée à tuyaux réguliers empesés à l\'amidon, fin du XVIe siècle.',
@@ -73,7 +73,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_CORPS',
         title: 'Corps à baleines en soie brochée et coutil armé',
-        institution: 'Musée des Arts Décoratifs de Paris / Galliera',
+        institution: 'Wikipédia / Wikimedia Commons (MAD Paris)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/corps_baleine_mad.jpg',
         caption: 'Corps à baleines du XVIIIe siècle présentant les coulisses à fanons et les œillets de laçage décalés.',
@@ -100,7 +100,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_ROBE_FR',
         title: 'Robe à la française en soie peinte aux motifs floraux',
-        institution: 'The Metropolitan Museum of Art / Palais Galliera',
+        institution: 'Wikipédia / Wikimedia Commons (The MET)',
         license: 'Domaine Public / Open Access CCO',
         imageUrl: '/images/historical/robe_francaise_detail.jpg',
         caption: 'Vue dorsale des plis Watteau et des manchettes à pagode d\'une robe à la française d\'époque Louis XV.',
@@ -127,7 +127,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_ROBE_ANG',
         title: 'Robe à l\'anglaise en satin vert et fleurs brodées',
-        institution: 'Palais Galliera / Musée de la Mode de la Ville de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/robe_anglaise_galliera.jpg',
         caption: 'Dos plaqué à découpes cintrées caractéristique de la robe à l\'anglaise vers 1780.',
@@ -181,7 +181,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_ROBE_EMP',
         title: 'Robe Empire en mousseline de coton brodée au point de chaînette',
-        institution: 'The Metropolitan Museum of Art / Palais Galliera',
+        institution: 'Wikipédia / Wikimedia Commons (The MET)',
         license: 'Domaine Public / Open Access CCO',
         imageUrl: '/images/historical/robe_empire_met.jpg',
         caption: 'Robe taille haute en mousseline blanche portée vers 1805 avec manches ballon.',
@@ -208,7 +208,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_GIGOT',
         title: 'Gravure de manche gigot sous la Restauration',
-        institution: 'Palais Galliera / BnF',
+        institution: 'Wikipédia / Wikimedia Commons (BnF / Gallica)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/manche_gigot_detail.jpg',
         caption: 'Volume sphérique de la manche gigot romantique soutenu par armature de crin.',
@@ -235,7 +235,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_CRINOLINE',
         title: 'Crinoline cage métallique brevetée Tavernier',
-        institution: 'Palais Galliera / Musée des Arts Décoratifs',
+        institution: 'Wikipédia / Wikimedia Commons (Musée des Arts Décoratifs)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/crinoline_cage_archive.jpg',
         caption: 'La crinoline cage d\'acier flexible (vers 1860), chef-d\'œuvre d\'ingénierie textile du Second Empire.',
@@ -289,7 +289,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_CORSET',
         title: 'Corset taille de guêpe en satin noir brodé de soie',
-        institution: 'Palais Galliera / Musée de la Mode de la Ville de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/corset_1890_galliera.jpg',
         caption: 'Corset fin de siècle vers 1895 en satin brodé, busc métallique avant et laçage au dos.',
@@ -316,7 +316,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_JUPON',
         title: 'Jupon d\'organdi à volants brodés',
-        institution: 'Palais Galliera / Musée de la Mode de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/jupon_dentelle.jpg',
         caption: 'Jupon en batiste et broderie anglaise de la fin du XIXe siècle.',
@@ -343,7 +343,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_BELLE_EP',
         title: 'Robe d\'après-midi Belle Époque en mousseline et dentelle',
-        institution: 'Palais Galliera / Musée de la Mode de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/robe_belle_epoque_detail.jpg',
         caption: 'Robe Belle Époque ornée de guipures et de dentelles d\'Irlande vers 1904.',
@@ -370,7 +370,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_GARCONNE',
         title: 'Robe droite à taille basse des Années Folles',
-        institution: 'Palais Galliera / Musée de la Mode de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/robe_garconne_1925.jpg',
         caption: 'Robe droite en crêpe de soie des Années Folles avec taille basse ceinturée.',
@@ -397,7 +397,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_CHARLESTON',
         title: 'Robe de bal à franges perlées style Charleston',
-        institution: 'Palais Galliera / Musée des Arts Décoratifs',
+        institution: 'Wikipédia / Wikimedia Commons (Musée des Arts Décoratifs)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/robe_charleston_perles.jpg',
         caption: 'Robe du soir couverte de perles de verre et de franges dansantes vers 1926.',
@@ -424,7 +424,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_BIAIS',
         title: 'Robe du soir en crêpe de soie coupée en biais par Madeleine Vionnet',
-        institution: 'Musée des Arts Décoratifs de Paris / Galliera',
+        institution: 'Wikipédia / Wikimedia Commons (MAD Paris)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/robe_biais_vionnet.jpg',
         caption: 'Robe coupée en plein biais par Madeleine Vionnet vers 1934, épousant le buste avec fluidité.',
@@ -451,7 +451,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_NEWLOOK',
         title: 'Le Tailleur Bar de Christian Dior, 1947',
-        institution: 'Palais Galliera / Archives Dior',
+        institution: 'Wikipédia / Wikimedia Commons (Archives Dior)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/dior_bar_archive.jpg',
         caption: 'Le Tailleur Bar original de 1947 : veste en soie crème et jupe plissée noire corolle.',
@@ -478,7 +478,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_TAILLEUR',
         title: 'Tailleur féminin en tweed gansé par Gabrielle Chanel',
-        institution: 'Palais Galliera / Musée de la Mode de Paris',
+        institution: 'Wikipédia / Wikimedia Commons (Palais Galliera)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/tailleur_chanel_1954.jpg',
         caption: 'Le tailleur en tweed gansé de 1954 par Coco Chanel : chaîne d\'or cousue dans l\'ourlet pour un tombé parfait.',
@@ -505,7 +505,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_SMOKING',
         title: 'Le premier smoking pour femme par Yves Saint Laurent',
-        institution: 'Musée Yves Saint Laurent Paris / Galliera',
+        institution: 'Wikipédia / Wikimedia Commons (de Young Museum)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/ysl_smoking_1966.jpg',
         caption: 'Smoking Haute Couture Automne-Hiver 1966 par Yves Saint Laurent, photographié par Helmut Newton rue Aubriot.',
@@ -532,7 +532,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_MINIJUPE',
         title: 'Mini-jupe trapèze en gabardine blanche par André Courrèges',
-        institution: 'Palais Galliera / Musée des Arts Décoratifs',
+        institution: 'Wikipédia / Wikimedia Commons (Musée des Arts Décoratifs)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/courreges_minijupe_1965.jpg',
         caption: 'La mini-jupe trapèze blanche et bottes vinyle d\'André Courrèges, révolution spatiale de 1965.',
@@ -559,7 +559,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_PATTE_ELEPH',
         title: 'Pantalon flare pattes d\'éléphant en denim des années 1970',
-        institution: 'Palais Galliera / Archives de mode',
+        institution: 'Wikipédia / Wikimedia Commons (Archives Mode)',
         license: 'Domaine Public',
         imageUrl: '/images/historical/flare_pants_70s.jpg',
         caption: 'Pantalon évasé pattes d\'éléphant en denim avec surpiqûres orange vers 1974.',
@@ -586,7 +586,7 @@ export const HISTORICAL_GARMENTS: Garment[] = [
       {
         id: 'IMG_GAR_TAILLEUR_80S',
         title: 'Tailleur aux épaules structurées par Claude Montana',
-        institution: 'Palais Galliera / Musée des Arts Décoratifs',
+        institution: 'Wikipédia / Wikimedia Commons (Musée des Arts Décoratifs)',
         license: 'Domaine Public / Données documentaires',
         imageUrl: '/images/historical/montana_power_suit_1984.jpg',
         caption: 'Tailleur d\'affaires aux épaules XXL et taille cintrée par Claude Montana en 1984.',

@@ -296,13 +296,24 @@ export const PeriodDetailView: React.FC<PeriodDetailViewProps> = ({
                   <button
                     key={garment.id}
                     onClick={() => onSelectGarment(garment.id)}
-                    className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group"
+                    className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group flex items-center gap-3"
                   >
-                    <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412]">
-                      {garment.name}
-                    </div>
-                    <div className="text-[11px] text-[#77736D] mt-0.5 capitalize">
-                      {garment.category} · {garment.eraDates}
+                    {garment.images?.[0] && (
+                      <img
+                        src={garment.images[0].imageUrl}
+                        alt={garment.name}
+                        className="w-12 h-12 rounded-lg object-cover border border-[#D9CBB7] shrink-0"
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                      />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">
+                        {garment.name}
+                      </div>
+                      <div className="text-[11px] text-[#77736D] mt-0.5 capitalize truncate">
+                        {garment.category} · {garment.eraDates}
+                      </div>
                     </div>
                   </button>
                 ))}

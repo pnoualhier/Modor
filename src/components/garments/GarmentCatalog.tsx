@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { HISTORICAL_GARMENTS } from '../../data/garments';
 import { Garment, GarmentCategory } from '../../types';
-import { Search, Heart, Layers, ExternalLink, X, Scissors, Info, Sparkles } from 'lucide-react';
-import { StorageService } from '../../services/storage';
+import { Search, Heart, X, ZoomIn, Camera, Sparkles } from 'lucide-react';
 
 interface GarmentCatalogProps {
   onSelectPeriod: (periodId: string) => void;
@@ -31,6 +30,12 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
   const [selectedCentury, setSelectedCentury] = useState<number | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedGarment, setSelectedGarment] = useState<Garment | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<{
+    url: string;
+    title: string;
+    institution: string;
+    license: string;
+  } | null>(null);
 
   const filteredGarments = HISTORICAL_GARMENTS.filter((garment) => {
     if (selectedCategory !== 'all' && garment.category !== selectedCategory) {
@@ -53,13 +58,17 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
   // Handle Escape key to close modal
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedGarment) {
-        setSelectedGarment(null);
+      if (e.key === 'Escape') {
+        if (zoomedImage) {
+          setZoomedImage(null);
+        } else if (selectedGarment) {
+          setSelectedGarment(null);
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedGarment]);
+  }, [selectedGarment, zoomedImage]);
 
   return (
     <div className="space-y-8">
@@ -67,14 +76,20 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
       <div className="border-b border-[#D9CBB7]/40 pb-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
-              Encyclopédie des Pièces Historiques
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
+                Encyclopédie des Pièces Historiques
+              </span>
+              <span className="inline-flex items-center gap-1 bg-[#F4EDE1] text-[#77736D] border border-[#D9CBB7]/60 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                <Camera className="w-3 h-3 text-[#9A3412]" />
+                Photos Wikipédia & Wikimedia
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
               Catalogue des Vêtements & Structures
             </h2>
             <p className="text-sm text-[#77736D] max-w-2xl mt-2 leading-relaxed">
-              Explorez l'inventaire typologique des vêtements féminins : robes d'apparat, armatures métalliques, corsets, crinolines et tailleurs émancipateurs.
+              Explorez l'inventaire typologique des vêtements féminins et sous-structures : robes d'apparat, armatures métalliques, corsets, crinolines et pièces d'archives issues de Wikipédia et Wikimedia Commons.
             </p>
           </div>
 
@@ -105,34 +120,34 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
             )}
           </div>
 
-          {/* Century Dropdown */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[#77736D] whitespace-nowrap">Siècle :</span>
-            <select
-              value={selectedCentury}
-              onChange={(e) => setSelectedCentury(e.target.value === 'all' ? 'all' : Number(e.target.value))}
-              className="text-xs bg-white border border-[#D9CBB7] rounded-lg px-2.5 py-1.5 text-[#242321] focus:outline-none focus:ring-1 focus:ring-[#242321]"
-            >
-              <option value="all">Tous les siècles</option>
-              <option value="16">XVIe siècle</option>
-              <option value="17">XVIIe siècle</option>
-              <option value="18">XVIIIe siècle</option>
-              <option value="19">XIXe siècle</option>
-              <option value="20">XXe siècle</option>
-              <option value="21">XXIe siècle</option>
-            </select>
+          {/* Century Filter Buttons */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+            <span className="text-xs text-[#77736D] mr-1 hidden sm:inline">Siècle :</span>
+            {(['all', 16, 17, 18, 19, 20] as const).map((cent) => (
+              <button
+                key={cent}
+                onClick={() => setSelectedCentury(cent)}
+                className={`px-2.5 py-1 text-xs rounded-md transition-colors ${
+                  selectedCentury === cent
+                    ? 'bg-[#242321] text-white font-medium'
+                    : 'bg-white text-[#77736D] hover:text-[#242321] border border-[#D9CBB7]/40'
+                }`}
+              >
+                {cent === 'all' ? 'Tous' : `${cent}e`}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Category Pills Bar */}
-        <div className="mt-4 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+        {/* Category Filter Tabs */}
+        <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.label}
               onClick={() => setSelectedCategory(cat.value)}
               className={`px-3 py-1.5 text-xs rounded-md transition-colors whitespace-nowrap ${
                 selectedCategory === cat.value
-                  ? 'bg-[#242321] text-[#F7F4ED] font-medium shadow-sm'
+                  ? 'bg-[#242321] text-[#F7F4ED] font-medium shadow-xs'
                   : 'bg-white text-[#77736D] hover:text-[#242321] hover:bg-[#D9CBB7]/20 border border-[#D9CBB7]/40'
               }`}
             >
@@ -146,12 +161,36 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredGarments.map((garment) => {
           const isFav = favorites.includes(garment.id);
+          const primaryImage = garment.images?.[0];
+
           return (
             <div
               key={garment.id}
               onClick={() => setSelectedGarment(garment)}
-              className="bg-white rounded-xl border border-[#D9CBB7]/60 overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group hover:border-[#D9CBB7]"
+              className="bg-white rounded-xl border border-[#D9CBB7]/60 overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group hover:border-[#D9CBB7]"
             >
+              {/* Garment Archival Illustration / Photo */}
+              {primaryImage && (
+                <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
+                  <img
+                    src={primaryImage.imageUrl}
+                    alt={primaryImage.title || garment.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  {/* Provenance badge at bottom */}
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2.5 text-white flex items-center justify-between">
+                    <p className="text-[10px] text-white/90 truncate font-serif italic max-w-[75%]">
+                      {primaryImage.institution}
+                    </p>
+                    <span className="text-[9px] font-mono text-amber-200 bg-black/50 px-1.5 py-0.5 rounded border border-white/20">
+                      Wikipédia
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="p-5 space-y-3">
                 <div className="flex items-center justify-between text-xs text-[#77736D]">
                   <span className="font-semibold text-[#9A3412] uppercase tracking-wider text-[10px]">
@@ -204,7 +243,7 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
                   {garment.century}e siècle
                 </span>
                 <span className="font-semibold text-[#242321] group-hover:text-[#9A3412] flex items-center gap-1 text-[11px]">
-                  <span>Fiche détaillée</span>
+                  <span>Fiche & Illustration</span>
                   <span>→</span>
                 </span>
               </div>
@@ -223,7 +262,7 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
               setSelectedCentury('all');
               setSearchQuery('');
             }}
-            className="mt-3 text-xs font-semibold text-[#9A3412] hover:underline"
+            className="mt-3 text-xs font-semibold text-[#9A3412] underline"
           >
             Réinitialiser les filtres
           </button>
@@ -283,8 +322,53 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
               </div>
             </div>
 
+            {/* Archival Illustration & Image Zoom Plate */}
+            {selectedGarment.images && selectedGarment.images[0] && (
+              <div className="rounded-xl overflow-hidden border border-[#D9CBB7]/60 bg-[#F4EDE1]">
+                <div className="relative aspect-16/10 w-full bg-black/5 overflow-hidden group">
+                  <img
+                    src={selectedGarment.images[0].imageUrl}
+                    alt={selectedGarment.images[0].title}
+                    className="w-full h-full object-contain md:object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <button
+                    onClick={() => {
+                      const img = selectedGarment.images[0];
+                      setZoomedImage({
+                        url: img.imageUrl,
+                        title: img.title,
+                        institution: img.institution,
+                        license: img.license,
+                      });
+                    }}
+                    className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 text-xs font-medium cursor-pointer"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                    <span>Agrandir l'illustration</span>
+                  </button>
+                </div>
+                <div className="p-3 bg-[#F7F4ED] border-t border-[#D9CBB7]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <div>
+                    <h4 className="font-serif font-bold text-[#242321] text-xs">
+                      {selectedGarment.images[0].title}
+                    </h4>
+                    <p className="text-[11px] text-[#77736D] mt-0.5">
+                      {selectedGarment.images[0].caption}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="inline-flex items-center gap-1 bg-white text-[#242321] text-[10px] font-semibold px-2.5 py-1 rounded-full border border-[#D9CBB7]/80">
+                      <Camera className="w-3 h-3 text-[#9A3412]" />
+                      {selectedGarment.images[0].institution}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Definition */}
-            <div className="text-sm text-[#242321] leading-relaxed font-serif italic text-base border-l-2 border-[#D9B8B3] pl-4">
+            <div className="text-[#242321] leading-relaxed font-serif italic text-base border-l-2 border-[#D9B8B3] pl-4">
               {selectedGarment.definition}
             </div>
 
@@ -363,6 +447,43 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
               >
                 Fermer
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Zoom Lightbox Modal */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 z-60 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setZoomedImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="max-w-4xl w-full max-h-[95vh] flex flex-col items-center gap-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative max-h-[78vh] flex items-center justify-center">
+              <img
+                src={zoomedImage.url}
+                alt={zoomedImage.title}
+                className="max-h-[78vh] w-auto max-w-full rounded-lg shadow-2xl object-contain border border-white/10"
+                referrerPolicy="no-referrer"
+              />
+              <button
+                onClick={() => setZoomedImage(null)}
+                className="absolute top-2 right-2 p-2 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
+                title="Fermer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="text-center text-white max-w-xl px-4 space-y-1">
+              <h4 className="font-serif text-sm font-semibold text-white/95">{zoomedImage.title}</h4>
+              <p className="text-xs text-white/70 italic font-serif">
+                {zoomedImage.institution} · {zoomedImage.license}
+              </p>
             </div>
           </div>
         </div>

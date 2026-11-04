@@ -185,17 +185,28 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
                   <div
                     key={garment.id}
                     onClick={() => onSelectGarment(garment.id)}
-                    className="p-4 bg-white rounded-xl border border-[#D9CBB7]/60 hover:border-[#242321] transition-all cursor-pointer flex justify-between items-center group shadow-xs"
+                    className="p-3 bg-white rounded-xl border border-[#D9CBB7]/60 hover:border-[#242321] transition-all cursor-pointer flex justify-between items-center group shadow-xs gap-3"
                   >
-                    <div>
-                      <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412]">
-                        {garment.name}
-                      </div>
-                      <div className="text-[11px] text-[#77736D] mt-0.5 capitalize">
-                        {garment.category} · {garment.eraDates}
+                    <div className="flex items-center gap-3 min-w-0">
+                      {garment.images && garment.images[0] && (
+                        <img
+                          src={garment.images[0].imageUrl}
+                          alt={garment.name}
+                          className="w-10 h-10 rounded-lg object-cover border border-[#D9CBB7] shrink-0"
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                        />
+                      )}
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">
+                          {garment.name}
+                        </div>
+                        <div className="text-[11px] text-[#77736D] mt-0.5 capitalize truncate">
+                          {garment.category} · {garment.eraDates}
+                        </div>
                       </div>
                     </div>
-                    <BookOpen className="w-4 h-4 text-[#77736D] group-hover:text-[#242321]" />
+                    <BookOpen className="w-4 h-4 text-[#77736D] group-hover:text-[#242321] shrink-0" />
                   </div>
                 ))}
               </div>
