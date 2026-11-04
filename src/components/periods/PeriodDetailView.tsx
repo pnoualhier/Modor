@@ -320,13 +320,26 @@ export const PeriodDetailView: React.FC<PeriodDetailViewProps> = ({
                   <button
                     key={designer.id}
                     onClick={() => onSelectDesigner(designer.id)}
-                    className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group"
+                    className="p-3 text-left bg-[#F7F4ED] hover:bg-[#D9CBB7]/30 rounded-lg border border-[#D9CBB7]/60 transition-colors group flex items-center gap-3"
                   >
-                    <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412]">
-                      {designer.name}
-                    </div>
-                    <div className="text-[11px] text-[#77736D] mt-0.5">
-                      {designer.fashionHouse} ({designer.birthYear}–{designer.deathYear || 'actuel'})
+                    {designer.images && designer.images[0] && (
+                      <img
+                        src={designer.images[0].imageUrl}
+                        alt={designer.name}
+                        className="w-11 h-11 rounded-full object-cover border border-[#D9CBB7] shrink-0 shadow-2xs"
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">
+                        {designer.name}
+                      </div>
+                      <div className="text-[11px] text-[#77736D] mt-0.5 truncate">
+                        {designer.fashionHouse}
+                      </div>
+                      <div className="text-[10px] text-[#9A3412] font-mono">
+                        {designer.birthYear}–{designer.deathYear || 'actuel'}
+                      </div>
                     </div>
                   </button>
                 ))}

@@ -109,18 +109,34 @@ npm install
 # Lancement du serveur de développement (port 3000)
 npm run dev
 
-# Exécution des tests automatisés Vitest
+# Exécution des tests automatisés Vitest (19 tests)
 npm test
 
-# Contrôle strict des types TypeScript (ESLint / Typecheck)
+# Contrôle du linter ESLint
 npm run lint
 
-# Compilation pour la production
+# Contrôle strict des types TypeScript
+npm run typecheck
+
+# Compilation pour la production (PWA & Service Worker)
 npm run build
 
 # Prévisualisation locale du build
 npm run preview
 ```
+
+---
+
+## 4. Documentation du Projet
+
+Une documentation exhaustive est disponible dans le répertoire [`docs/`](./docs) :
+- **[`docs/AUDIT_INITIAL.md`](./docs/AUDIT_INITIAL.md)** : Rapport d'audit méthodique d'entrée et identification des axes de consolidation.
+- **[`docs/SOURCES_ET_LICENCES.md`](./docs/SOURCES_ET_LICENCES.md)** : Répertoire des 7 institutions, licences (Domaine Public, CC0) et inventaire des 62 planches locales.
+- **[`docs/ACCESSIBILITE.md`](./docs/ACCESSIBILITE.md)** : Rapport de conformité WCAG 2.2 niveau AA, ratios de contraste et navigation assistée.
+- **[`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)** : Architecture logicielle, moteur de recherche à synonymes et stratégie de mise en cache PWA.
+- **[`docs/GUIDE_EDITORIAL.md`](./docs/GUIDE_EDITORIAL.md)** : Charte historique et méthodologie des 19 rubriques obligatoires.
+- **[`docs/TESTS.md`](./docs/TESTS.md)** : Matrice des tests d'intégrité et procédures d'assurance qualité.
+- **[`docs/RAPPORT_FINAL.md`](./docs/RAPPORT_FINAL.md)** : Synthèse exécutive et métriques complètes du projet.
 
 ---
 

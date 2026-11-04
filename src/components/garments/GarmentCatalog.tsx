@@ -50,6 +50,17 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
     return true;
   });
 
+  // Handle Escape key to close modal
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedGarment) {
+        setSelectedGarment(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedGarment]);
+
   return (
     <div className="space-y-8">
       {/* Editorial Header */}
@@ -224,6 +235,9 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
           onClick={() => setSelectedGarment(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Détails du vêtement : ${selectedGarment.name}`}
         >
           <div
             className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-[#D9CBB7] p-6 md:p-8 space-y-6"

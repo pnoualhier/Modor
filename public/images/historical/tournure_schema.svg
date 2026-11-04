@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="60%" stop-color="#F7F4ED" stop-opacity="1" />
+      <stop offset="100%" stop-color="#EFE8DC" stop-opacity="1" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#EADCCB" stroke-width="0.75" stroke-dasharray="2 3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background parchment -->
+  <rect width="800" height="1000" fill="url(#vignette)"/>
+  <rect x="50" y="80" width="700" height="740" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Double frame -->
+  <rect x="30" y="30" width="740" height="940" fill="none" stroke="#D9CBB7" stroke-width="3"/>
+  <rect x="42" y="42" width="716" height="916" fill="none" stroke="#242321" stroke-width="1.2"/>
+  <rect x="48" y="48" width="704" height="904" fill="none" stroke="#242321" stroke-width="0.5" stroke-dasharray="4 2"/>
+
+  <!-- Corner ornaments -->
+  <path d="M 42 62 L 62 42 M 738 62 L 718 42 M 42 938 L 62 958 M 738 938 L 718 958" stroke="#D9CBB7" stroke-width="2"/>
+
+  <!-- Museum Header -->
+  <text x="400" y="75" text-anchor="middle" font-family="serif" font-size="13" letter-spacing="3" fill="#242321" opacity="0.8">ARCHIVES DU COSTUME FRANÇAIS · PLANCHE DOCUMENTAIRE</text>
+  <line x1="180" y1="85" x2="620" y2="85" stroke="#242321" stroke-width="0.75"/>
+
+  <!-- Central Silhouette Graphic or Architectural Drawing -->
+  <g transform="translate(150, 140)">
+    <!-- Decorative oval medallion or blueprint frame -->
+    <rect x="0" y="0" width="500" height="580" rx="12" fill="#FFFFFF" fill-opacity="0.8" stroke="#D9CBB7" stroke-width="1.5"/>
+    <rect x="10" y="10" width="480" height="560" rx="8" fill="none" stroke="#242321" stroke-width="0.5"/>
+
+    <!-- Figure outline styling based on schema vs historical -->
+    <path d="M 250 50 C 235 50 225 65 225 80 C 225 95 235 110 250 110 C 265 110 275 95 275 80 C 275 65 265 50 250 50 Z" fill="none" stroke="#242321" stroke-width="2"/>
+    <path d="M 235 110 L 220 150 L 280 150 L 265 110" fill="none" stroke="#242321" stroke-width="1.5"/>
+    
+    <!-- Torso / Corsetry / Bodice -->
+    <path d="M 220 150 C 210 180 230 220 238 250 L 262 250 C 270 220 290 180 280 150 Z" fill="#FBF8F3" stroke="#242321" stroke-width="2"/>
+    <path d="M 238 250 L 250 270 L 262 250" fill="none" stroke="#D9B8B3" stroke-width="2"/>
+
+    <!-- Skirt / Silhouette Volume -->
+    
+      <!-- Technical blueprint cage ribs -->
+      <path d="M 238 250 C 180 320 120 420 100 500 L 400 500 C 380 420 320 320 262 250 Z" fill="none" stroke="#242321" stroke-width="2.5"/>
+      <ellipse cx="250" cy="320" rx="90" ry="22" fill="none" stroke="#A6AA99" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <ellipse cx="250" cy="380" rx="120" ry="28" fill="none" stroke="#A6AA99" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <ellipse cx="250" cy="440" rx="145" ry="34" fill="none" stroke="#A6AA99" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <ellipse cx="250" cy="500" rx="160" ry="38" fill="none" stroke="#242321" stroke-width="2"/>
+      <line x1="250" y1="250" x2="250" y2="500" stroke="#D9B8B3" stroke-width="1.5" stroke-dasharray="6 3"/>
+    
+
+    <!-- Sleeves / Gestural structure -->
+    <path d="M 220 150 C 190 170 170 210 160 250 C 170 250 185 240 195 210 L 210 180" fill="none" stroke="#242321" stroke-width="1.8"/>
+    <path d="M 280 150 C 310 170 330 210 340 250 C 330 250 315 240 305 210 L 290 180" fill="none" stroke="#242321" stroke-width="1.8"/>
+
+    <!-- Caliper / Technical Dimension ticks -->
+    <line x1="80" y1="250" x2="60" y2="250" stroke="#242321" stroke-width="1"/>
+    <line x1="80" y1="500" x2="60" y2="500" stroke="#242321" stroke-width="1"/>
+    <line x1="70" y1="250" x2="70" y2="500" stroke="#242321" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="50" y="380" font-family="monospace" font-size="9" fill="#242321" transform="rotate(-90 50 380)" text-anchor="middle">LIGNE D'AMPLITUDE</text>
+  </g>
+
+  <!-- Typography Cartouche -->
+  <g transform="translate(100, 750)">
+    <rect x="0" y="0" width="600" height="150" fill="#FFFFFF" fill-opacity="0.95" stroke="#D9CBB7" stroke-width="1.5"/>
+    <rect x="6" y="6" width="588" height="138" fill="none" stroke="#242321" stroke-width="0.5"/>
+    
+    <text x="300" y="38" text-anchor="middle" font-family="serif" font-weight="bold" font-size="20" fill="#242321">Tournure en acier pliable et coussin de crin</text>
+    <line x1="120" y1="52" x2="480" y2="52" stroke="#D9B8B3" stroke-width="1.5"/>
+
+    <text x="300" y="80" text-anchor="middle" font-family="serif" font-size="13" fill="#242321" font-style="italic">Palais Galliera / Musée de la Mode de Paris</text>
+    
+    <text x="300" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" letter-spacing="1" fill="#55524E">Domaine Public · ÉTUDE COMPARATIVE</text>
+    <text x="300" y="128" text-anchor="middle" font-family="monospace" font-size="10" fill="#88847E">RÉFÉRENCE : GAR_TOURNURE</text>
+  </g>
+
+  <!-- Museum Footer Seal -->
+  <text x="100" y="930" font-family="serif" font-size="10" fill="#242321" opacity="0.7">COLLECTION MODOR — HISTOIRE DE LA MODE FRANÇAISE</text>
+  <text x="700" y="930" text-anchor="end" font-family="serif" font-size="10" fill="#242321" opacity="0.7">REPRODUCTION DOCUMENTAIRE</text>
+</svg>

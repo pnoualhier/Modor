@@ -18,12 +18,12 @@ export const HISTORICAL_GARMENTS: Garment[] = [
     images: [
       {
         id: 'IMG_GAR_VERTUGADIN',
-        title: 'Schéma anatomique et gravure d\'un vertugadin en tambour du XVIe siècle',
-        institution: 'Palais Galliera / BnF Estampes',
-        license: 'Schéma Pédagogique Original',
-        imageUrl: '/images/historical/vertugadin_schema.svg',
-        caption: 'Structure interne du vertugadin français en tambour avec coulisses pour cerceaux d\'osier.',
-        type: 'schema'
+        title: 'Anne de Danemark au vertugadin en tambour (XVIe siècle)',
+        institution: 'Wikipédia / Wikimedia Commons',
+        license: 'Domaine Public',
+        imageUrl: '/images/historical/vertugadin_wiki.jpg',
+        caption: 'Portrait d\'époque montrant l\'ampleur cylindrique du vertugadin en tambour de la Renaissance.',
+        type: 'patrimoine'
       }
     ],
     sourceIds: ['SRC_BOCHER', 'SRC_PAUPER', 'SRC_LELOIR']
@@ -153,12 +153,12 @@ export const HISTORICAL_GARMENTS: Garment[] = [
     images: [
       {
         id: 'IMG_GAR_PANIER',
-        title: 'Schéma d\'un panier à coudes articulé du XVIIIe siècle',
-        institution: 'Palais Galliera / Arts Décoratifs',
-        license: 'Schéma Pédagogique Original',
-        imageUrl: '/images/historical/panier_schema.svg',
-        caption: 'Paniers à coudes articulés permettant de reposer les avant-bras sur la jupe.',
-        type: 'schema'
+        title: 'Robe de cour à grands paniers latéraux du XVIIIe siècle',
+        institution: 'Wikipédia / Wikimedia Commons',
+        license: 'Domaine Public',
+        imageUrl: '/images/historical/panier_wiki.jpg',
+        caption: 'Silhouette du XVIIIe siècle projetée latéralement par une structure de paniers à coudes.',
+        type: 'patrimoine'
       }
     ],
     sourceIds: ['SRC_PAUPER', 'SRC_BOCHER', 'SRC_GALLIERA']
@@ -261,12 +261,12 @@ export const HISTORICAL_GARMENTS: Garment[] = [
     images: [
       {
         id: 'IMG_GAR_TOURNURE',
-        title: 'Tournure en acier pliable et coussin de crin',
-        institution: 'Palais Galliera / Musée de la Mode de Paris',
+        title: 'Structure de tournure et robe à faux-cul (vers 1885)',
+        institution: 'Wikipédia / Wikimedia Commons',
         license: 'Domaine Public',
-        imageUrl: '/images/historical/tournure_schema.svg',
-        caption: 'Schéma de la tournure à demi-arceaux d\'acier des années 1880.',
-        type: 'schema'
+        imageUrl: '/images/historical/tournure_wiki.jpg',
+        caption: 'La tournure à demi-arceaux d\'acier projetant le volume du drapé en arrière.',
+        type: 'patrimoine'
       }
     ],
     sourceIds: ['SRC_GALLIERA', 'SRC_PAUPER', 'SRC_BOCHER']

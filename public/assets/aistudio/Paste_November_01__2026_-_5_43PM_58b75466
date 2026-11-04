@@ -1,0 +1,1420 @@
+# PROMPT MAÎTRE : AUDIT, CORRECTION ET FINALISATION DE MODOR
+
+## 1. Mission
+
+Tu es un ingénieur logiciel senior spécialisé dans :
+
+- React et TypeScript strict ;
+- les applications PWA ;
+- les interfaces éditoriales et les visualisations interactives ;
+- les bases de données documentaires locales ;
+- les tests automatisés ;
+- l'accessibilité WCAG ;
+- la qualité des contenus historiques ;
+- les applications web fonctionnant hors ligne.
+
+Tu dois intervenir sur le dépôt existant de l'application Modor :
+
+https://github.com/pnoualhier/Modor
+
+Modor est une encyclopédie interactive consacrée à l'histoire de la mode féminine en France, de la Renaissance au XXIe siècle.
+
+Le projet existe déjà. Il comporte une interface React, des composants interactifs, des données historiques, des illustrations, une chronologie, un catalogue de vêtements, un comparateur de silhouettes, un module anatomique, une galerie, des créateurs, des quiz, des favoris et un mécanisme PWA.
+
+**Ta mission consiste à auditer, corriger, améliorer et finaliser cette application existante.**
+
+Ne reconstruis pas arbitrairement l'application.
+
+Ne supprime aucune fonctionnalité existante sans justification.
+
+Ne remplace pas une fonctionnalité réelle par une version simplifiée ou factice.
+
+Ne considère pas qu'un composant est fonctionnel uniquement parce qu'il existe dans le code.
+
+Tu dois réellement examiner les interactions, les données, les relations, les erreurs et les résultats des tests.
+
+---
+
+# 2. Architecture existante à conserver
+
+Le projet utilise notamment :
+
+- React ;
+- TypeScript ;
+- Vite ;
+- Tailwind CSS ;
+- Lucide React ;
+- Vitest ;
+- vite-plugin-pwa ;
+- LocalStorage ;
+- des données historiques TypeScript locales.
+
+Les composants existants comprennent notamment :
+
+src/App.tsx
+
+src/components/
+- anatomy/AnatomyExplorer.tsx
+- silhouettes/SilhouetteComparator.tsx
+- silhouettes/SilhouetteFigure.tsx
+- periods/PeriodDetailView.tsx
+- garments/GarmentCatalog.tsx
+- timeline/TimelineView.tsx
+- designers/DesignerGallery.tsx
+- gallery/VisualGallery.tsx
+- quiz/QuizView.tsx
+- favorites/FavoritesView.tsx
+- common/SearchModal.tsx
+- common/OfflineIndicator.tsx
+- common/PWAInstallButton.tsx
+
+Les données existantes comprennent :
+
+src/data/
+- periods.ts
+- garments.ts
+- designers.ts
+- silhouettes.ts
+- anatomy.ts
+- quizzes.ts
+- sources.ts
+
+Les services existants comprennent :
+
+src/services/
+- storage.ts
+- search.ts
+- validation.ts
+
+Les tests existants comprennent :
+
+src/test/integrity.test.ts
+
+Tu dois conserver ces composants lorsqu'ils sont pertinents.
+
+Tu peux les refactoriser, les découper ou ajouter des modules complémentaires si cela améliore réellement la qualité du projet.
+
+Ne déplace pas inutilement tous les fichiers.
+
+---
+
+# 3. Contraintes techniques non négociables
+
+L'application doit conserver son fonctionnement entièrement local.
+
+Exigences :
+
+- Aucune infrastructure backend métier.
+- Aucune base de données distante.
+- Aucun compte utilisateur obligatoire.
+- Aucune authentification.
+- Aucune API payante.
+- Aucune transmission obligatoire de données personnelles.
+- Aucune dépendance réseau pour les contenus historiques essentiels.
+- Hébergement statique.
+- Installation PWA.
+- Consultation hors ligne après mise en cache.
+- Données utilisateur conservées sur l'appareil.
+
+Ne transforme pas Modor en application nécessitant un serveur Express ou un backend distant.
+
+Les données historiques doivent rester intégrées au projet.
+
+Pour les données utilisateur, conserver LocalStorage si cela suffit. Introduire IndexedDB uniquement lorsque cela apporte une amélioration réelle, notamment pour des données volumineuses.
+
+Ne pas ajouter de bibliothèque lourde sans justification.
+
+Avant d'ajouter une dépendance, examiner les dépendances existantes.
+
+---
+
+# 4. Phase obligatoire : audit de l'existant
+
+Avant de modifier le code :
+
+1. Examiner l'ensemble du dépôt.
+2. Examiner les dépendances.
+3. Examiner les scripts npm.
+4. Examiner les composants existants.
+5. Examiner les fichiers de données.
+6. Examiner les illustrations réellement présentes.
+7. Examiner les sources documentaires.
+8. Examiner les mécanismes de stockage.
+9. Examiner la configuration PWA.
+10. Examiner les tests existants.
+11. Identifier les fonctionnalités réellement opérationnelles.
+12. Identifier les fonctionnalités partielles.
+13. Identifier les fonctionnalités manquantes.
+14. Identifier les erreurs techniques.
+
+Créer un fichier :
+
+docs/AUDIT_INITIAL.md
+
+Ce fichier doit comporter :
+
+- Les fonctionnalités existantes.
+- Les fonctionnalités à corriger.
+- Les fonctionnalités à développer.
+- Les problèmes de données.
+- Les problèmes d'illustrations.
+- Les problèmes de tests.
+- Les problèmes d'accessibilité.
+- Les problèmes PWA.
+- Les priorités.
+
+Ne pas se contenter de ce rapport.
+
+Après l'audit, poursuivre directement le développement.
+
+Ne pas attendre de validation intermédiaire.
+
+---
+
+# 5. PRIORITÉ P0 — Fiabilisation de l'encyclopédie historique
+
+C'est la priorité absolue.
+
+Modor est une encyclopédie historique. La qualité des informations doit être supérieure à celle d'un simple prototype.
+
+## 5.1 Validation des données
+
+Améliorer :
+
+src/services/validation.ts
+
+Créer une validation exhaustive des données historiques.
+
+Vérifier :
+
+- Identifiants uniques.
+- Relations existantes.
+- Dates cohérentes.
+- Champs obligatoires.
+- URLs valides.
+- Sources documentaires existantes.
+- Images existantes.
+- Licences renseignées.
+- Références d'images cohérentes.
+- Relations entre périodes et vêtements.
+- Relations entre périodes et créateurs.
+- Cohérence des silhouettes.
+- Cohérence des périodes d'utilisation.
+- Identifiants des quiz.
+- Validité des réponses de quiz.
+
+Les erreurs critiques doivent être bloquantes dans les tests.
+
+Ne pas traiter une relation manquante ou une source obligatoire absente comme un simple avertissement.
+
+Prévoir trois niveaux :
+
+- error : erreur bloquante.
+- warning : anomalie nécessitant une vérification.
+- info : information documentaire.
+
+## 5.2 Validation des périodes
+
+Chaque période doit comporter :
+
+- Un titre.
+- Un identifiant.
+- Des dates cohérentes.
+- Un contexte historique.
+- Un contexte social.
+- Une description de la silhouette.
+- Une description des vêtements.
+- Une description des sous-vêtements.
+- Des accessoires.
+- Des coiffures.
+- Des chaussures.
+- Des matières.
+- Des couleurs.
+- Des usages vestimentaires.
+- Des différences sociales.
+- Des personnalités.
+- Une évolution vers la période suivante.
+- Des sources documentaires.
+
+Les textes ne doivent pas être génériques ou répétés artificiellement.
+
+Ne pas inventer de contenus pour satisfaire un contrôle automatique.
+
+## 5.3 Relations entre les données
+
+Vérifier notamment :
+
+- Les périodes référencées par chaque vêtement.
+- Les vêtements référencés par chaque période.
+- Les périodes associées à chaque créateur.
+- Les créateurs associés à chaque période.
+- Les sources référencées par les fiches.
+- Les images associées aux bonnes périodes.
+- Les illustrations utilisées dans les comparateurs.
+
+Ajouter un rapport permettant d'identifier rapidement les relations manquantes.
+
+## 5.4 Contrôle documentaire
+
+Créer un mécanisme de validation documentaire.
+
+Une fiche publiée doit disposer de sources suffisantes.
+
+Ne pas considérer qu'une simple mention d'une institution constitue une référence documentaire complète.
+
+Ne jamais inventer :
+
+- Une source.
+- Une URL.
+- Un auteur.
+- Une date.
+- Une licence.
+- Une citation.
+- Une attribution à un créateur.
+
+Les données non vérifiées doivent être clairement identifiées.
+
+---
+
+# 6. PRIORITÉ P0 — Provenance et licences des illustrations
+
+Examiner les données et les fichiers d'images.
+
+Créer ou améliorer un référentiel documentaire des illustrations.
+
+Chaque image doit posséder :
+
+- Un identifiant.
+- Un titre.
+- Un auteur lorsque connu.
+- Une date lorsque connue.
+- Une institution.
+- Une URL de provenance.
+- Une licence.
+- Une légende.
+- Un type d'illustration.
+- Un chemin local.
+- Un éventuel crédit complémentaire.
+
+Distinguer :
+
+1. Œuvre patrimoniale authentique.
+2. Reconstitution contemporaine.
+3. Illustration pédagogique.
+4. Schéma explicatif.
+5. Illustration générée.
+
+Ne jamais présenter une reconstitution comme une œuvre authentique.
+
+Ne jamais présenter une illustration générée comme une photographie d'un vêtement conservé dans un musée.
+
+## Contrôles obligatoires
+
+Créer un script de validation des images qui vérifie :
+
+- L'existence des fichiers.
+- La validité des chemins.
+- Les images non référencées.
+- Les images manquantes.
+- Les dimensions.
+- Les formats.
+- Les licences manquantes.
+- Les URL de provenance absentes.
+- Les crédits absents.
+- Les doublons éventuels.
+
+Les licences doivent être explicites.
+
+Une image de domaine public doit être distinguée d'une image sous licence CC BY ou CC BY-SA.
+
+Ne pas considérer qu'une image est libre de droits uniquement parce qu'elle provient d'un musée ou d'une bibliothèque.
+
+Ne pas remplacer une image manquante par une image aléatoire.
+
+Créer un composant de remplacement visuel clairement identifiable.
+
+L'application doit pouvoir afficher les crédits des illustrations.
+
+Prévoir une fiche ou une fenêtre détaillant :
+
+- L'auteur.
+- L'institution.
+- La date.
+- La licence.
+- La provenance.
+- L'URL de l'œuvre originale.
+
+Créer :
+
+docs/SOURCES_ET_LICENCES.md
+
+Ce document doit expliquer la procédure permettant d'ajouter une illustration correctement documentée.
+
+---
+
+# 7. PRIORITÉ P0 — Comparateur de silhouettes
+
+Le comparateur constitue une fonctionnalité majeure de Modor.
+
+Examiner :
+
+- SilhouetteComparator.tsx
+- SilhouetteFigure.tsx
+- silhouettes.ts
+- periods.ts
+
+Le comparateur doit permettre de sélectionner deux périodes et de visualiser leurs silhouettes côte à côte.
+
+Les comparaisons doivent être réellement pertinentes.
+
+## 7.1 Cohérence graphique
+
+Les silhouettes doivent conserver :
+
+- Une posture comparable.
+- Une échelle identique.
+- Un cadrage cohérent.
+- Une orientation comparable.
+- Un fond neutre.
+- Une convention graphique homogène.
+
+La taille du personnage ne doit pas varier artificiellement d'une période à l'autre.
+
+Les variations doivent provenir des proportions du vêtement.
+
+## 7.2 Informations comparées
+
+Afficher :
+
+- La position de la taille.
+- Le volume des hanches.
+- Le volume de la jupe.
+- La ligne des épaules.
+- La longueur du vêtement.
+- Les manches.
+- Les structures internes.
+- Les accessoires caractéristiques.
+
+Afficher les dates.
+
+Afficher une explication historique des différences.
+
+## 7.3 Fonctionnalités
+
+Prévoir :
+
+- Sélection de deux périodes.
+- Échange des périodes.
+- Comparaison de trois ou quatre périodes.
+- Zoom.
+- Légendes.
+- Navigation précédente/suivante.
+- Explication détaillée.
+- Version mobile utilisable.
+
+La comparaison de plusieurs périodes doit être lisible sur mobile.
+
+Ne pas imposer un défilement horizontal excessif.
+
+## 7.4 Validation
+
+Créer des tests vérifiant :
+
+- La sélection.
+- Le changement de période.
+- L'échange des périodes.
+- Les dates.
+- La cohérence des données.
+- Les états sans résultat.
+- Le comportement mobile.
+
+Ne pas considérer le comparateur terminé tant que les interactions ne sont pas testées.
+
+---
+
+# 8. PRIORITÉ P0 — Module anatomie d'une silhouette
+
+Examiner :
+
+AnatomyExplorer.tsx
+
+anatomy.ts
+
+Le module doit réellement permettre d'explorer les éléments qui constituent une silhouette historique.
+
+Zones :
+
+- Coiffure.
+- Col.
+- Manches.
+- Corsage.
+- Corset.
+- Taille.
+- Jupe.
+- Jupon.
+- Structure interne.
+- Chaussures.
+
+Chaque zone doit être identifiable et sélectionnable.
+
+La sélection doit afficher :
+
+- Le nom de l'élément.
+- Son rôle.
+- Sa construction.
+- Ses matériaux.
+- Son histoire.
+- Ses périodes d'utilisation.
+- Une illustration détaillée si disponible.
+
+## Exigences d'interaction
+
+Les zones doivent fonctionner :
+
+- Au clic.
+- Au clavier.
+- Au toucher.
+- Avec les lecteurs d'écran.
+
+Les zones tactiles doivent être suffisamment grandes.
+
+Les points interactifs ne doivent pas être placés arbitrairement.
+
+Leurs coordonnées doivent correspondre réellement à la silhouette.
+
+Prévoir plusieurs modèles historiques.
+
+Ne pas simuler des zones interactives qui ne correspondent à aucun élément identifiable.
+
+Créer des tests couvrant :
+
+- La sélection d'une zone.
+- Le changement de zone.
+- Le contenu affiché.
+- Les modèles historiques.
+- L'accessibilité clavier.
+- Le fonctionnement mobile.
+
+---
+
+# 9. PRIORITÉ P1 — Recherche globale
+
+Examiner :
+
+src/services/search.ts
+
+src/components/common/SearchModal.tsx
+
+La recherche existante doit être améliorée.
+
+Elle doit couvrir :
+
+- Périodes.
+- Vêtements.
+- Accessoires.
+- Créateurs.
+- Matières.
+- Événements.
+- Sources documentaires.
+
+Améliorer :
+
+- La recherche sans accents.
+- La recherche avec accents.
+- La recherche partielle.
+- Les synonymes historiques.
+- Les variantes orthographiques.
+- La pertinence des résultats.
+- Le classement des résultats.
+- Les extraits de texte.
+- Les résultats vides.
+- La navigation au clavier.
+
+Exemples :
+
+"corset" doit permettre de retrouver les fiches pertinentes.
+
+"crinoline" doit permettre de retrouver les périodes, vêtements et contenus associés.
+
+"Marie Antoinette" doit fonctionner sans accent.
+
+Les résultats doivent être accessibles directement.
+
+La recherche doit fonctionner hors ligne.
+
+Ne pas ajouter de moteur de recherche distant.
+
+---
+
+# 10. PRIORITÉ P1 — Favoris, historique et notes
+
+Examiner :
+
+src/services/storage.ts
+
+src/hooks/useFavorites.ts
+
+src/components/favorites/FavoritesView.tsx
+
+Les données utilisateur doivent rester locales.
+
+Fonctionnalités :
+
+- Favoris des périodes.
+- Favoris des vêtements.
+- Favoris des créateurs.
+- Historique de consultation.
+- Progression des quiz.
+- Notes personnelles.
+
+## Améliorations
+
+Vérifier :
+
+- La persistance après rechargement.
+- La persistance après fermeture.
+- Les erreurs de stockage.
+- Les données corrompues.
+- Les doublons.
+- Les identifiants inexistants.
+- Les migrations de version.
+- Le comportement après suppression d'une fiche.
+
+Les données doivent rester cohérentes lorsque le catalogue évolue.
+
+## Export et import
+
+Améliorer l'import/export JSON.
+
+Prévoir :
+
+- Un format versionné.
+- Une validation stricte.
+- Une limite de taille.
+- Une vérification des types.
+- Une vérification des identifiants.
+- Une gestion des erreurs.
+- Un aperçu avant import.
+- Une confirmation avant remplacement.
+- Une possibilité de fusionner les favoris.
+- Une sauvegarde avant remplacement.
+
+Ne jamais exécuter de contenu provenant d'un fichier importé.
+
+Ne jamais injecter directement du HTML importé dans l'interface.
+
+Créer des tests pour toutes ces fonctionnalités.
+
+---
+
+# 11. PRIORITÉ P1 — Quiz et apprentissage
+
+Examiner :
+
+src/components/quiz/QuizView.tsx
+
+src/data/quizzes.ts
+
+Le module de quiz doit être réellement opérationnel.
+
+Fonctionnalités :
+
+- Quiz général.
+- Quiz par siècle.
+- Quiz par décennie.
+- Questions illustrées.
+- QCM.
+- Explication historique.
+- Score.
+- Progression.
+- Recommencer.
+- Historique des résultats.
+
+Améliorations :
+
+- Plusieurs niveaux de difficulté.
+- Mélange des questions.
+- Mélange des réponses.
+- Vérification des réponses.
+- Explication après chaque réponse.
+- État de fin de quiz.
+- Reprise ou recommencement.
+- Sauvegarde des résultats.
+
+Les questions doivent être fondées sur les contenus présents dans l'application.
+
+Les réponses ne doivent pas être ambiguës.
+
+Les explications historiques doivent être documentées.
+
+Ne pas générer de questions artificielles simplement pour augmenter leur nombre.
+
+Ajouter des tests sur :
+
+- Le calcul du score.
+- Les réponses.
+- La progression.
+- Les explications.
+- La sauvegarde.
+- La reprise.
+- Les erreurs de données.
+
+---
+
+# 12. PRIORITÉ P1 — Galerie visuelle
+
+Examiner :
+
+src/components/gallery/VisualGallery.tsx
+
+La galerie doit exploiter les illustrations réellement disponibles.
+
+Filtres :
+
+- Siècle.
+- Décennie.
+- Période.
+- Vêtement.
+- Silhouette.
+- Créateur.
+- Accessoire.
+
+Fonctionnalités :
+
+- Grille d'images.
+- Miniatures.
+- Agrandissement.
+- Navigation.
+- Légendes.
+- Crédits.
+- Accès aux fiches.
+- Filtres combinés.
+
+Améliorer :
+
+- Le chargement différé.
+- Les dimensions des images.
+- Les miniatures.
+- Le responsive design.
+- Le traitement des images manquantes.
+- L'accessibilité de la visionneuse.
+- Le clavier.
+- Les performances.
+
+Ne pas charger toutes les images en pleine résolution dès l'ouverture.
+
+Prévoir une version légère pour mobile.
+
+---
+
+# 13. PRIORITÉ P1 — Fiches historiques et catalogue
+
+Examiner :
+
+PeriodDetailView.tsx
+
+GarmentCatalog.tsx
+
+DesignerGallery.tsx
+
+Les fiches doivent être reliées correctement.
+
+## Fiches historiques
+
+Afficher :
+
+- Le contexte historique.
+- Le contexte social.
+- La silhouette.
+- Les vêtements.
+- Les sous-vêtements.
+- Les structures.
+- Les accessoires.
+- Les coiffures.
+- Les chaussures.
+- Les matières.
+- Les couleurs.
+- Les usages.
+- Les différences sociales.
+- Les personnalités.
+- Les illustrations.
+- Les sources.
+- L'évolution vers la période suivante.
+
+Les termes historiques doivent être expliqués.
+
+## Catalogue des vêtements
+
+Les vêtements doivent comporter :
+
+- Une définition.
+- Une période d'utilisation.
+- Une construction.
+- Une fonction.
+- Des matériaux.
+- Un contexte social.
+- Une évolution.
+- Des illustrations.
+- Des sources.
+
+Les catégories doivent être cohérentes.
+
+Les filtres doivent fonctionner.
+
+Les fiches doivent permettre d'accéder aux périodes correspondantes.
+
+## Créateurs
+
+Vérifier :
+
+- Les biographies.
+- Les dates.
+- Les maisons de couture.
+- Les innovations.
+- Les créations emblématiques.
+- Les périodes.
+- Les sources.
+
+Distinguer les créateurs français des créateurs étrangers ayant influencé la mode parisienne.
+
+Ne jamais attribuer une création à un créateur sans source fiable.
+
+---
+
+# 14. PRIORITÉ P1 — Chronologie interactive
+
+Examiner :
+
+TimelineView.tsx
+
+La chronologie doit permettre :
+
+- Le filtrage par siècle.
+- Le filtrage par décennie.
+- La navigation chronologique.
+- L'accès direct à une période.
+- La navigation précédente/suivante.
+- Le défilement.
+- L'affichage des dates.
+- L'affichage des illustrations.
+- L'ouverture des fiches.
+
+Les chevauchements historiques doivent être respectés.
+
+Ne pas présenter les périodes comme des changements universels et instantanés.
+
+La chronologie doit être utilisable sur mobile.
+
+Créer des tests sur les filtres et la navigation.
+
+---
+
+# 15. PRIORITÉ P1 — PWA et fonctionnement hors ligne
+
+Examiner :
+
+vite.config.ts
+
+manifest.webmanifest
+
+OfflineIndicator.tsx
+
+PWAInstallButton.tsx
+
+Le projet possède déjà une configuration PWA.
+
+Ne pas la remplacer sans raison.
+
+## Vérifications obligatoires
+
+Vérifier :
+
+- Le manifeste.
+- Les icônes.
+- Le Service Worker.
+- Le cache des ressources.
+- Le cache des données.
+- Les routes.
+- Les mises à jour.
+- Les erreurs réseau.
+- L'installation.
+- La consultation hors ligne.
+- Le stockage des images.
+
+## Scénario de test obligatoire
+
+1. Installer ou charger l'application en ligne.
+2. Attendre la mise en cache des ressources essentielles.
+3. Couper la connexion réseau.
+4. Recharger l'application.
+5. Ouvrir la chronologie.
+6. Ouvrir plusieurs fiches historiques.
+7. Ouvrir des vêtements.
+8. Utiliser le comparateur.
+9. Utiliser l'anatomie.
+10. Utiliser la recherche.
+11. Consulter les favoris.
+12. Effectuer un quiz.
+
+Toutes les fonctionnalités essentielles doivent rester accessibles.
+
+Les fonctionnalités qui nécessitent encore Internet doivent être clairement identifiées.
+
+Ne jamais déclarer que l'application fonctionne hors ligne sans avoir effectué ce test.
+
+## Cache
+
+Optimiser le cache pour :
+
+- Les ressources applicatives.
+- Les données historiques.
+- Les illustrations.
+- Les polices.
+- Les icônes.
+
+Éviter de mettre en cache des ressources externes inutiles.
+
+Prévoir une gestion de l'espace occupé.
+
+---
+
+# 16. PRIORITÉ P1 — Accessibilité WCAG 2.2 AA
+
+Auditer l'application.
+
+Vérifier :
+
+- Les contrastes.
+- Les titres.
+- Les labels.
+- Les formulaires.
+- Les boutons.
+- Les liens.
+- Les images.
+- Les lecteurs d'écran.
+- Le clavier.
+- Le focus visible.
+- Les dialogues.
+- Les fenêtres modales.
+- Les commandes tactiles.
+- Les animations.
+- Les changements d'état.
+
+Les éléments interactifs doivent avoir un nom accessible.
+
+Les images décoratives doivent être correctement identifiées.
+
+Les images historiques doivent disposer d'un texte alternatif pertinent.
+
+Les fenêtres modales doivent :
+
+- Gérer le focus.
+- Être accessibles au clavier.
+- Permettre la fermeture.
+- Restaurer le focus.
+- Être correctement annoncées.
+
+Respecter prefers-reduced-motion.
+
+Ne pas imposer une animation à un utilisateur qui la désactive.
+
+Créer :
+
+docs/ACCESSIBILITE.md
+
+Documenter les problèmes détectés et les corrections effectuées.
+
+Ajouter des tests automatisés d'accessibilité lorsque cela est pertinent.
+
+---
+
+# 17. PRIORITÉ P1 — Responsive design et expérience utilisateur
+
+Conserver l'identité visuelle actuelle.
+
+Ne pas transformer Modor en tableau de bord administratif.
+
+Améliorer :
+
+- Le mobile.
+- La tablette.
+- Le desktop.
+- Les cartes.
+- Les galeries.
+- Les fiches.
+- Les comparaisons.
+- Les fenêtres modales.
+- Les filtres.
+- Les commandes tactiles.
+
+Tester au minimum :
+
+- 320 px.
+- 375 px.
+- 768 px.
+- 1024 px.
+- 1440 px.
+
+Aucun contenu essentiel ne doit être inaccessible à cause d'un débordement horizontal.
+
+Le comparateur et l'anatomie doivent être particulièrement soignés sur mobile.
+
+---
+
+# 18. PRIORITÉ P1 — Tests automatisés
+
+Le projet possède déjà des tests Vitest.
+
+Les conserver et les enrichir.
+
+## 18.1 Tests unitaires
+
+Tester :
+
+- Validation des données.
+- Relations.
+- Recherche.
+- Stockage.
+- Import/export.
+- Quiz.
+- Calculs des silhouettes.
+- Fonctions de filtrage.
+
+## 18.2 Tests composants
+
+Utiliser React Testing Library si nécessaire.
+
+Tester :
+
+- Chronologie.
+- Fiches historiques.
+- Catalogue.
+- Comparateur.
+- Anatomie.
+- Galerie.
+- Recherche.
+- Favoris.
+- Quiz.
+- Modales.
+
+## 18.3 Tests E2E
+
+Ajouter Playwright.
+
+Scénarios :
+
+1. Ouverture de l'application.
+2. Navigation entre les pages.
+3. Ouverture d'une fiche historique.
+4. Recherche d'un vêtement.
+5. Comparaison de deux silhouettes.
+6. Sélection d'une zone anatomique.
+7. Ajout d'un favori.
+8. Fermeture et rechargement.
+9. Vérification de la persistance.
+10. Import/export JSON.
+11. Quiz.
+12. Mode hors ligne.
+13. Responsive mobile.
+
+Ne pas désactiver un test pour obtenir artificiellement un résultat positif.
+
+Ne pas remplacer un test fonctionnel par une simple vérification de présence du composant.
+
+---
+
+# 19. PRIORITÉ P1 — Qualité du code
+
+Le script actuel :
+
+"lint": "tsc --noEmit"
+
+ne constitue pas une véritable exécution ESLint.
+
+Corriger ce point.
+
+Mettre en place :
+
+- ESLint.
+- TypeScript strict.
+- Une configuration cohérente.
+- Des règles adaptées à React.
+- Une gestion des imports.
+- Une vérification des erreurs.
+- Une documentation des scripts.
+
+Scripts attendus :
+
+npm run dev
+
+npm run build
+
+npm run lint
+
+npm run typecheck
+
+npm run test
+
+npm run test:e2e
+
+npm run preview
+
+Ne pas conserver un script portant un nom trompeur.
+
+Le lint doit exécuter réellement ESLint.
+
+Le typecheck doit vérifier TypeScript.
+
+---
+
+# 20. PRIORITÉ P2 — Dépendances et sécurité
+
+Examiner les dépendances.
+
+Le projet contient notamment :
+
+- @google/genai
+- express
+- dotenv
+- motion
+
+Vérifier si elles sont réellement utilisées.
+
+Ne pas supprimer arbitrairement une dépendance utile.
+
+Mais supprimer celles qui sont inutilisées et qui n'ont aucune justification.
+
+L'application ne doit pas nécessiter une API Google pour consulter les contenus historiques.
+
+Ne pas ajouter de clé API obligatoire.
+
+Ne pas exposer de secret dans le code.
+
+Vérifier :
+
+- Les imports de fichiers.
+- Les données utilisateur.
+- L'import JSON.
+- Les URLs.
+- Les contenus affichés.
+- Les dépendances.
+- Les scripts de build.
+
+Ne pas utiliser dangerouslySetInnerHTML pour afficher des données utilisateur ou documentaires non maîtrisées.
+
+---
+
+# 21. PRIORITÉ P2 — Optimisation des performances
+
+Optimiser les images et les composants.
+
+Vérifier :
+
+- Le poids du build.
+- Le poids des images.
+- Le chargement des composants.
+- Les rerenders.
+- Les données chargées.
+- Les filtres.
+- La recherche.
+- Le comparateur.
+
+Mettre en place si nécessaire :
+
+- Lazy loading.
+- Images responsive.
+- Miniatures.
+- Code splitting.
+- Chargement différé des vues.
+- Optimisation des composants.
+- Réduction des dépendances inutiles.
+
+Ne pas dégrader la qualité visuelle des illustrations.
+
+L'optimisation doit rester compatible avec le fonctionnement hors ligne.
+
+---
+
+# 22. PRIORITÉ P2 — Documentation
+
+Mettre à jour le README.md en français.
+
+Il doit comporter :
+
+- Présentation.
+- Fonctionnalités.
+- Technologies.
+- Architecture.
+- Installation.
+- Développement.
+- Compilation.
+- Tests.
+- PWA.
+- Mode hors ligne.
+- Gestion des données.
+- Gestion des images.
+- Sources historiques.
+- Licences.
+- Import/export.
+- Déploiement Cloudflare Pages.
+
+Créer également :
+
+docs/AUDIT_INITIAL.md
+
+docs/SOURCES_ET_LICENCES.md
+
+docs/ACCESSIBILITE.md
+
+docs/ARCHITECTURE.md
+
+docs/GUIDE_EDITORIAL.md
+
+docs/TESTS.md
+
+Le guide éditorial doit expliquer comment ajouter :
+
+- Une période.
+- Un vêtement.
+- Un créateur.
+- Une illustration.
+- Une source.
+- Une question de quiz.
+
+Les contenus historiques doivent pouvoir être enrichis sans devoir modifier l'architecture de l'application.
+
+---
+
+# 23. Déploiement Cloudflare Pages
+
+Préparer le projet pour un hébergement statique.
+
+Vérifier :
+
+- La commande de build.
+- Le répertoire de publication.
+- Les routes SPA.
+- Les redirections.
+- Les headers.
+- Les ressources statiques.
+- Les chemins des images.
+- Le Service Worker.
+- Le manifeste.
+
+Conserver les fichiers de configuration pertinents.
+
+Ne pas introduire une dépendance à un serveur Node.js en production.
+
+Le déploiement doit fonctionner sur Cloudflare Pages.
+
+Documenter les paramètres exacts.
+
+---
+
+# 24. Méthode de travail
+
+Procéder par phases.
+
+## Phase A — Audit
+
+Examiner l'intégralité du projet.
+
+Créer le rapport initial.
+
+## Phase B — Correction des données
+
+Corriger les problèmes de validation, de relations et de sources.
+
+## Phase C — Illustrations
+
+Vérifier les images, les crédits, les licences et les chemins.
+
+## Phase D — Fonctionnalités majeures
+
+Corriger et tester :
+
+- Comparateur.
+- Anatomie.
+- Recherche.
+- Favoris.
+- Quiz.
+- Galerie.
+- Chronologie.
+
+## Phase E — PWA
+
+Vérifier le fonctionnement hors ligne et l'installation.
+
+## Phase F — Accessibilité
+
+Corriger les problèmes WCAG.
+
+## Phase G — Tests
+
+Exécuter tous les tests.
+
+Corriger les échecs.
+
+## Phase H — Optimisation
+
+Améliorer les performances et les dépendances.
+
+## Phase I — Documentation
+
+Finaliser les documents.
+
+## Phase J — Rapport final
+
+Produire un rapport détaillé.
+
+Tu dois effectuer toutes les phases sans attendre de validation intermédiaire.
+
+---
+
+# 25. Critères d'acceptation
+
+Le projet ne peut être considéré comme terminé que si les critères suivants sont satisfaits.
+
+## Données
+
+- Toutes les relations sont valides.
+- Les identifiants sont uniques.
+- Les dates sont cohérentes.
+- Les sources sont identifiables.
+- Les images référencées existent.
+- Les licences sont renseignées.
+- Les erreurs critiques sont bloquantes.
+
+## Fonctionnalités
+
+- Les pages sont accessibles.
+- Les filtres fonctionnent.
+- La recherche retourne des résultats.
+- Le comparateur fonctionne.
+- L'anatomie fonctionne.
+- Les favoris persistent.
+- L'import/export fonctionne.
+- Les quiz fonctionnent.
+- Les illustrations affichent leurs crédits.
+
+## PWA
+
+- Le manifeste est valide.
+- L'installation fonctionne.
+- Le Service Worker est opérationnel.
+- Les contenus essentiels sont accessibles hors ligne.
+- Les mises à jour fonctionnent.
+
+## Qualité
+
+- Le build réussit.
+- TypeScript réussit.
+- ESLint réussit.
+- Les tests unitaires réussissent.
+- Les tests composants réussissent.
+- Les tests E2E réussissent.
+- L'accessibilité est vérifiée.
+- Le responsive est vérifié.
+
+Ne pas déclarer un critère satisfait sans vérification.
+
+---
+
+# 26. Rapport final obligatoire
+
+À la fin du travail, créer :
+
+docs/RAPPORT_FINAL.md
+
+Ce rapport doit comporter :
+
+## A. Modifications effectuées
+
+Lister les fichiers modifiés.
+
+Expliquer les corrections.
+
+## B. Fonctionnalités
+
+Pour chaque fonctionnalité :
+
+- Terminée.
+- Partiellement terminée.
+- Non terminée.
+
+Justifier les résultats.
+
+## C. Contenus
+
+Indiquer :
+
+- Nombre de périodes.
+- Nombre de vêtements.
+- Nombre de créateurs.
+- Nombre d'accessoires.
+- Nombre d'illustrations.
+- Nombre de sources documentaires.
+- Nombre d'illustrations par licence.
+
+Utiliser les nombres réellement calculés depuis les données.
+
+Ne pas inventer de chiffres.
+
+## D. Tests
+
+Indiquer :
+
+- Résultat du build.
+- Résultat TypeScript.
+- Résultat ESLint.
+- Résultat Vitest.
+- Résultat Playwright.
+- Résultat des tests hors ligne.
+- Résultat des tests responsive.
+- Résultat de l'audit d'accessibilité.
+
+## E. Problèmes restants
+
+Lister :
+
+- Fonctionnalités manquantes.
+- Sources à vérifier.
+- Illustrations manquantes.
+- Problèmes de licence.
+- Limites techniques.
+- Problèmes d'accessibilité.
+
+## F. Déploiement
+
+Fournir la procédure exacte de publication sur Cloudflare Pages.
+
+Ne jamais présenter une limitation comme une fonctionnalité terminée.
+
+---
+
+# CONSIGNE FINALE
+
+Tu dois améliorer le projet Modor existant jusqu'à obtenir une application réellement utilisable, fiable, documentée et prête à être déployée.
+
+La priorité absolue est :
+
+1. La fiabilité historique.
+2. La qualité et la provenance des illustrations.
+3. Le fonctionnement réel du comparateur.
+4. Le fonctionnement réel de l'anatomie interactive.
+5. La qualité du fonctionnement hors ligne.
+6. La robustesse des données utilisateur.
+7. La qualité des tests.
+8. L'accessibilité.
+
+Ne privilégie pas la multiplication des fonctionnalités secondaires au détriment de la fiabilité.
+
+Ne reconstruis pas ce qui fonctionne déjà.
+
+Ne supprime pas les contenus existants pour simplifier le projet.
+
+Ne crée pas de fausses données pour satisfaire les tests.
+
+Ne déclare jamais une fonctionnalité terminée sans l'avoir réellement testée.
+
+**Commence par auditer le dépôt, puis corrige et développe directement le code existant. Termine par les tests, la documentation et un rapport honnête des résultats.**

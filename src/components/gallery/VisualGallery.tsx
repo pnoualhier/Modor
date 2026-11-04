@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { HISTORICAL_PERIODS } from '../../data/periods';
 import { HISTORICAL_GARMENTS } from '../../data/garments';
+import { HISTORICAL_DESIGNERS } from '../../data/designers';
 import { ImageCredit } from '../../types';
-import { ExternalLink, X, ZoomIn, Image as ImageIcon, Filter, BookOpen } from 'lucide-react';
+import { ExternalLink, X, ZoomIn, Image as ImageIcon, Filter, BookOpen, Camera } from 'lucide-react';
 
 interface VisualGalleryProps {
   onSelectPeriod: (periodId: string) => void;
   onSelectGarment: (garmentId: string) => void;
+  onSelectDesigner?: (designerId: string) => void;
 }
 
 interface GalleryItem {
   image: ImageCredit;
-  originType: 'period' | 'garment';
+  originType: 'period' | 'garment' | 'designer';
   originId: string;
   originTitle: string;
   century?: number;
@@ -20,6 +22,7 @@ interface GalleryItem {
 export const VisualGallery: React.FC<VisualGalleryProps> = ({
   onSelectPeriod,
   onSelectGarment,
+  onSelectDesigner,
 }) => {
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
@@ -51,7 +54,21 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
     });
   });
 
+  HISTORICAL_DESIGNERS.forEach((d) => {
+    d.images.forEach((img) => {
+      galleryItems.push({
+        image: img,
+        originType: 'designer',
+        originId: d.id,
+        originTitle: d.name,
+      });
+    });
+  });
+
   const filteredItems = galleryItems.filter((item) => {
+    if (selectedType === 'portraits') {
+      return item.originType === 'designer';
+    }
     if (selectedType !== 'all' && item.image.type !== selectedType) {
       return false;
     }
@@ -81,10 +98,11 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
         </div>
 
         {/* Filter Type Pills */}
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-5 flex items-center gap-2 flex-wrap">
           <span className="text-xs text-[#77736D]">Nature de l'image :</span>
           {[
             { value: 'all', label: 'Toutes les illustrations' },
+            { value: 'portraits', label: 'Portraits de créateurs (23)' },
             { value: 'patrimoine', label: 'Œuvres & Estampes authentiques' },
             { value: 'schema', label: 'Schémas pédagogiques originaux' },
           ].map((t) => (
@@ -111,23 +129,27 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
             <div
               key={idx}
               onClick={() => setSelectedImage(item)}
-              className="bg-white rounded-xl border border-[#D9CBB7]/60 overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+              className="bg-white rounded-xl border border-[#D9CBB7]/60 overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
             >
-              {/* Image Preview Box with Styled Resilient Fallback */}
-              <div className="relative aspect-4/3 w-full bg-[#F7F4ED] flex items-center justify-center overflow-hidden border-b border-[#D9CBB7]/40">
-                {/* Visual Placeholder / Fallback Iconography */}
-                <div className="p-6 text-center text-[#77736D] space-y-2">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-[#D9CBB7]/30 flex items-center justify-center text-[#242321] group-hover:scale-110 transition-transform">
-                    <ImageIcon className="w-6 h-6 opacity-75" />
-                  </div>
-                  <div className="text-xs font-serif font-bold text-[#242321] line-clamp-2 px-2">
-                    {image.title}
-                  </div>
-                  <div className="text-[10px] text-[#77736D]">{image.institution}</div>
+              {/* Image Preview Box */}
+              <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
+                <img
+                  src={image.imageUrl}
+                  alt={image.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+
+                <div className="absolute top-2.5 right-2.5 bg-black/75 backdrop-blur-xs text-[#F7F4ED] text-[10px] font-mono px-2 py-0.5 rounded flex items-center gap-1 border border-white/20">
+                  <Camera className="w-3 h-3 text-amber-300" />
+                  <span className="truncate max-w-[140px]">{image.license}</span>
                 </div>
 
-                <div className="absolute top-3 right-3 bg-[#242321]/80 backdrop-blur-xs text-[#F7F4ED] text-[10px] font-mono px-2 py-0.5 rounded">
-                  {image.year || (item.century ? `${item.century}e s.` : 'Historique')}
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-2 text-white">
+                  <p className="text-[10px] truncate text-white/90 font-serif italic">
+                    {image.institution}
+                  </p>
                 </div>
 
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-medium gap-1.5 backdrop-blur-[1px]">
@@ -140,7 +162,12 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
               <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="text-[10px] font-bold text-[#9A3412] uppercase tracking-wider">
-                    {item.originType === 'period' ? 'Période' : 'Vêtement'} : {item.originTitle}
+                    {item.originType === 'period'
+                      ? 'Période'
+                      : item.originType === 'designer'
+                      ? 'Créateur'
+                      : 'Vêtement'}{' '}
+                    : {item.originTitle}
                   </div>
                   <div className="text-xs font-medium text-[#242321] mt-1 line-clamp-2">
                     {image.caption}
@@ -149,7 +176,7 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
 
                 <div className="pt-2 border-t border-[#D9CBB7]/30 flex items-center justify-between text-[11px] text-[#77736D]">
                   <span className="truncate max-w-[160px]">{image.institution}</span>
-                  <span className="text-[#9A3412] font-semibold">{image.license}</span>
+                  <span className="text-emerald-700 font-semibold">{image.license}</span>
                 </div>
               </div>
             </div>
@@ -185,17 +212,16 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
               </button>
             </div>
 
-            {/* Simulated Artwork Canvas */}
-            <div className="w-full aspect-16/10 bg-[#F7F4ED] rounded-xl border border-[#D9CBB7] p-8 flex flex-col items-center justify-center text-center space-y-3">
-              <ImageIcon className="w-12 h-12 text-[#9A3412] opacity-60" />
-              <div className="text-base font-serif font-bold text-[#242321]">
-                {selectedImage.image.title}
-              </div>
-              <div className="text-xs text-[#77736D] max-w-md">
+            {/* Artwork Canvas */}
+            <div className="w-full bg-[#F4EDE1] rounded-xl border border-[#D9CBB7] overflow-hidden p-4 flex flex-col items-center justify-center text-center space-y-3">
+              <img
+                src={selectedImage.image.imageUrl}
+                alt={selectedImage.image.title}
+                className="max-h-[50vh] w-auto object-contain rounded-lg shadow-md"
+                referrerPolicy="no-referrer"
+              />
+              <div className="text-xs text-[#77736D] max-w-md pt-2 italic">
                 {selectedImage.image.caption}
-              </div>
-              <div className="text-xs font-mono text-[#242321] bg-white px-3 py-1 rounded border border-[#D9CBB7]">
-                Conservé à : {selectedImage.image.institution}
               </div>
             </div>
 
@@ -204,7 +230,7 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <span className="font-bold text-[#77736D] uppercase text-[10px] block">Auteur / Atelier :</span>
-                  <span>{selectedImage.image.author || 'Atelier anonyme d\'époque'}</span>
+                  <span>{selectedImage.image.author || 'Atelier documentaire d\'époque'}</span>
                 </div>
                 <div>
                   <span className="font-bold text-[#77736D] uppercase text-[10px] block">Date de création :</span>
@@ -215,8 +241,8 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
                   <span>{selectedImage.image.institution}</span>
                 </div>
                 <div>
-                  <span className="font-bold text-[#77736D] uppercase text-[10px] block">Licence d'utilisation :</span>
-                  <span className="font-semibold text-[#9A3412]">{selectedImage.image.license}</span>
+                  <span className="font-bold text-[#77736D] uppercase text-[10px] block">Statut juridique :</span>
+                  <span className="font-semibold text-[#242321]">{selectedImage.image.license}</span>
                 </div>
               </div>
             </div>
@@ -229,6 +255,8 @@ export const VisualGallery: React.FC<VisualGalleryProps> = ({
                   setSelectedImage(null);
                   if (item.originType === 'period') {
                     onSelectPeriod(item.originId);
+                  } else if (item.originType === 'designer' && onSelectDesigner) {
+                    onSelectDesigner(item.originId);
                   } else {
                     onSelectGarment(item.originId);
                   }

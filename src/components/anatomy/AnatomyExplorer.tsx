@@ -86,20 +86,27 @@ export const AnatomyExplorer: React.FC = () => {
                 <button
                   key={hotspot.id}
                   onClick={() => setActiveZone(hotspot.zone)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveZone(hotspot.zone);
+                    }
+                  }}
                   style={{
                     left: `${hotspot.xPercent}%`,
                     top: `${hotspot.yPercent}%`,
                   }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all shadow-md ${
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all shadow-md focus-visible:ring-2 focus-visible:ring-black ${
                     isSelected
                       ? 'bg-[#242321] text-white ring-4 ring-[#D9B8B3] scale-110 z-20'
                       : 'bg-white/95 text-[#242321] border border-[#D9CBB7] hover:scale-105 z-10'
                   }`}
                   title={hotspot.name}
-                  aria-label={`Inspecter ${hotspot.name}`}
+                  aria-pressed={isSelected}
+                  aria-label={`Inspecter l'élément anatomique : ${hotspot.name}`}
                 >
                   <span className="sr-only">{hotspot.name}</span>
-                  <span className="w-2 h-2 rounded-full bg-current" />
+                  <span className="w-2 h-2 rounded-full bg-current" aria-hidden="true" />
                 </button>
               );
             })}
@@ -110,14 +117,15 @@ export const AnatomyExplorer: React.FC = () => {
             <div className="text-[11px] font-semibold text-[#77736D] mb-2 uppercase tracking-wider">
               Points d'anatomie interactifs :
             </div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label="Points d'intérêt du costume">
               {currentModel.hotspots.map((h) => {
                 const isSelected = activeZone === h.zone;
                 return (
                   <button
                     key={h.id}
                     onClick={() => setActiveZone(h.zone)}
-                    className={`px-2.5 py-1 text-xs rounded-md transition-colors ${
+                    aria-pressed={isSelected}
+                    className={`px-2.5 py-1 text-xs rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-black ${
                       isSelected
                         ? 'bg-[#242321] text-white font-medium'
                         : 'bg-[#F7F4ED] text-[#77736D] hover:text-[#242321] hover:bg-[#D9CBB7]/30'
@@ -132,7 +140,10 @@ export const AnatomyExplorer: React.FC = () => {
         </div>
 
         {/* Right Column: Educational Anatomy Card (7 cols) */}
-        <div className="lg:col-span-7 bg-white rounded-xl border border-[#D9CBB7]/60 p-6 md:p-8 shadow-sm">
+        <div 
+          className="lg:col-span-7 bg-white rounded-xl border border-[#D9CBB7]/60 p-6 md:p-8 shadow-sm"
+          aria-live="polite"
+        >
           {activeHotspot ? (
             <div className="space-y-6">
               {/* Card Title & Zone Tag */}

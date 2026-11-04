@@ -24,11 +24,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
     } else {
       setQuery('');
       setResults([]);
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (query.trim().length >= 2) {
@@ -44,6 +51,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     <div
       className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 pt-16 md:pt-24 p-4 backdrop-blur-xs"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Recherche dans l'encyclopédie du costume"
     >
       <div
         className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#D9CBB7] overflow-hidden flex flex-col max-h-[80vh]"

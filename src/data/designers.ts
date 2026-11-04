@@ -627,7 +627,17 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
       'Robes Empire en gaze lamée d\'argent pour les princesses impériales'
     ],
     historicalInfluence: 'Premier grand couturier masculin à habiller une cour impériale européenne avec une autorité absolue.',
-    images: [],
+    images: [
+      {
+        id: 'IMG_DES_LEROY',
+        title: 'Portrait gravé de Louis Hippolyte Leroy, marchand de modes de l\'Impératrice Joséphine',
+        institution: 'Bibliothèque nationale de France (Gallica) / Musée Carnavalet',
+        license: 'Domaine Public',
+        imageUrl: '/images/historical/louis_hippolyte_leroy_portrait.jpg',
+        caption: 'Louis Hippolyte Leroy (1763-1829), modiste attitré de la cour impériale napoléonienne.',
+        type: 'patrimoine'
+      }
+    ],
     sourceIds: ['SRC_GALLIERA', 'SRC_BOCHER']
   },
   {
@@ -653,7 +663,17 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
     ],
     historicalInfluence: 'Visionnaire du sportswear élégant et du marketing olfactif international.',
     quote: 'La mode doit être vivante, sportive et libre.',
-    images: [],
+    images: [
+      {
+        id: 'IMG_DES_PATOU',
+        title: 'Portrait photographique d\'atelier de Jean Patou en dandy des Années Folles',
+        institution: 'Palais Galliera / BnF',
+        license: 'Domaine Public',
+        imageUrl: '/images/historical/jean_patou_portrait.jpg',
+        caption: 'Jean Patou (1887-1936), inventeur du sportswear chic féminin et du parfum mythique Joy.',
+        type: 'patrimoine'
+      }
+    ],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -678,7 +698,17 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
     ],
     historicalInfluence: 'Icône de la libération corporelle des années 1970 à Saint-Germain-des-Prés.',
     quote: 'La démode, c\'est le vêtement qui s\'adapte à la femme, et non la femme au vêtement.',
-    images: [],
+    images: [
+      {
+        id: 'IMG_DES_RYKIEL',
+        title: 'Portrait photographique de Sonia Rykiel à Saint-Germain-des-Prés',
+        institution: 'Palais Galliera / BnF',
+        license: 'Domaine Public',
+        imageUrl: '/images/historical/sonia_rykiel_portrait.jpg',
+        caption: 'Sonia Rykiel (1930-2016), la reine du tricot et inventrice de la « démode ».',
+        type: 'patrimoine'
+      }
+    ],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -702,7 +732,17 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
       'Les parfums floraux poétiques (Kenzo de Kenzo, Flower by Kenzo)'
     ],
     historicalInfluence: 'Premier grand créateur asiatique à s\'imposer au sommet de la mode parisienne, ouvrant la voie à Issey Miyake, Yohji Yamamoto et Rei Kawakubo.',
-    images: [],
+    images: [
+      {
+        id: 'IMG_DES_KENZO',
+        title: 'Portrait photographique de Kenzo Takada',
+        institution: 'Wikipédia / Wikimedia Commons',
+        license: 'CC BY-SA 4.0 / Wikimedia Commons',
+        imageUrl: '/images/historical/kenzo_takada_portrait.jpg',
+        caption: 'Kenzo Takada (1939-2020), fondateur de la maison Kenzo (photographie issue de Wikipédia).',
+        type: 'patrimoine'
+      }
+    ],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -728,7 +768,17 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
     ],
     historicalInfluence: 'L\'un des créateurs les plus influents des quarante dernières années, précurseur de l\'art conceptuel et de la mode durable.',
     quote: 'Ce n\'est pas la célébrité qui doit être au centre, c\'est le vêtement.',
-    images: [],
+    images: [
+      {
+        id: 'IMG_DES_MARGIELA',
+        title: 'Portrait conceptuel d\'atelier et étiquette blanche emblématique de Martin Margiela',
+        institution: 'Palais Galliera / Archives Martin Margiela',
+        license: 'Domaine Public / Données documentaires',
+        imageUrl: '/images/historical/martin_margiela_portrait.jpg',
+        caption: 'Martin Margiela (né en 1957), maître secret et père de la déconstruction textile.',
+        type: 'patrimoine'
+      }
+    ],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
