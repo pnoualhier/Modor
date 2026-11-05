@@ -3,7 +3,9 @@ import { StorageService } from '../../services/storage';
 import { HISTORICAL_PERIODS } from '../../data/periods';
 import { HISTORICAL_GARMENTS } from '../../data/garments';
 import { HISTORICAL_DESIGNERS } from '../../data/designers';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 import { Heart, Download, Upload, Trash2, Clock, BookOpen, AlertCircle, CheckCircle2, History } from 'lucide-react';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 interface FavoritesViewProps {
   onSelectPeriod: (id: string) => void;
@@ -56,12 +58,16 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
       const content = event.target?.result as string;
       const res = StorageService.importDataFromJSON(content);
       if (res.success) {
-        setImportStatus({ message: 'Données importées avec succès !', isError: false });
+        const stats = res.importedStats;
+        const detailMsg = stats
+          ? `Données importées avec succès (${stats.periods} périodes, ${stats.garments} pièces, ${stats.designers} créateurs, ${stats.notes} notes)`
+          : 'Données importées avec succès !';
+        setImportStatus({ message: detailMsg, isError: false });
         reloadData();
       } else {
         setImportStatus({ message: res.error || 'Erreur lors de l\'import', isError: true });
       }
-      setTimeout(() => setImportStatus(null), 4000);
+      setTimeout(() => setImportStatus(null), 5000);
     };
     reader.readAsText(file);
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -82,9 +88,15 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
       <div className="border-b border-[#D9CBB7]/40 pb-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
-              Espace Personnel & Confidentialité
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
+                Espace Personnel & Confidentialité
+              </span>
+              <HelpTooltip
+                title="Sauvegarde & Export"
+                content="L'export JSON génère un fichier contenant tous vos favoris et notes privées. Vous pouvez le restaurer à tout moment sur un autre navigateur ou appareil sans perdre vos données."
+              />
+            </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
               Vos Favoris & Sauvegardes
             </h2>
@@ -189,13 +201,15 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       {garment.images && garment.images[0] && (
-                        <img
-                          src={garment.images[0].imageUrl}
-                          alt={garment.name}
-                          className="w-10 h-10 rounded-lg object-cover border border-[#D9CBB7] shrink-0"
-                          referrerPolicy="no-referrer"
-                          loading="lazy"
-                        />
+                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#D9CBB7] shrink-0 bg-[#EFE8DC]">
+                          <ImageWithFallback
+                            src={garment.images[0].imageUrl}
+                            alt={garment.name}
+                            fallbackTitle={garment.name}
+                            className="w-full h-full object-cover"
+                            containerClassName="w-full h-full"
+                          />
+                        </div>
                       )}
                       <div className="min-w-0">
                         <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">
@@ -229,12 +243,15 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       {designer.images && designer.images[0] && (
-                        <img
-                          src={designer.images[0].imageUrl}
-                          alt={designer.name}
-                          className="w-10 h-10 rounded-full object-cover border border-[#D9CBB7] shrink-0"
-                          referrerPolicy="no-referrer"
-                        />
+                        <div className="w-10 h-10 rounded-full overflow-hidden border border-[#D9CBB7] shrink-0 bg-[#EFE8DC]">
+                          <ImageWithFallback
+                            src={designer.images[0].imageUrl}
+                            alt={designer.name}
+                            fallbackTitle={designer.name}
+                            className="w-full h-full object-cover"
+                            containerClassName="w-full h-full"
+                          />
+                        </div>
                       )}
                       <div className="min-w-0">
                         <div className="text-xs font-bold text-[#242321] group-hover:text-[#9A3412] truncate">

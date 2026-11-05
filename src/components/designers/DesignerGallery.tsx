@@ -4,6 +4,7 @@ import { HISTORICAL_SOURCES } from '../../data/sources';
 import { Designer } from '../../types';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { Sparkles, Heart, ExternalLink, X, Quote, Award, ShieldCheck, ZoomIn, Camera, BookOpen } from 'lucide-react';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 interface DesignerGalleryProps {
   onSelectPeriod: (periodId: string) => void;
@@ -52,6 +53,10 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
                 Panthéon de la Haute Couture
               </span>
+              <HelpTooltip
+                title="Les créateurs de mode"
+                content="De Rose Bertin (« ministre des Modes » de Marie-Antoinette) à Charles Frederick Worth et aux directeurs artistiques modernes, découvrez qui a créé les révolutions du style."
+              />
               <span className="inline-flex items-center gap-1 bg-[#F4EDE1] text-[#77736D] border border-[#D9CBB7]/60 text-[10px] font-semibold px-2 py-0.5 rounded-full">
                 <Camera className="w-3 h-3 text-[#9A3412]" />
                 Portraits d'archives

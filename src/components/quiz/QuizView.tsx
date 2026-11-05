@@ -3,6 +3,7 @@ import { QUIZ_QUESTIONS } from '../../data/quizzes';
 import { QuizQuestion, Century } from '../../types';
 import { StorageService } from '../../services/storage';
 import { CheckCircle2, XCircle, Award, RotateCcw, ArrowRight, HelpCircle, Sparkles } from 'lucide-react';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 export const QuizView: React.FC = () => {
   const [selectedCentury, setSelectedCentury] = useState<number | 'all'>('all');
@@ -59,9 +60,15 @@ export const QuizView: React.FC = () => {
     <div className="space-y-8 max-w-3xl mx-auto">
       {/* Editorial Header */}
       <div className="border-b border-[#D9CBB7]/40 pb-6 text-center md:text-left">
-        <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
-          Jeu & Érudition Historique
-        </span>
+        <div className="flex items-center justify-center md:justify-start gap-2">
+          <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
+            Jeu & Érudition Historique
+          </span>
+          <HelpTooltip
+            title="Comment fonctionne le quiz ?"
+            content="Choisissez une réponse puis validez. Chaque question est accompagnée d'une explication documentaire et d'une anecdote historique. Vos scores sont mémorisés localement."
+          />
+        </div>
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
           Le Grand Quiz de la Mode Française
         </h2>

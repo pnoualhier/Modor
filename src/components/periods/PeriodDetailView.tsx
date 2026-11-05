@@ -8,6 +8,7 @@ import { SILHOUETTE_DEFINITIONS } from '../../data/silhouettes';
 import { SilhouetteFigure } from '../silhouettes/SilhouetteFigure';
 import { StorageService } from '../../services/storage';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { HelpTooltip } from '../common/HelpTooltip';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -118,9 +119,15 @@ export const PeriodDetailView: React.FC<PeriodDetailViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Silhouette Vector Presentation (5 cols) */}
         <div className="lg:col-span-5 bg-white p-6 rounded-xl border border-[#D9CBB7]/60 shadow-sm flex flex-col items-center">
-          <span className="text-[11px] font-bold tracking-widest text-[#77736D] uppercase mb-3">
-            Convention Morphologique Standard
-          </span>
+          <div className="flex items-center gap-1.5 mb-3">
+            <span className="text-[11px] font-bold tracking-widest text-[#77736D] uppercase">
+              Convention Morphologique Standard
+            </span>
+            <HelpTooltip
+              title="Silhouette normalisée"
+              content="Modèle vectoriel rigoureusement proportionné à 100% de hauteur pour comparer fidèlement l'effet des armatures (paniers, tournures, corsets) d'une époque à l'autre."
+            />
+          </div>
 
           <div className="w-full max-w-[280px]">
             {silhouetteDef ? (

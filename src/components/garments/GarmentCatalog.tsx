@@ -4,6 +4,7 @@ import { HISTORICAL_SOURCES } from '../../data/sources';
 import { Garment, GarmentCategory } from '../../types';
 import { Search, Heart, X, ZoomIn, Camera, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 interface GarmentCatalogProps {
   onSelectPeriod: (periodId: string) => void;
@@ -86,6 +87,10 @@ export const GarmentCatalog: React.FC<GarmentCatalogProps> = ({
               <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
                 Encyclopédie des Pièces Historiques
               </span>
+              <HelpTooltip
+                title="Comment explorer le vestiaire ?"
+                content="Chaque carte présente une pièce avec sa photo d'archive Wikipédia, ses matières (baleine, soie, acier) et son rôle dans la construction de la silhouette."
+              />
               <span className="inline-flex items-center gap-1 bg-[#F4EDE1] text-[#77736D] border border-[#D9CBB7]/60 text-[10px] font-semibold px-2 py-0.5 rounded-full">
                 <Camera className="w-3 h-3 text-[#9A3412]" />
                 Photos Wikipédia & Wikimedia

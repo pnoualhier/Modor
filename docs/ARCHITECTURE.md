@@ -8,7 +8,7 @@ Le projet **Modor — Mode & Mémoire** est conçu selon des règles strictes d'
    - Aucun serveur Node.js, Express ou base de données distante n'est requis en production.
    - L'application est compilée sous la forme d'une SPA (Single Page Application) statique optimisée, directement déployable sur un réseau de diffusion de contenu (CDN) tel que Cloudflare Pages, GitHub Pages ou Vercel.
 2. **100% Offline-First (PWA)** :
-   - L'intégralité du corpus (18 périodes, 16 vêtements, 23 créateurs, 10 silhouettes géométriques, 4 modèles anatomiques, 18 questions de quiz, 62 planches documentaires muséales) est embarquée localement.
+   - L'intégralité du corpus (22 périodes, 22 vêtements, 23 créateurs, 13 silhouettes géométriques, 4 modèles anatomiques, 18 questions de quiz, 67 planches documentaires muséales) est embarquée localement.
    - Grâce à un Service Worker configuré avec `vite-plugin-pwa`, l'application fonctionne sans aucune perte de fonctionnalité même en l'absence totale de réseau.
 3. **Persistance Locale et Respect de la Vie Privée** :
    - Les données utilisateur (favoris, notes de recherche, historique de visite, scores de quiz) sont conservées exclusivement sur le périphérique de l'utilisateur via l'API `LocalStorage`.
@@ -49,7 +49,7 @@ Le projet **Modor — Mode & Mémoire** est conçu selon des règles strictes d'
 │   ├── pwa-192x192.png               # Icône PWA Android / Chrome
 │   ├── pwa-512x512.png               # Icône PWA grand format
 │   └── images/                       # Fonds iconographique local
-│       └── historical/               # 62 planches documentaires générées
+│       └── historical/               # 67 planches documentaires locales
 ├── scripts/                          # Scripts d'outillage
 │   └── generate_images.js            # Générateur de planches locales via Sharp
 ├── src/                              # Code source applicatif
@@ -67,8 +67,8 @@ Le projet **Modor — Mode & Mémoire** est conçu selon des règles strictes d'
 │   ├── data/                         # Base de connaissances typée
 │   │   ├── anatomy.ts                # Modèles anatomiques et points d'intérêt
 │   │   ├── designers.ts              # 23 notices de créateurs et maisons
-│   │   ├── garments.ts               # 16 fiches de vêtements indispensables
-│   │   ├── periods.ts                # 18 périodes historiques (1500–2026)
+│   │   ├── garments.ts               # 22 fiches de vêtements indispensables
+│   │   ├── periods.ts                # 22 périodes historiques (1500–2026)
 │   │   ├── quizzes.ts                # 18 questions historiques et anecdotes
 │   │   ├── silhouettes.ts            # Paramètres géométriques des silhouettes
 │   │   └── sources.ts                # Institutions et bibliographie

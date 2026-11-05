@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PWAInstallButton } from './PWAInstallButton';
-import { Search, Heart, HelpCircle, Layers, Sparkles, Menu, X, BookOpen } from 'lucide-react';
+import {
+  Search,
+  Heart,
+  Settings,
+  HelpCircle,
+  Menu,
+  Layers,
+  Sparkles,
+  BookOpen
+} from 'lucide-react';
 
 export type NavTab = 'timeline' | 'comparator' | 'anatomy' | 'garments' | 'designers' | 'gallery' | 'quiz' | 'favorites';
 
@@ -8,6 +17,9 @@ interface NavbarProps {
   activeTab: NavTab;
   onNavigate: (tab: NavTab) => void;
   onOpenSearch: () => void;
+  onOpenHamburger: () => void;
+  onOpenSettings: () => void;
+  onOpenOnboarding: () => void;
   favoritesCount: number;
 }
 
@@ -15,10 +27,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   onNavigate,
   onOpenSearch,
+  onOpenHamburger,
+  onOpenSettings,
+  onOpenOnboarding,
   favoritesCount,
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const navLinks: { id: NavTab; label: string }[] = [
     { id: 'timeline', label: 'Chronologie' },
     { id: 'comparator', label: 'Silhouettes' },
@@ -28,22 +41,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'quiz', label: 'Quiz' },
   ];
 
-  const handleNavClick = (tab: NavTab) => {
-    onNavigate(tab);
-    setMobileMenuOpen(false);
-  };
-
   return (
     <>
       {/* Top Header compliant with Top Bar Contract */}
       <header className="sticky top-0 z-40 bg-[#F7F4ED]/95 backdrop-blur-md border-b border-[#D9CBB7]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
-          {/* Zone 1: Brand Wordmark (Single text element wordmark) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 md:gap-8">
+          {/* Zone 1: Brand Wordmark */}
           <button
-            onClick={() => handleNavClick('timeline')}
-            className="text-left whitespace-nowrap shrink-0 group flex items-center gap-2"
+            onClick={() => onNavigate('timeline')}
+            className="text-left whitespace-nowrap shrink-0 group flex items-center gap-2.5"
+            aria-label="Retour à l'accueil Modor"
           >
-            <div className="w-8 h-8 rounded-full bg-[#242321] text-[#F7F4ED] flex items-center justify-center font-serif font-bold text-sm">
+            <div className="w-9 h-9 rounded-xl bg-[#242321] text-[#F7F4ED] flex items-center justify-center font-serif font-bold text-base shadow-xs group-hover:bg-[#9A3412] transition-colors">
               M
             </div>
             <div>
@@ -56,18 +65,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </button>
 
-          {/* Zone 2: Clean 4–5 single-line text navigation links */}
-          <nav className="hidden md:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-[#77736D]">
+          {/* Zone 2: Navigation Links (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-5 text-xs font-semibold uppercase tracking-wider text-[#77736D]">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
               return (
                 <button
                   key={link.id}
-                  onClick={() => handleNavClick(link.id)}
+                  onClick={() => onNavigate(link.id)}
                   className={`whitespace-nowrap shrink-0 transition-colors py-1 relative ${
-                    isActive
-                      ? 'text-[#242321]'
-                      : 'hover:text-[#242321]'
+                    isActive ? 'text-[#242321]' : 'hover:text-[#242321]'
                   }`}
                 >
                   {link.label}
@@ -79,27 +86,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Zone 3: Primary Utility Action & Search & PWA Install */}
-          <div className="flex items-center gap-2.5 shrink-0">
+          {/* Zone 3: Utility Controls & Hamburger Button */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Search Trigger */}
             <button
               onClick={onOpenSearch}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[#D9CBB7] bg-white text-xs font-medium text-[#77736D] hover:text-[#242321] hover:border-[#242321] transition-colors whitespace-nowrap"
-              title="Rechercher dans toute l'encyclopédie"
+              title="Recherche globale (Ctrl+K)"
             >
-              <Search className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Recherche</span>
+              <Search className="w-3.5 h-3.5 text-[#9A3412]" />
+              <span className="hidden md:inline">Recherche</span>
             </button>
 
             {/* Favorites Icon */}
             <button
-              onClick={() => handleNavClick('favorites')}
+              onClick={() => onNavigate('favorites')}
               className={`relative p-2 rounded-lg border transition-colors ${
                 activeTab === 'favorites'
                   ? 'bg-[#242321] text-white border-[#242321]'
                   : 'bg-white text-[#77736D] border-[#D9CBB7] hover:text-[#242321]'
               }`}
-              title="Mes favoris"
+              title="Mes favoris et notes"
               aria-label="Voir mes favoris"
             >
               <Heart className={`w-4 h-4 ${favoritesCount > 0 ? 'fill-[#9A3412] text-[#9A3412]' : ''}`} />
@@ -110,52 +117,46 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
+            {/* Guide & Mentions Légales Button */}
+            <button
+              onClick={onOpenOnboarding}
+              className="p-2 rounded-lg border border-[#D9CBB7] bg-white text-[#77736D] hover:text-[#242321] hover:bg-[#F7F4ED] transition-colors hidden sm:flex items-center justify-center"
+              title="Guide d'accueil et mentions légales"
+              aria-label="Guide d'accueil et mentions légales"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </button>
+
+            {/* System Settings & Updates Button */}
+            <button
+              onClick={onOpenSettings}
+              className="p-2 rounded-lg border border-[#D9CBB7] bg-white text-[#77736D] hover:text-[#242321] hover:bg-[#F7F4ED] transition-colors hidden sm:flex items-center justify-center"
+              title="Paramètres système et mises à jour"
+              aria-label="Paramètres système et mises à jour"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
+
             {/* PWA Install Button */}
             <div className="hidden sm:block">
               <PWAInstallButton />
             </div>
 
-            {/* Mobile Hamburger Button */}
+            {/* Categorized Hamburger Menu Trigger */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#242321] rounded-lg border border-[#D9CBB7] bg-white"
-              aria-label="Menu de navigation"
+              onClick={onOpenHamburger}
+              className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 text-[#242321] rounded-xl border border-[#D9CBB7] bg-white hover:bg-[#F7F4ED] hover:border-[#242321] transition-all shadow-2xs"
+              aria-label="Ouvrir le menu complet par catégories"
+              title="Menu complet par catégories"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              <Menu className="w-4 h-4 text-[#9A3412]" />
+              <span className="text-xs font-semibold hidden md:inline">Menu</span>
             </button>
           </div>
         </div>
-
-        {/* Mobile Dropdown Drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-[#D9CBB7]/40 bg-[#F7F4ED] p-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider ${
-                  activeTab === link.id
-                    ? 'bg-[#242321] text-white'
-                    : 'text-[#242321] hover:bg-[#D9CBB7]/30'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
-            <div className="pt-3 border-t border-[#D9CBB7]/40 flex items-center justify-between">
-              <button
-                onClick={() => handleNavClick('gallery')}
-                className="text-xs font-semibold text-[#77736D] hover:text-[#242321]"
-              >
-                Galerie iconographique
-              </button>
-              <PWAInstallButton />
-            </div>
-          </div>
-        )}
       </header>
 
-      {/* Mobile Bottom Fixed Nav Rail (Thumb zone friendly for Mobile-First PWA) */}
+      {/* Mobile Bottom Fixed Nav Rail (Thumb-friendly for mobile devices) */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#F7F4ED]/95 backdrop-blur-md border-t border-[#D9CBB7]/60 h-14 flex items-center justify-around px-2 shadow-lg">
         {[
           { id: 'timeline' as NavTab, label: 'Frise', icon: BookOpen },

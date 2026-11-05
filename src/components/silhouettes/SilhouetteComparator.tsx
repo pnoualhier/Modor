@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SILHOUETTE_DEFINITIONS } from '../../data/silhouettes';
 import { SilhouetteFigure } from './SilhouetteFigure';
 import { ArrowLeftRight, Layers, Ruler, Eye, Sparkles } from 'lucide-react';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 const PRESETS = [
   { name: 'XVIIIe vs Empire', idA: 'SIL_ROCOCO', idB: 'SIL_DIRECTOIRE', label: 'Rupture néoclassique : des paniers à la robe chemise' },
@@ -41,9 +42,15 @@ export const SilhouetteComparator: React.FC = () => {
       <div className="border-b border-[#D9CBB7]/40 pb-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
-              Module d'Analyse Morphologique
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
+                Module d'Analyse Morphologique
+              </span>
+              <HelpTooltip
+                title="Comment fonctionne le comparateur ?"
+                content="Ce module place deux silhouettes sur une échelle vectorielle identique (hauteur 100%, repères d'anatomie alignés) pour mesurer comment la mode modifie la silhouette féminine."
+              />
+            </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
               Comparateur de Silhouettes
             </h2>

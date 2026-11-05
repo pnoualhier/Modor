@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.12" />
+    </filter>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.06" />
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#242321" />
+      <stop offset="100%" stop-color="#3A3835" />
+    </linearGradient>
+    <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9A3412" />
+      <stop offset="100%" stop-color="#C2410C" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="680" fill="#EAE5DC" />
+
+  <!-- App Window Container -->
+  <g transform="translate(50, 30)" filter="url(#shadow)">
+    <!-- Browser/App Chrome Frame -->
+    <rect width="1100" height="620" rx="16" fill="#F7F4ED" stroke="#D9CBB7" stroke-width="1.5" />
+
+    <!-- Top Window Titlebar -->
+    <rect width="1100" height="42" rx="16" fill="#EFE8DC" />
+    <rect y="26" width="1100" height="16" fill="#EFE8DC" />
+    <circle cx="28" cy="21" r="5" fill="#EF4444" />
+    <circle cx="44" cy="21" r="5" fill="#F59E0B" />
+    <circle cx="60" cy="21" r="5" fill="#10B981" />
+    <rect x="350" y="9" width="400" height="24" rx="6" fill="#FFFFFF" border="1" stroke="#D9CBB7" />
+    <text x="550" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#77736D" text-anchor="middle">modor.app • Encyclopédie PWA Hors-Ligne (v1.1.0)</text>
+
+    <!-- App Top Navigation Bar -->
+    <g transform="translate(0, 42)">
+      <rect width="1100" height="60" fill="#FFFFFF" stroke="#D9CBB7" stroke-width="1" />
+      <!-- Logo Monogram -->
+      <rect x="30" y="12" width="36" height="36" rx="8" fill="#242321" />
+      <text x="48" y="36" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+      <!-- Brand Name -->
+      <text x="76" y="32" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="#242321">Modor</text>
+      <text x="145" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#77736D" letter-spacing="2">MODE &amp; MÉMOIRE</text>
+
+      <!-- Nav Links -->
+      <g transform="translate(300, 34)" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#77736D">
+        <text x="0" y="0" fill="#242321" font-weight="700">CHRONOLOGIE</text>
+        <line x1="0" y1="6" x2="88" y2="6" stroke="#242321" stroke-width="2" />
+        <text x="110" y="0">SILHOUETTES</text>
+        <text x="210" y="0">ANATOMIE</text>
+        <text x="295" y="0">VÊTEMENTS</text>
+        <text x="390" y="0">CRÉATEURS</text>
+        <text x="485" y="0">QUIZ</text>
+      </g>
+
+      <!-- Top Bar Controls -->
+      <g transform="translate(860, 14)">
+        <!-- Search Pill -->
+        <rect width="80" height="32" rx="8" fill="#F7F4ED" stroke="#D9CBB7" />
+        <text x="32" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#77736D">Ctrl+K</text>
+
+        <!-- Install PWA Button -->
+        <g transform="translate(90, 0)">
+          <rect width="70" height="32" rx="8" fill="url(#terracottaGrad)" />
+          <text x="35" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">Installer</text>
+        </g>
+
+        <!-- Hamburger Menu Button -->
+        <g transform="translate(170, 0)">
+          <rect width="60" height="32" rx="8" fill="#242321" />
+          <line x1="12" y1="12" x2="26" y2="12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+          <line x1="12" y1="16" x2="26" y2="16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+          <line x1="12" y1="20" x2="26" y2="20" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+          <text x="32" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Menu</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Main Content Area -->
+    <g transform="translate(35, 125)">
+      <!-- Editorial Header Section -->
+      <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#9A3412" letter-spacing="2">CHRONOLOGIE INTERACTIVE • 1500–2026</text>
+      <text x="0" y="55" font-family="'Cormorant Garamond', serif" font-size="34" font-weight="700" fill="#242321">La Grande Frise de la Mode Féminine Française</text>
+      <text x="0" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#77736D">Explorez six siècles de métamorphoses des silhouettes, sous-structures mécaniques et grands créateurs.</text>
+
+      <!-- Century Filter Pills with Novice Help Tooltip -->
+      <g transform="translate(0, 100)">
+        <!-- Tooltip pin icon -->
+        <circle cx="10" cy="12" r="9" fill="#9A3412" />
+        <text x="10" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">?</text>
+
+        <rect x="30" y="0" width="80" height="26" rx="6" fill="#242321" />
+        <text x="70" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF" text-anchor="middle">Tous (22)</text>
+
+        <rect x="118" y="0" width="80" height="26" rx="6" fill="#FFFFFF" stroke="#D9CBB7" />
+        <text x="158" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#77736D" text-anchor="middle">XVIe s.</text>
+
+        <rect x="206" y="0" width="80" height="26" rx="6" fill="#FFFFFF" stroke="#D9CBB7" />
+        <text x="246" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#77736D" text-anchor="middle">XVIIIe s.</text>
+
+        <rect x="294" y="0" width="80" height="26" rx="6" fill="#FFFFFF" stroke="#D9CBB7" />
+        <text x="334" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#77736D" text-anchor="middle">XIXe s.</text>
+
+        <rect x="382" y="0" width="80" height="26" rx="6" fill="#FFFFFF" stroke="#D9CBB7" />
+        <text x="422" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#77736D" text-anchor="middle">XXe s.</text>
+
+        <!-- Tooltip Bubble preview -->
+        <g transform="translate(480, -6)">
+          <rect width="240" height="38" rx="8" fill="#FFFFFF" stroke="#D9CBB7" filter="url(#cardShadow)" />
+          <text x="12" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#9A3412">Aide Novice : Filtre par Siècle</text>
+          <text x="12" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#55524E">Isolez les ruptures stylistiques en un clic.</text>
+        </g>
+      </g>
+
+      <!-- Three Visual Cards Row -->
+      <g transform="translate(0, 145)">
+        <!-- Card 1: Rococo & Paniers -->
+        <g transform="translate(0, 0)" filter="url(#cardShadow)">
+          <rect width="325" height="310" rx="12" fill="#FFFFFF" stroke="#D9CBB7" />
+          <rect width="325" height="140" rx="12" fill="#F4EDE1" />
+          <!-- Dummy Archival Sketch -->
+          <circle cx="162" cy="70" r="40" fill="#D9CBB7" opacity="0.4" />
+          <path d="M162 40 L162 100 M130 90 Q162 60 194 90" stroke="#242321" stroke-width="2" fill="none" />
+          <rect x="12" y="115" width="95" height="18" rx="4" fill="#000000" opacity="0.75" />
+          <text x="60" y="127" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="700" fill="#FCD34D" text-anchor="middle">PHOTO WIKIPÉDIA</text>
+
+          <text x="16" y="170" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#9A3412">1715 – 1774 • XVIIIe SIÈCLE</text>
+          <text x="16" y="195" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="#242321">Rococo &amp; Robe à la Française</text>
+          <text x="16" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" fill="#77736D">Évasement latéral extrême par grands paniers à coudes.</text>
+          <!-- Metric chips -->
+          <g transform="translate(16, 235)">
+            <rect width="80" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="40" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Taille : Corsetée</text>
+            <rect x="88" y="0" width="95" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="135" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Structure : Paniers</text>
+          </g>
+          <!-- Bottom Action -->
+          <rect x="16" y="270" width="293" height="26" rx="6" fill="#242321" />
+          <text x="162" y="287" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF" text-anchor="middle">Consulter la fiche complète →</text>
+        </g>
+
+        <!-- Card 2: Crinoline Cage 1852-1870 -->
+        <g transform="translate(350, 0)" filter="url(#cardShadow)">
+          <rect width="325" height="310" rx="12" fill="#FFFFFF" stroke="#D9CBB7" />
+          <rect width="325" height="140" rx="12" fill="#F4EDE1" />
+          <!-- Dummy Archival Sketch -->
+          <ellipse cx="162" cy="70" rx="45" ry="35" fill="#D9CBB7" opacity="0.4" />
+          <path d="M162 35 L162 105 M125 95 Q162 45 200 95" stroke="#9A3412" stroke-width="2" fill="none" />
+          <rect x="12" y="115" width="95" height="18" rx="4" fill="#000000" opacity="0.75" />
+          <text x="60" y="127" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="700" fill="#FCD34D" text-anchor="middle">PHOTO WIKIPÉDIA</text>
+
+          <text x="16" y="170" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#9A3412">1852 – 1870 • SECOND EMPIRE</text>
+          <text x="16" y="195" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="#242321">Crinoline Cage &amp; Worth</text>
+          <text x="16" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" fill="#77736D">Dôme d'acier riveté monumentale, naissance de la Haute Couture.</text>
+          <!-- Metric chips -->
+          <g transform="translate(16, 235)">
+            <rect width="90" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="45" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Cage : 3 à 5 mètres</text>
+            <rect x="98" y="0" width="85" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="140" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Maison Worth</text>
+          </g>
+          <!-- Bottom Action -->
+          <rect x="16" y="270" width="293" height="26" rx="6" fill="#242321" />
+          <text x="162" y="287" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF" text-anchor="middle">Consulter la fiche complète →</text>
+        </g>
+
+        <!-- Card 3: New Look 1947 & Dior -->
+        <g transform="translate(700, 0)" filter="url(#cardShadow)">
+          <rect width="325" height="310" rx="12" fill="#FFFFFF" stroke="#D9CBB7" />
+          <rect width="325" height="140" rx="12" fill="#F4EDE1" />
+          <!-- Dummy Archival Sketch -->
+          <circle cx="162" cy="70" r="35" fill="#D9CBB7" opacity="0.4" />
+          <path d="M162 35 L162 105 M140 75 Q162 85 184 75" stroke="#242321" stroke-width="2" fill="none" />
+          <rect x="12" y="115" width="95" height="18" rx="4" fill="#000000" opacity="0.75" />
+          <text x="60" y="127" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="700" fill="#FCD34D" text-anchor="middle">PHOTO WIKIPÉDIA</text>
+
+          <text x="16" y="170" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#9A3412">1947 – 1957 • APRÈS-GUERRE</text>
+          <text x="16" y="195" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="#242321">New Look &amp; Tailleur Bar</text>
+          <text x="16" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" fill="#77736D">Taille de guêpe pincée, hanches rembourrées, jupe corolle.</text>
+          <!-- Metric chips -->
+          <g transform="translate(16, 235)">
+            <rect width="90" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="45" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Gaine guêpière</text>
+            <rect x="98" y="0" width="85" height="20" rx="4" fill="#F7F4ED" stroke="#D9CBB7" />
+            <text x="140" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#242321" text-anchor="middle">Christian Dior</text>
+          </g>
+          <!-- Bottom Action -->
+          <rect x="16" y="270" width="293" height="26" rx="6" fill="#242321" />
+          <text x="162" y="287" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF" text-anchor="middle">Consulter la fiche complète →</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Overlay Floating Widget: Background Update & System Settings Status -->
+    <g transform="translate(730, 520)" filter="url(#cardShadow)">
+      <rect width="330" height="65" rx="12" fill="#242321" stroke="#3A3835" />
+      <circle cx="28" cy="32" r="14" fill="#10B981" fill-opacity="0.2" />
+      <circle cx="28" cy="32" r="5" fill="#10B981" />
+      <text x="52" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Mises à jour automatiques actives</text>
+      <text x="52" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#A6AA99">Vérification toutes les 15 min • Cache synchronisé</text>
+    </g>
+  </g>
+</svg>

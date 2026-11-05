@@ -11,6 +11,20 @@ export const DEFAULT_USER_DATA: UserFavorites = {
   notes: {}
 };
 
+export const CURRENT_SCHEMA_VERSION = 1;
+
+export interface ImportResult {
+  success: boolean;
+  error?: string;
+  importedStats?: {
+    periods: number;
+    garments: number;
+    designers: number;
+    notes: number;
+    quizScores: number;
+  };
+}
+
 /**
  * Sanitizes plain text input by stripping dangerous tags and trimming.
  */
@@ -263,6 +277,7 @@ export class StorageService {
       {
         application: 'Modor — Mode & Mémoire',
         version: '1.0.0',
+        schemaVersion: CURRENT_SCHEMA_VERSION,
         exportedAt: new Date().toISOString(),
         data
       },
@@ -271,7 +286,7 @@ export class StorageService {
     );
   }
 
-  public static importDataFromJSON(jsonString: string): { success: boolean; error?: string } {
+  public static importDataFromJSON(jsonString: string): ImportResult {
     try {
       if (typeof jsonString !== 'string' || !jsonString.trim()) {
         return { success: false, error: 'Fichier vide ou chaîne invalide' };
@@ -280,14 +295,41 @@ export class StorageService {
         return { success: false, error: 'Le fichier dépasse la taille maximale autorisée (5 Mo)' };
       }
 
-      const parsed = JSON.parse(jsonString);
-      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-        return { success: false, error: 'Format JSON invalide' };
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(jsonString);
+      } catch {
+        return { success: false, error: 'Format JSON invalide ou corrompu' };
       }
 
-      const dataToImport = (parsed.data && typeof parsed.data === 'object' && !Array.isArray(parsed.data))
-        ? parsed.data
-        : parsed;
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        return { success: false, error: 'Format de fichier non reconnu (objet attendu)' };
+      }
+
+      const rawObj = parsed as Record<string, unknown>;
+
+      // Check schema version if specified
+      if ('schemaVersion' in rawObj) {
+        const ver = rawObj.schemaVersion;
+        if (typeof ver !== 'number' || !Number.isInteger(ver) || ver < 1) {
+          return { success: false, error: 'Numéro de version de schéma invalide' };
+        }
+        if (ver > CURRENT_SCHEMA_VERSION) {
+          return {
+            success: false,
+            error: `Version de schéma ${ver} non supportée par cette version de Modor (version actuelle: ${CURRENT_SCHEMA_VERSION}). Veuillez mettre à jour l'application.`
+          };
+        }
+      }
+
+      // Support both versioned wrapper { schemaVersion, data: {...} } and legacy root data
+      let dataToImport: Record<string, unknown>;
+      if (rawObj.data && typeof rawObj.data === 'object' && !Array.isArray(rawObj.data)) {
+        dataToImport = rawObj.data as Record<string, unknown>;
+      } else {
+        // Legacy v0 format without 'data' envelope
+        dataToImport = rawObj;
+      }
 
       const hasValidKeys =
         Array.isArray(dataToImport.periodIds) ||
@@ -300,6 +342,7 @@ export class StorageService {
         return { success: false, error: 'Structure de données Modor non reconnue' };
       }
 
+      // Pure in-memory sanitization (atomic: store is not touched until validation succeeds)
       const sanitized: UserFavorites = {
         periodIds: sanitizeIdArray(dataToImport.periodIds),
         garmentIds: sanitizeIdArray(dataToImport.garmentIds),
@@ -309,10 +352,21 @@ export class StorageService {
         notes: sanitizeNotes(dataToImport.notes)
       };
 
+      // Atomic commit to storage
       this.save(sanitized);
-      return { success: true };
+
+      return {
+        success: true,
+        importedStats: {
+          periods: sanitized.periodIds.length,
+          garments: sanitized.garmentIds.length,
+          designers: sanitized.designerIds.length,
+          notes: Object.keys(sanitized.notes).length,
+          quizScores: Object.keys(sanitized.quizScores).length
+        }
+      };
     } catch {
-      return { success: false, error: 'Erreur lors de la lecture du fichier JSON' };
+      return { success: false, error: 'Erreur inattendue lors de la lecture du fichier JSON' };
     }
   }
 

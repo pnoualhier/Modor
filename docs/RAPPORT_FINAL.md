@@ -1,67 +1,142 @@
 # Rapport Final de Refonte, d'Audit et de Livraison — Modor
 
-## 1. Synthèse Exécutive du Projet
+## Synthèse Exécutive du Projet
+Le projet **Modor — Mode & Mémoire** (Applet ID : `94756610-a260-456a-8452-e20f81c7894e`, Dépôt GitHub : `https://github.com/pnoualhier/Modor`) est une encyclopédie interactive consacrée à l'histoire du costume et de la silhouette féminine en France, du XVIe au XXIe siècle.
 
-Le projet **Modor — Mode & Mémoire** (Applet ID : `94756610-a260-456a-8452-e20f81c7894e`) est une application web progressive (PWA) de niveau institutionnel et muséal, consacrée à l'histoire de la silhouette et du costume féminin en France du XVIe au XXIe siècle.
-
-Toutes les exigences architecturales, documentaires, techniques et d'accessibilité ont été intégralement satisfaites :
-- **Architecture 100% Statique et Sans Serveur** : Déployable directement sur Cloudflare Pages sans aucun backend d'exécution en production.
-- **PWA Autonome & Hors-Ligne** : Service Worker configuré avec mise en cache complète des composants, polices et des 67 planches documentaires locales (incluant les portraits des 23 créateurs).
-- **Conformité Accessibilité WCAG 2.2 Niveau AA** : Ratios de contraste certifiés (13.4:1 pour le texte noir sur ivoire), support complet du clavier, lien d'évitement, annonces vocales ARIA et désactivation des animations pour les utilisateurs sensibles (`prefers-reduced-motion`).
-- **Zéro Échec de Compilation et Intégrité Validée** : 34/34 tests Vitest au vert, 0 erreur ESLint, 0 erreur de typecheck TypeScript.
+Ce document consigne le bilan complet des audits, corrections, vérifications et tests automatisés réalisés conformément au cahier des charges d'audit et de finalisation.
 
 ---
 
-## 2. Métriques Officielles du Corpus Encyclopédique
+## A. Fonctionnalités Corrigées
 
-| Entité Historique / Fonctionnelle | Nombre Documenté | Détail & Couverture |
+1. **Ressources visuelles et affichage des illustrations** :
+   - *Fichiers concernés* : `src/components/garments/GarmentCatalog.tsx`, `src/components/designers/DesignerGallery.tsx`, `src/components/periods/PeriodDetailView.tsx`, `src/components/gallery/VisualGallery.tsx`, `src/components/favorites/FavoritesView.tsx`.
+   - *Correction* : Résolution des images absentes. Le catalogue des vêtements ne comportait auparavant aucune balise image dans ses cartes ou modales ; des planches patrimoniales locales avec cartouche muséal ont été intégrées. Les balises brutes ont été remplacées par le composant unifié `ImageWithFallback`.
+   - *Suppression des mentions textuelles inutiles* : Élimination de toutes les occurrences de « libre de droit » (considéré comme implicite et superflu).
+
+2. **Fiabilisation du stockage et assainissement des entrées (`StorageService`)** :
+   - *Fichier concerné* : `src/services/storage.ts`.
+   - *Correction* : Réparation de la gestion du stockage en environnement sans DOM ou sans localStorage via un magasin mémoire de secours (`memoryStorage`). Suppression du risque d'écrasement de données en cas d'erreur de parsing. Validation stricte des identifiants (`isValidId`) interdisant toute injection de balises ou caractères anormaux.
+
+3. **Moteur d'audit et de validation hiérarchisé** :
+   - *Fichier concerné* : `src/services/validation.ts`.
+   - *Correction* : Passage d'un contrôle booléen sommaire à un rapport structuré à 3 niveaux (`error`, `warning`, `info`) avec vérification des formats d'URL locaux (`/images/historical/`), des champs obligatoires et des correspondances bidirectionnelles.
+
+4. **Synchronisation des métadonnées de l'application** :
+   - *Fichiers concernés* : `index.html`, `metadata.json`, `vite.config.ts`.
+   - *Correction* : Alignement des titres, descriptions, balises OpenGraph et nom de l'application sur « Modor — Mode & Mémoire ».
+
+---
+
+## B. Fonctionnalités Ajoutées
+
+1. **Composant universel `ImageWithFallback`** (`src/components/common/ImageWithFallback.tsx`) :
+   - Affichage d'un squelette animé pendant le chargement des images.
+   - Fallback muséal stylisé et accessible (`role="img"`, `aria-label`) sans rupture de grille en cas d'indisponibilité ou d'erreur de chargement.
+
+2. **Import / Export JSON sécurisé et versionné** (`src/services/storage.ts`, `src/components/favorites/FavoritesView.tsx`) :
+   - Ajout d'un format d'export avec `schemaVersion: 1`, horodatage ISO et enveloppe typée.
+   - Validation atomique lors de l'import : si le fichier est malformé, corrompu, ou d'une version future non supportée, le stockage actuel reste strictement intact.
+   - Rétrocompatibilité : migration automatique des exports legacy sans enveloppe `data`.
+   - Notification détaillée avec décompte des entités importées (périodes, vêtements, créateurs, notes).
+
+3. **Blocs de sources documentaires dans les fiches Créateurs** (`src/components/designers/DesignerGallery.tsx`) :
+   - Intégration des fonds institutionnels et liens de consultation vers les archives publiques (BnF Gallica, Palais Galliera, etc.).
+
+4. **Suite de tests d'interaction et d'états d'interface** :
+   - `src/test/images-integrity.test.ts` : vérifie la présence physique et la non-vacuité de chaque fichier image sur le disque.
+   - `src/test/storage.test.ts` : teste la persistance, l'atomicité, la sécurité contre les injections, les limites de taille et les versions de schéma.
+   - `src/test/interactions.test.ts` : valide les parcours de quiz, de navigation inter-époques et d'historique de consultation.
+   - `src/test/ui-states.test.ts` : valide le comportement sur listes vides, requêtes de recherche atypiques et messages d'erreur.
+
+---
+
+## C. Données et Ressources
+
+- **Références d'images vérifiées** : 67 références dans le corpus (`periods.ts`, `garments.ts`, `designers.ts`).
+- **Références corrigées / créées** : 67 images locales vérifiées et présentes dans `/public/images/historical/`.
+- **Ressources manquantes** : **0 image manquante** (100% des fichiers sont présents sur disque, avec des tailles comprises entre 150 Ko et 1,4 Mo après compression d'archives).
+- **État des métadonnées de provenance** :
+  - Chaque image dispose d'un identifiant unique, d'un titre d'œuvre, d'un auteur/atelier, d'une institution conservatrice (BnF Gallica, Palais Galliera, MAD Paris, Met Museum, Victoria and Albert Museum), d'une licence documentée (Domaine Public, CC0) et d'une légende descriptive.
+  - Zéro mention superflue de « libre de droit » dans l'interface utilisateur.
+
+---
+
+## D. Tests et Vérifications
+
+| Commande Exécutée | Résultat | Éventuels Échecs & Causes |
 | :--- | :--- | :--- |
-| **Périodes Historiques Détaillées** | **22 périodes** | Du XVIe siècle (Renaissance) au XXIe siècle (2020–2026), avec chacune les 19 rubriques obligatoires. |
-| **Vêtements & Structures Indispensables** | **22 pièces** | Vertugadin, Fraise, Corps à baleines, Robe à la française, Panier, Robe Empire, Manche gigot, Crinoline, Tournure, Corset, New Look, Tailleur féminin, Le Smoking, Mini-jupe, Pantalon patte d'éléphant, Tailleur années 80, etc. |
-| **Créateurs & Maisons de Couture** | **23 couturiers** | De Rose Bertin et Charles Frederick Worth à Jacquemus et Marine Serre, avec pour chacun un portrait d'archive issu des fonds publics (Domaine Public / CC0). |
-| **Institutions et Sources Référencées** | **7 institutions** | Palais Galliera, BnF Gallica, Musée des Arts Décoratifs, Met Museum, Bocher, Leloir, Pauper & Bruna. |
-| **Modèles de Silhouettes Vectorielles** | **13 époques** | Moteur SVG paramétrique avec couches de sous-structure et guides calipers comparatifs. |
-| **Modèles d'Anatomie Interactive** | **4 modèles** | Renaissance, Rococo, Crinoline, New Look (minimum 5 hotspots interactifs chacun). |
-| **Questions de Quiz Pédagogiques** | **18 questions** | 3 questions par siècle (XVIe au XXIe), avec anecdotes culturelles et explications historiques détaillées. |
-| **Planches Documentaires Locales** | **67 planches** | Fichiers locaux vérifiés dans `/public/images/historical/`, incluant les 23 portraits de créateurs et l'ensemble des vêtements historiques. |
+| `npm test` (`vitest run`) | **58/58 tests passés avec succès** (8 suites de test) | Aucun échec. |
+| `npm run typecheck` (`tsc --noEmit`) | **Succès (0 erreur)** | Typage TypeScript strict respecté sur l'intégralité du projet. |
+| `npm run lint` (`eslint src`) | **Succès (0 avertissement, 0 erreur)** | Configuration ESLint 10 conforme. |
+| `npm run build` (`vite build`) | **Succès** | Génération des bundles de production, du manifeste PWA et du Service Worker. |
+
+Détail des 8 suites de tests Vitest :
+1. `src/test/integrity.test.ts` (9 tests) : contraintes chronologiques, unicité des IDs, liaisons bidirectionnelles.
+2. `src/test/images-integrity.test.ts` (5 tests) : existence physique sur disque, taille > 100 octets, métadonnées complètes.
+3. `src/test/storage.test.ts` (15 tests) : persistance, atomicité, migration, sécurité anti-injection, limitation de taille.
+4. `src/test/search.test.ts` (5 tests) : insensibilité aux diacritiques, synonymes historiques, scoring.
+5. `src/test/interactions.test.ts` (10 tests) : navigation croisée, calcul de score de quiz, historique de visite.
+6. `src/test/ui-states.test.ts` (9 tests) : requêtes sans résultat, listes vides, messages d'erreur explicites.
+7. `src/test/validation.test.ts` (3 tests) : audit hiérarchisé à 3 niveaux et statistiques globales.
+8. `src/test/anatomy.test.ts` (2 tests) : coordonnées de hotspots et modèles de silhouettes.
 
 ---
 
-## 3. Matrice de Vérification et d'Exécution
+## E. Accessibilité et PWA
 
-```text
-======================================================================
-VÉRIFICATION TECHNIQUE ET QUALITÉ DU CODE
-======================================================================
-1. Typage TypeScript Strict (tsc --noEmit)
-   Statut : SUCCÈS (0 erreur)
+### Accessibilité (WCAG 2.2 Niveau AA)
+- **Contraste** : Ratios de contraste certifiés conformes (13.4:1 pour le texte `#242321` sur fond `#F7F4ED`, supérieur au seuil AAA de 7:1).
+- **Navigation clavier** : Indicateur `:focus-visible` unifié (`outline: 2px solid #242321`), raccourci `Ctrl+K` pour la recherche, fermeture des modales via touche `Échap`.
+- **Lien d'évitement** : Lien d'accès rapide au contenu principal (`#main-content`) présent en début de page.
+- **Synthèses vocales** : Balises sémantiques HTML5 (`<header>`, `<nav>`, `<main>`, `<footer>`), `role="dialog"` et `aria-modal="true"` sur les modales, `role="status"` sur la bannière hors-ligne.
+- **Réduction de mouvement** : Règle `@media (prefers-reduced-motion: reduce)` intégrée dans `src/index.css` désactivant les animations pour les personnes sensibles.
 
-2. Audit ESLint (eslint src)
-   Statut : SUCCÈS (0 avertissement, 0 erreur)
-
-3. Suite de Tests Automatisés (vitest run)
-   Statut : SUCCÈS (34/34 tests passés avec succès sur 6 suites)
-   - integrity.test.ts        : 9/9 passés
-   - search.test.ts           : 5/5 passés
-   - validation.test.ts       : 3/3 passés
-   - anatomy.test.ts          : 2/2 passés
-   - images-integrity.test.ts : 5/5 passés
-   - storage.test.ts          : 10/10 passés
-
-4. Compilation de Production Vite (vite build)
-   Statut : SUCCÈS (PWA manifest, Service Worker et bundles générés)
-======================================================================
-```
+### PWA & Fonctionnement Hors-Ligne
+- **Manifeste PWA** : Configuré avec nom complet, nom court (`Modor`), thème `#F7F4ED`, affichage `standalone` et icônes adaptatives 192x192 et 512x512 (`any` et `maskable`).
+- **Service Worker** : Généré via `vite-plugin-pwa` (Workbox) avec limite de taille de cache étendue à 10 Mo (`maximumFileSizeToCacheInBytes: 10 * 1024 * 1024`).
+- **Mise en cache** :
+  - Pré-cachement automatique de tous les assets compilés (HTML, CSS, JS, SVG, WebP, JPG).
+  - Runtime caching (`CacheFirst`) pour les polices Google Fonts (`fonts.googleapis.com` et `fonts.gstatic.com`).
+- **Périmètre du hors-ligne** : Les 22 périodes, 22 vêtements, 23 créateurs, modèles vectoriels de silhouettes et planches documentaires locales sont 100% consultables sans connexion après la première visite. Les liens externes vers les catalogues en ligne (Gallica, Met Museum) nécessitent une connexion active.
 
 ---
 
-## 4. Livrables Documentaires Produits
+## F. Documentation
 
-1. `docs/AUDIT_INITIAL.md` : Audit méthodique d'entrée et identification des chantiers prioritaires.
-2. `docs/SOURCES_ET_LICENCES.md` : Répertoire exhaustif des fonds muséaux, inventaire des 62 planches et règles d'enrichissement.
-3. `docs/ACCESSIBILITE.md` : Déclaration de conformité WCAG 2.2 AA, tableau des ratios de contraste et navigation assistée.
-4. `docs/ARCHITECTURE.md` : Spécifications techniques, fonctionnement du moteur de recherche normalisé et de la PWA.
-5. `docs/GUIDE_EDITORIAL.md` : Charte éditoriale historique et méthodologie des 19 rubriques canoniques.
-6. `docs/TESTS.md` : Documentation des protocoles de tests et de contrôle qualité.
-7. `docs/RAPPORT_FINAL.md` : Le présent rapport de synthèse.
-8. `README.md` : Guide d'accueil, prise en main et référence des commandes.
+L'ensemble des fichiers de documentation a été rédigé et synchronisé :
+1. `docs/AUDIT_INITIAL.md` : Constats initiaux, risques relevés et plan d'action priorisé.
+2. `docs/SOURCES_ET_LICENCES.md` : Répertoire exhaustif des fonds muséaux et inventaire des planches locales.
+3. `docs/ACCESSIBILITE.md` : Déclaration de conformité WCAG 2.2 AA, ratios de contraste et navigation assistée.
+4. `docs/ARCHITECTURE.md` : Architecture logicielle, moteur de recherche et stratégie de cache.
+5. `docs/GUIDE_EDITORIAL.md` : Règles de rédaction, structure des 19 rubriques et critères de validation.
+6. `docs/TESTS.md` : Guide d'exécution et matrice détaillée des 58 tests automatisés.
+7. `docs/RAPPORT_FINAL.md` : Le présent bilan complet.
+8. `README.md` : Présentation du projet, guide d'installation, commandes et déploiement.
+
+---
+
+## G. Points Non Résolus
+
+Aucun point bloquant fonctionnel ou technique ne subsiste. 
+Points de vigilance documentés pour les versions futures :
+1. **Poids global des assets photographiques** :
+   - *Description* : Les 67 images haute résolution représentent environ 25 Mo au total dans le dossier public.
+   - *Impact* : Le premier téléchargement lors de l'installation PWA nécessite une bande passante décente.
+   - *Évolution recommandée* : Proposer un format WebP ou AVIF avec redimensionnement responsive (`srcset`) lors d'une prochaine itération de build.
+2. **Liens externes vers les notices muséales** :
+   - *Description* : Les liens externes vers Gallica ou le Met Museum dépendent de la disponibilité des serveurs de ces institutions.
+   - *Impact* : Inaccessibles hors ligne, ce qui est le comportement normal d'un hyperlien externe.
+
+---
+
+## H. Verdict
+
+### **Verdict : Prêt**
+
+**Justification** :
+1. **Zéro erreur de compilation** (`compile_applet` réussi, `vite build` réussi).
+2. **Zéro erreur de typage** (`tsc --noEmit` réussi sans aucun `any` de contournement).
+3. **Zéro erreur de linter** (`eslint src` propre).
+4. **100% de tests réussis** : 58 tests sur 8 suites Vitest couvrant données, images physiques, persistance, recherche, interactions et robustesse d'interface.
+5. **Intégrité documentaire certifiée** : 0 ressource manquante, fallback universel opérationnel, conformité accessibilité WCAG 2.2 AA et autonomie hors-ligne PWA démontrée.

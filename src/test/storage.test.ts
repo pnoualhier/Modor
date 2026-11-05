@@ -128,4 +128,72 @@ describe('StorageService — Persistance locale, validation et assainissement', 
     expect(loaded.quizScores['quiz-1'].score).toBe(0);
     expect(loaded.quizScores['quiz-1'].total).toBe(1);
   });
+
+  it('gère le format versionné schemaVersion 1 et fournit les statistiques d\'import', () => {
+    const versionedJson = JSON.stringify({
+      application: 'Modor — Mode & Mémoire',
+      schemaVersion: 1,
+      version: '1.0.0',
+      exportedAt: new Date().toISOString(),
+      data: {
+        periodIds: ['directoire-1795-1799'],
+        garmentIds: ['robe-empire'],
+        designerIds: ['christian-dior'],
+        notes: { 'directoire-1795-1799': 'Mousseline de coton antique.' },
+        quizScores: { 'quiz-directoire': { score: 3, total: 3, date: new Date().toISOString() } }
+      }
+    });
+
+    const res = StorageService.importDataFromJSON(versionedJson);
+    expect(res.success).toBe(true);
+    expect(res.importedStats).toBeDefined();
+    expect(res.importedStats?.periods).toBe(1);
+    expect(res.importedStats?.garments).toBe(1);
+    expect(res.importedStats?.designers).toBe(1);
+    expect(res.importedStats?.notes).toBe(1);
+  });
+
+  it('refuse une version de schéma ultérieure inconnue (ex: schemaVersion 99)', () => {
+    const futureJson = JSON.stringify({
+      application: 'Modor — Mode & Mémoire',
+      schemaVersion: 99,
+      data: { periodIds: ['future-period'] }
+    });
+
+    const res = StorageService.importDataFromJSON(futureJson);
+    expect(res.success).toBe(false);
+    expect(res.error).toContain('non supportée');
+  });
+
+  it('refuse un numéro de version de schéma invalide (négatif ou texte)', () => {
+    const invalidVerJson = JSON.stringify({
+      schemaVersion: -2,
+      data: { periodIds: ['period-1'] }
+    });
+    expect(StorageService.importDataFromJSON(invalidVerJson).success).toBe(false);
+  });
+
+  it('garantit l\'atomicité de l\'import : les données existantes restent intactes en cas d\'erreur', () => {
+    // État initial sain
+    StorageService.toggleFavorite('period', 'initial-period');
+    StorageService.saveNote('initial-period', 'Note initiale persistante.');
+
+    // Tentative d'import corrompu
+    const corruptJson = '{ "data": { "periodIds": [';
+    const res = StorageService.importDataFromJSON(corruptJson);
+    expect(res.success).toBe(false);
+
+    // Les données initiales doivent être strictement intactes
+    const state = StorageService.load();
+    expect(state.periodIds).toEqual(['initial-period']);
+    expect(state.notes['initial-period']).toBe('Note initiale persistante.');
+  });
+
+  it('refuse les fichiers dépassant la limite de taille maximale (5 Mo)', () => {
+    const hugePadding = 'a'.repeat(5 * 1024 * 1024 + 10);
+    const hugeJson = `{"padding": "${hugePadding}"}`;
+    const res = StorageService.importDataFromJSON(hugeJson);
+    expect(res.success).toBe(false);
+    expect(res.error).toContain('dépasse la taille maximale');
+  });
 });

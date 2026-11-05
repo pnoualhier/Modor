@@ -4,6 +4,7 @@ import { SILHOUETTE_DEFINITIONS } from '../../data/silhouettes';
 import { SilhouetteFigure } from '../silhouettes/SilhouetteFigure';
 import { AnatomyHotspot } from '../../types';
 import { Info, Sparkles, Layers, Scissors, History, CheckCircle2 } from 'lucide-react';
+import { HelpTooltip } from '../common/HelpTooltip';
 
 export const AnatomyExplorer: React.FC = () => {
   const [selectedModelId, setSelectedModelId] = useState<string>('ANAT_ROCOCO');
@@ -23,9 +24,15 @@ export const AnatomyExplorer: React.FC = () => {
     <div className="space-y-8">
       {/* Editorial Header */}
       <div className="border-b border-[#D9CBB7]/40 pb-6">
-        <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
-          Dissection Pédagogique du Costume
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold tracking-widest text-[#77736D] uppercase font-sans">
+            Dissection Pédagogique du Costume
+          </span>
+          <HelpTooltip
+            title="Comment explorer l'anatomie ?"
+            content="Cliquez sur les puces circulaires sur le mannequin ou dans la liste en bas pour décortiquer chaque pièce vestimentaire (matière, armature, fonction anatomique)."
+          />
+        </div>
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
           Anatomie d'une Silhouette
         </h2>
