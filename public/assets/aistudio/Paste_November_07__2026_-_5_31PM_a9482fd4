@@ -1,0 +1,1114 @@
+# PROMPT MAÎTRE CODEX — AUDIT FONCTIONNEL ET ÉVOLUTION DE MODOR
+
+## 1. Présentation du projet
+
+Tu interviens sur le projet :
+
+**Modor — Mode & Mémoire**
+
+Dépôt :
+https://github.com/pnoualhier/Modor
+
+Application déployée :
+https://modor.pages.dev/
+
+Modor est une encyclopédie interactive consacrée à l'histoire de la mode féminine en France, du XVIe au XXIe siècle.
+
+Le projet utilise notamment :
+- React et TypeScript ;
+- Vite ;
+- Tailwind CSS ;
+- Lucide React ;
+- une architecture SPA statique ;
+- un fonctionnement PWA offline-first ;
+- LocalStorage pour les données personnelles ;
+- Vitest pour les tests ;
+- ESLint et TypeScript pour les contrôles de qualité.
+
+L'application doit rester :
+- entièrement utilisable sans serveur distant ;
+- fonctionnelle hors connexion ;
+- installable comme PWA ;
+- respectueuse de la vie privée ;
+- compatible ordinateur, tablette et mobile ;
+- cohérente avec son identité visuelle muséale actuelle.
+
+## 2. Objectif général
+
+Réaliser un audit fonctionnel complet de toutes les pages de Modor, puis enrichir les fonctionnalités existantes sans créer de doublons.
+
+Le travail porte sur les modules suivants :
+
+1. Chronologie
+2. Silhouettes
+3. Anatomie
+4. Vestiaire
+5. Créateurs
+6. Galerie
+7. Quiz
+8. Favoris & Notes
+9. Navigation, recherche et fonctions transversales
+10. Paramètres, installation et fonctionnement PWA
+
+Le but n'est pas de multiplier les menus.
+
+Le but est de transformer progressivement Modor en une véritable encyclopédie interactive, documentaire, visuelle et pédagogique de l'histoire de la mode féminine en France.
+
+## 3. RÈGLE ABSOLUE : AUDITER AVANT DE MODIFIER
+
+Ne commence aucune modification du code avant d'avoir réalisé l'inventaire de l'existant.
+
+Le README, les documents Markdown et les commentaires ne constituent pas une preuve suffisante qu'une fonctionnalité est réellement opérationnelle.
+
+Tu dois examiner le code source, les composants, les services, les types, les données et les tests.
+
+### 3.1. Inventaire technique
+
+Examiner au minimum :
+
+- `src/App.tsx`
+- `src/components/`
+- `src/data/`
+- `src/hooks/`
+- `src/services/`
+- `src/types/`
+- `src/test/`
+- `public/`
+- `docs/`
+- `package.json`
+- `vite.config.ts`
+
+Identifier :
+- les pages réellement accessibles ;
+- les composants réellement utilisés ;
+- les fonctionnalités présentes ;
+- les fonctions incomplètes ;
+- les éléments uniquement décoratifs ;
+- les fonctionnalités annoncées mais non implémentées ;
+- les éventuelles fonctions redondantes ;
+- les liens entre les données ;
+- les problèmes d'intégrité ;
+- les problèmes d'accessibilité ;
+- les éventuelles incohérences entre la documentation et le code.
+
+### 3.2. Vérification de la navigation
+
+Vérifier les deux niveaux de navigation :
+
+**Navigation principale :**
+- Chronologie
+- Silhouettes
+- Anatomie
+- Vestiaire
+- Créateurs
+
+**Autres modules :**
+- Galerie
+- Quiz
+- Favoris & Notes
+
+Vérifier également :
+- le menu hamburger ;
+- la navigation mobile ;
+- les paramètres ;
+- l'aide et l'onboarding ;
+- la recherche globale ;
+- les raccourcis clavier ;
+- les fils d'Ariane ;
+- les raccourcis vers les fiches associées.
+
+Ne pas ajouter de nouvel élément à la barre principale sans démontrer qu'il est nécessaire.
+
+### 3.3. Tableau d'audit obligatoire
+
+Créer un fichier :
+
+`docs/AUDIT_FONCTIONNEL.md`
+
+Pour chaque page, produire un tableau contenant :
+
+| Fonctionnalité | État réel | Preuve dans le code | Action proposée | Priorité |
+|---|---|---|---|---|
+| Fonctionnalité | Implémentée / Partielle / Absente / Défectueuse | Fichier et composant | Conserver / Enrichir / Développer / Corriger | P0 à P3 |
+
+Définition des priorités :
+
+- P0 : anomalie bloquante ou intégrité des données.
+- P1 : amélioration fonctionnelle essentielle.
+- P2 : enrichissement important.
+- P3 : amélioration complémentaire.
+
+Ne jamais classer une fonctionnalité comme implémentée uniquement parce qu'elle est mentionnée dans le README.
+
+## 4. RÈGLE DE NON-DUPLICATION
+
+Avant toute création, effectuer une recherche dans l'ensemble du projet.
+
+Une fonctionnalité existante doit être enrichie plutôt que recréée.
+
+Exemples :
+
+- Ne pas créer un deuxième comparateur de silhouettes.
+- Ne pas créer un deuxième système de favoris.
+- Ne pas créer une seconde recherche globale.
+- Ne pas créer un nouveau moteur de recherche indépendant pour le Vestiaire.
+- Ne pas créer un second système d'import/export.
+- Ne pas recréer un catalogue de vêtements dans Anatomie.
+- Ne pas dupliquer les biographies des créateurs dans Galerie.
+- Ne pas créer une nouvelle chronologie parallèle.
+- Ne pas créer un système de quiz indépendant.
+- Ne pas créer une deuxième base de données pour les matières ou accessoires.
+
+Les modules doivent communiquer entre eux par des références aux données existantes.
+
+### Principe architectural
+
+Un contenu doit avoir une fiche de référence unique.
+
+Exemple :
+
+Une robe historique doit posséder une seule fiche dans le Vestiaire.
+
+Cette fiche peut être référencée depuis :
+- une période historique ;
+- une silhouette ;
+- une dissection anatomique ;
+- un créateur ;
+- une œuvre de la Galerie ;
+- un quiz ;
+- une collection de Favoris.
+
+Ne pas recopier intégralement les mêmes informations dans plusieurs modules.
+
+## 5. AUDIT ET ÉVOLUTION PAGE PAR PAGE
+
+# MODULE 1 — CHRONOLOGIE
+
+### Fonctionnalités à conserver
+
+- Frise chronologique existante.
+- Périodes historiques.
+- Filtre par siècle.
+- Fiches détaillées des périodes.
+- Contexte historique et social.
+- Liens vers les vêtements et créateurs associés.
+
+### Fonctionnalités à enrichir
+
+Examiner et améliorer :
+- la présentation chronologique ;
+- la navigation entre périodes ;
+- les transitions entre époques ;
+- les liens entre événements historiques et changements vestimentaires ;
+- les innovations textiles et techniques ;
+- la lisibilité des fiches de période.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Frise Société et Innovations**
+
+Créer une seconde couche de lecture synchronisée avec la chronologie principale.
+
+Elle doit permettre de visualiser :
+- les événements politiques majeurs ;
+- les évolutions des droits des femmes ;
+- les transformations sociales ;
+- les innovations textiles ;
+- les innovations industrielles ;
+- les grandes dates de la haute couture ;
+- les événements ayant influencé la mode.
+
+Ne pas créer une seconde frise indépendante.
+
+**B. Comparateur de périodes**
+
+Permettre de sélectionner deux périodes et de comparer :
+- silhouette ;
+- vêtements ;
+- sous-vêtements ;
+- coiffures ;
+- chaussures ;
+- matières ;
+- usages ;
+- contexte social ;
+- personnalités ;
+- innovations.
+
+Les informations doivent être extraites des fiches de période existantes.
+
+**C. Parcours chronologique**
+
+Permettre d'explorer une évolution thématique :
+- évolution du corset ;
+- évolution des robes ;
+- évolution des manches ;
+- évolution des chaussures ;
+- évolution des matières ;
+- évolution du vêtement féminin dans l'espace public.
+
+Ces parcours doivent utiliser les fiches existantes.
+
+# MODULE 2 — SILHOUETTES
+
+### Fonctionnalités à conserver
+
+- Moteur vectoriel SVG.
+- Mannequin normalisé.
+- Mode Duo.
+- Mode Galerie.
+- Calques des structures.
+- Repères métriques.
+- Comparaison morphologique.
+
+### Fonctionnalités à enrichir
+
+- Qualité des représentations.
+- Explication des proportions.
+- Légendes des différentes structures.
+- Correspondance entre silhouette et vêtements.
+- Documentation des volumes et des changements morphologiques.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Comparaison avec superposition**
+
+Permettre de superposer deux silhouettes avec un réglage de transparence.
+
+**B. Évolution progressive**
+
+Créer un curseur permettant de passer progressivement d'une silhouette historique à une autre.
+
+Le moteur doit interpoler uniquement les paramètres géométriques réellement compatibles.
+
+Ne pas inventer des morphologies intermédiaires présentées comme historiques.
+
+**C. Vue morphologique détaillée**
+
+Si les données et le moteur le permettent, proposer :
+- face ;
+- profil ;
+- dos.
+
+**D. Analyse des proportions**
+
+Présenter les changements :
+- position de la taille ;
+- volume des hanches ;
+- largeur des épaules ;
+- volume de la jupe ;
+- longueur des vêtements ;
+- architecture générale de la silhouette.
+
+**E. Structures internes**
+
+Permettre de comparer une silhouette avec et sans ses structures :
+- corset ;
+- panier ;
+- crinoline ;
+- tournure ;
+- jupon ;
+- autres structures réellement documentées.
+
+Les informations doivent provenir des fiches du Vestiaire et des données anatomiques.
+
+# MODULE 3 — ANATOMIE
+
+### Fonctionnalités à conserver
+
+- Mannequins existants.
+- Hotspots.
+- Dissection par couches.
+- Fiches techniques.
+- Explications anatomiques.
+- Structures et vêtements déjà documentés.
+
+### Fonctionnalités à enrichir
+
+- Qualité des descriptions.
+- Précision des zones anatomiques.
+- Correspondances avec les vêtements du catalogue.
+- Ordre d'habillage historique.
+- Explication des fonctions de chaque couche.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Habillage progressif**
+
+Créer une visualisation interactive permettant d'ajouter ou de retirer les différentes couches d'une tenue.
+
+Exemple de séquence :
+1. Chemise.
+2. Sous-vêtements.
+3. Corset ou corps baleiné.
+4. Jupons.
+5. Structure.
+6. Robe.
+7. Accessoires.
+
+L'ordre doit être adapté à la période historique concernée.
+
+**B. Vue éclatée**
+
+Permettre de séparer visuellement les différentes couches d'un vêtement ou d'une tenue.
+
+**C. Fiches anatomiques enrichies**
+
+Chaque élément doit pouvoir renvoyer vers sa fiche de référence dans le Vestiaire.
+
+**D. Glossaire technique contextuel**
+
+Lorsqu'un terme spécialisé apparaît, proposer sa définition et un lien vers la fiche correspondante.
+
+Ne pas créer un glossaire séparé si le projet possède déjà un mécanisme de recherche et de définition des termes.
+
+# MODULE 4 — VESTIAIRE
+
+### Fonctionnalités à conserver
+
+- Catalogue des vêtements.
+- Fiches historiques.
+- Catégories.
+- Filtres.
+- Images.
+- Liens vers les périodes.
+- Favoris.
+
+### Fonctionnalités à enrichir
+
+Étudier la couverture des familles suivantes :
+
+**Vêtements**
+- robes ;
+- jupes ;
+- corsages ;
+- chemisiers ;
+- vestes ;
+- manteaux ;
+- pantalons ;
+- ensembles.
+
+**Structures et sous-vêtements**
+- corsets ;
+- corps baleinés ;
+- jupons ;
+- paniers ;
+- crinolines ;
+- tournures ;
+- lingerie historique ;
+- soutiens-gorge ;
+- gaines.
+
+**Accessoires**
+- éventails ;
+- ombrelles ;
+- gants ;
+- sacs ;
+- ceintures ;
+- bijoux ;
+- accessoires de tête.
+
+**Chaussures**
+- mules ;
+- escarpins ;
+- bottines ;
+- bottes ;
+- chaussures de sport.
+
+**Coiffures et beauté**
+- bonnets ;
+- chapeaux ;
+- coiffes ;
+- ornements capillaires ;
+- maquillage ;
+- poudres ;
+- parfums.
+
+Ne pas ajouter automatiquement toutes ces entrées.
+
+Comparer chaque élément aux fiches déjà présentes et rechercher les doublons, synonymes et variantes historiques.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Index alphabétique**
+
+Permettre de parcourir tous les vêtements par ordre alphabétique.
+
+**B. Recherche multicritère**
+
+Permettre de filtrer par :
+- période ;
+- catégorie ;
+- matière ;
+- usage ;
+- partie du corps ;
+- créateur ;
+- type de silhouette.
+
+Réutiliser le moteur de recherche existant.
+
+**C. Fiches de tenues complètes**
+
+Créer un mécanisme permettant d'associer plusieurs vêtements existants pour représenter une tenue historique.
+
+Une tenue doit référencer des fiches existantes au lieu de recopier leurs données.
+
+**D. Comparateur de vêtements**
+
+Permettre de comparer deux pièces selon :
+- période ;
+- fonction ;
+- coupe ;
+- construction ;
+- matières ;
+- silhouette ;
+- usages ;
+- évolution.
+
+# MODULE 5 — CRÉATEURS
+
+### Fonctionnalités à conserver
+
+- Notices biographiques.
+- Portraits.
+- Créations emblématiques.
+- Innovations stylistiques.
+- Liens vers les périodes et les vêtements.
+
+### Fonctionnalités à enrichir
+
+- Chronologie des carrières.
+- Maisons de couture.
+- Filiations artistiques.
+- Innovations techniques.
+- Relations entre créateurs.
+- Documentation des sources.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Fiches des maisons de couture**
+
+Distinguer les maisons des personnes.
+
+Chaque maison peut documenter :
+- nom ;
+- date de fondation ;
+- fondateur ou fondatrice ;
+- ville ;
+- histoire ;
+- directeurs artistiques successifs ;
+- créations emblématiques ;
+- innovations ;
+- périodes de rayonnement ;
+- statut actuel si vérifié.
+
+**B. Métiers de la mode**
+
+Créer une taxonomie des métiers :
+- modiste ;
+- plumassier ;
+- brodeur ;
+- bottier ;
+- tailleur ;
+- couturier ;
+- dentellier ;
+- illustrateur ;
+- photographe ;
+- artisan textile.
+
+**C. Graphe des influences**
+
+Visualiser les relations entre :
+- créateurs ;
+- maisons ;
+- maîtres et élèves ;
+- collaborations ;
+- influences stylistiques ;
+- innovations.
+
+Les relations doivent être documentées.
+
+**D. Chronologie des maisons**
+
+Présenter les grandes dates de création, de transformation et de direction artistique.
+
+Ne pas créer un deuxième module Chronologie : intégrer cette vue dans Créateurs.
+
+# MODULE 6 — GALERIE
+
+### Fonctionnalités à conserver
+
+- Galerie d'images.
+- Visionneuse.
+- Images locales.
+- Métadonnées.
+- Références documentaires.
+
+### Fonctionnalités à enrichir
+
+- Qualité des cartouches.
+- Attribution.
+- Date de création.
+- Institution de conservation.
+- Licence.
+- Liens vers les vêtements, périodes et créateurs.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Filtres iconographiques**
+
+- siècle ;
+- période ;
+- créateur ;
+- vêtement ;
+- type d'image ;
+- institution ;
+- technique artistique.
+
+**B. Comparaison de deux œuvres**
+
+Permettre d'afficher deux images simultanément et de comparer les détails.
+
+**C. Parcours iconographiques**
+
+Créer des sélections thématiques basées sur les œuvres déjà enregistrées.
+
+Exemples :
+- Portraits de femmes et mode de cour.
+- La silhouette romantique.
+- Les représentations de la garçonne.
+- La haute couture parisienne.
+- L'évolution de la photographie de mode.
+
+Ne pas recopier les descriptions des fiches existantes.
+
+# MODULE 7 — QUIZ
+
+### Fonctionnalités à conserver
+
+- Questions.
+- Réponses.
+- Justifications.
+- Scores.
+- Sauvegarde locale.
+
+### Fonctionnalités à enrichir
+
+- Difficulté.
+- Diversité des questions.
+- Explications historiques.
+- Références documentaires.
+- Liens vers les contenus associés.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Parcours thématiques**
+- XVIIIe siècle ;
+- XIXe siècle ;
+- Haute couture ;
+- Sous-vêtements et structures ;
+- Matières textiles ;
+- Créateurs ;
+- Émancipation vestimentaire.
+
+**B. Mode révision**
+
+Proposer de revoir les questions précédemment ratées.
+
+**C. Quiz visuel**
+
+Utiliser les images de la Galerie lorsque les droits et les références sont vérifiés.
+
+**D. Progression**
+
+Afficher la progression par thème, sans créer un système de compte ou de serveur.
+
+# MODULE 8 — FAVORIS & NOTES
+
+### Fonctionnalités à conserver
+
+- Favoris.
+- Notes.
+- Historique de consultation si présent.
+- Export JSON.
+- Import JSON.
+- Persistance locale.
+
+### Fonctionnalités à enrichir
+
+- Organisation des favoris.
+- Recherche dans les notes.
+- Liens vers les fiches.
+- Contrôle des sauvegardes.
+- Gestion des erreurs d'import.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Collections personnelles**
+
+Permettre de regrouper des contenus dans des collections nommées.
+
+Exemples :
+- Mes recherches sur le XVIIIe siècle.
+- Les créatrices françaises.
+- Les structures du XIXe siècle.
+- La mode des années 1920.
+
+**B. Export de collection**
+
+Permettre d'exporter une collection personnelle dans un document imprimable ou un fichier JSON.
+
+Réutiliser le mécanisme de sauvegarde existant.
+
+Ne pas introduire de compte utilisateur ou de synchronisation distante.
+
+# MODULE 9 — NAVIGATION ET RECHERCHE
+
+### Fonctionnalités à conserver
+
+- Barre de navigation principale.
+- Barre de navigation rapide.
+- Menu hamburger.
+- Recherche globale.
+- Raccourcis clavier.
+- Favoris.
+- Paramètres.
+- Aide.
+- Navigation mobile.
+
+### Fonctionnalités à enrichir
+
+- Cohérence entre les menus.
+- Lisibilité des intitulés.
+- État actif des pages.
+- Fil d'Ariane.
+- Accessibilité clavier.
+- Comportement responsive.
+- Recherche dans tous les types de contenus.
+
+### Nouvelles fonctionnalités à développer
+
+**A. Graphe de connaissances transversal**
+
+Créer des relations navigables entre :
+- périodes ;
+- vêtements ;
+- silhouettes ;
+- structures ;
+- créateurs ;
+- maisons ;
+- matières ;
+- techniques ;
+- œuvres.
+
+Ce graphe doit exploiter les identifiants existants.
+
+**B. Liens contextuels**
+
+Sur chaque fiche, proposer des liens vers les contenus directement associés.
+
+Exemple :
+Une robe renvoie vers :
+- sa période ;
+- ses structures ;
+- ses matières ;
+- ses créateurs ;
+- ses œuvres de référence.
+
+Ne pas ajouter de liens non justifiés.
+
+**C. Recherche enrichie**
+
+Si le moteur actuel ne le permet pas déjà, ajouter des filtres par type d'entité.
+
+Les résultats doivent être regroupés :
+- périodes ;
+- vêtements ;
+- créateurs ;
+- œuvres ;
+- matières ;
+- techniques.
+
+# MODULE 10 — MATIÈRES ET SAVOIR-FAIRE
+
+Cette extension éditoriale est à développer en priorité sous forme de données liées au Vestiaire et aux périodes.
+
+Ne pas créer immédiatement un nouvel onglet principal.
+
+### Contenus à étudier
+
+**Fibres et matières**
+- lin ;
+- coton ;
+- laine ;
+- soie ;
+- velours ;
+- satin ;
+- mousseline ;
+- tulle ;
+- dentelle ;
+- viscose ;
+- nylon ;
+- polyester.
+
+**Techniques**
+- tissage ;
+- broderie ;
+- dentelle ;
+- impression textile ;
+- teinture ;
+- plissage ;
+- coupe en biais ;
+- assemblage ;
+- patronage.
+
+**Métiers**
+- tisserand ;
+- teinturier ;
+- brodeur ;
+- dentellier ;
+- plumassier ;
+- passementier.
+
+Chaque fiche doit comporter des sources documentaires.
+
+Les matières et techniques doivent être des entités réutilisables et référencées, pas des descriptions copiées dans chaque vêtement.
+
+# MODULE 11 — ACCESSOIRES ET BEAUTÉ
+
+Développer cette extension au sein du Vestiaire et des fiches de période.
+
+Ne pas créer immédiatement une nouvelle page principale.
+
+### Contenus à étudier
+
+- chaussures ;
+- chapeaux ;
+- coiffures ;
+- bijoux ;
+- éventails ;
+- ombrelles ;
+- gants ;
+- sacs ;
+- ceintures ;
+- parfumerie ;
+- maquillage ;
+- cosmétiques.
+
+Vérifier l'existence de contenus similaires dans les fiches de période, la Galerie et le Vestiaire.
+
+Créer une fiche de référence unique par objet historique.
+
+## 6. MODÈLE DE DONNÉES ET RELATIONS
+
+Avant de créer de nouvelles structures, examiner les types existants.
+
+Proposer une architecture cohérente pour les nouvelles entités.
+
+Entités possibles, uniquement si justifiées :
+
+- `Material`
+- `Technique`
+- `FashionHouse`
+- `FashionProfession`
+- `Outfit`
+- `HistoricalEvent`
+- `Collection`
+
+Ne pas créer une entité si une structure existante permet déjà de répondre au besoin.
+
+### Règles de données
+
+- Identifiants uniques et stables.
+- Relations par identifiants.
+- Pas de duplication de notices.
+- Pas de références cassées.
+- Pas de source inventée.
+- Pas d'image non vérifiée.
+- Pas de période inexistante.
+- Pas de relation non documentée.
+
+Chaque nouvelle entité doit être intégrée dans le moteur de validation.
+
+## 7. SOURCES ET LICENCES
+
+Respecter strictement `docs/SOURCES_ET_LICENCES.md`.
+
+Privilégier :
+- Palais Galliera ;
+- Paris Musées ;
+- BnF Gallica ;
+- Musée des Arts décoratifs ;
+- Metropolitan Museum of Art ;
+- Victoria and Albert Museum ;
+- Rijksmuseum ;
+- autres institutions patrimoniales fiables.
+
+Pour chaque image :
+- URL ou chemin réel ;
+- institution ;
+- titre ou description ;
+- auteur si connu ;
+- date ;
+- licence exacte ;
+- attribution ;
+- référence de l'œuvre.
+
+Ne pas confondre domaine public et licence CC0.
+
+Ne pas considérer une photographie récente d'une œuvre comme libre de droits sans vérifier les conditions applicables.
+
+Ne pas inventer les sources.
+
+Si une source n'est pas vérifiable, signaler l'incertitude.
+
+## 8. IDENTITÉ VISUELLE ET EXPÉRIENCE UTILISATEUR
+
+Conserver l'identité muséale actuelle.
+
+Respecter :
+- palette existante ;
+- typographies ;
+- hiérarchie des titres ;
+- composants existants ;
+- style des cartes ;
+- iconographie ;
+- animations ;
+- responsive design.
+
+Ne pas entreprendre de refonte graphique globale.
+
+Améliorer uniquement les composants concernés.
+
+### Exigences
+
+- Navigation claire.
+- Pages lisibles.
+- Hiérarchie visuelle cohérente.
+- Filtres simples.
+- États vides explicites.
+- Chargement et erreurs correctement gérés.
+- Fonctionnement tactile.
+- Accessibilité clavier.
+- Compatibilité lecteurs d'écran.
+- Respect de `prefers-reduced-motion`.
+
+## 9. PWA ET MODE HORS LIGNE
+
+Modor doit rester totalement fonctionnel hors ligne.
+
+Vérifier :
+- précache des ressources ;
+- disponibilité des images locales ;
+- fonctionnement de la recherche ;
+- navigation entre les pages ;
+- données ;
+- favoris ;
+- notes ;
+- quiz ;
+- sauvegardes ;
+- mises à jour du Service Worker.
+
+Toute nouvelle fonctionnalité doit être compatible avec le fonctionnement offline-first.
+
+Ne pas ajouter de dépendance à une API distante pour une fonction centrale.
+
+Les ressources distantes éventuellement utilisées doivent avoir un fallback local lorsque cela est nécessaire.
+
+## 10. ACCESSIBILITÉ
+
+Respecter les principes WCAG 2.2 AA déjà documentés.
+
+Vérifier :
+- contrastes ;
+- navigation clavier ;
+- focus visible ;
+- libellés accessibles ;
+- descriptions alternatives ;
+- structure des titres ;
+- interactions des hotspots ;
+- modales ;
+- navigation mobile ;
+- zoom ;
+- mouvement réduit.
+
+Ne pas considérer une déclaration documentaire comme une preuve de conformité : tester les interfaces réellement modifiées.
+
+## 11. TESTS OBLIGATOIRES
+
+Chaque nouvelle fonctionnalité doit disposer de tests adaptés.
+
+### Tests de données
+
+- unicité des identifiants ;
+- intégrité des relations ;
+- validité des catégories ;
+- périodes existantes ;
+- sources existantes ;
+- images existantes ;
+- absence de doublons.
+
+### Tests fonctionnels
+
+- navigation entre pages ;
+- recherche ;
+- filtres ;
+- comparaisons ;
+- ouverture des fiches ;
+- relations croisées ;
+- favoris ;
+- notes ;
+- import/export ;
+- quiz ;
+- interactions tactiles.
+
+### Tests de non-régression
+
+Vérifier que les fonctionnalités initiales continuent de fonctionner.
+
+Exécuter :
+- `npm test`
+- `npm run typecheck`
+- `npm run lint`
+- `npm run build`
+
+Ne pas annoncer de résultat sans avoir réellement exécuté la commande.
+
+Ajouter des tests Playwright uniquement si le projet en dispose déjà ou si leur ajout est justifié et maîtrisé. Ne pas introduire une dépendance lourde uniquement pour un test isolé.
+
+## 12. DOCUMENTATION À METTRE À JOUR
+
+Mettre à jour les documents concernés :
+
+- `README.md`
+- `docs/ARCHITECTURE.md`
+- `docs/GUIDE_EDITORIAL.md`
+- `docs/SOURCES_ET_LICENCES.md`
+- `docs/ACCESSIBILITE.md`
+- `docs/TESTS.md`
+- `docs/RAPPORT_FINAL.md`
+
+Créer :
+- `docs/AUDIT_FONCTIONNEL.md`
+- `docs/ROADMAP_FONCTIONNELLE.md`
+
+Les chiffres du README doivent être calculés à partir des données réelles.
+
+Ne pas conserver de chiffres contradictoires dans les différents documents.
+
+## 13. MÉTHODE DE TRAVAIL OBLIGATOIRE
+
+Travailler en plusieurs phases.
+
+### PHASE 1 — Audit sans modification
+
+- Examiner le dépôt.
+- Inventorier les fonctionnalités.
+- Vérifier les données.
+- Repérer les doublons.
+- Identifier les incohérences documentaires.
+- Établir la matrice de l'existant.
+- Créer `docs/AUDIT_FONCTIONNEL.md`.
+- Créer `docs/ROADMAP_FONCTIONNELLE.md`.
+
+Ne pas modifier les fonctionnalités applicatives pendant cette phase.
+
+### PHASE 2 — Corrections prioritaires
+
+Corriger uniquement :
+- erreurs bloquantes ;
+- références invalides ;
+- incohérences de navigation ;
+- problèmes d'intégrité ;
+- dysfonctionnements fonctionnels confirmés.
+
+### PHASE 3 — Enrichissement des modules existants
+
+Développer les améliorations P1 et P2 qui réutilisent les structures existantes.
+
+### PHASE 4 — Nouvelles fonctionnalités
+
+Développer les nouvelles fonctionnalités retenues, sans dupliquer les modules existants.
+
+### PHASE 5 — Tests et documentation
+
+Exécuter tous les contrôles, corriger les régressions et mettre à jour les documents.
+
+## 14. LIMITES ET PROTECTIONS
+
+Ne pas :
+- réécrire l'application ;
+- changer de framework ;
+- introduire un backend ;
+- introduire une base distante ;
+- ajouter une authentification ;
+- créer une synchronisation cloud ;
+- supprimer des fonctionnalités ;
+- modifier les identifiants existants ;
+- supprimer ou remplacer des fiches historiques ;
+- créer des contenus redondants ;
+- modifier la charte graphique sans justification ;
+- ajouter des bibliothèques sans nécessité.
+
+Toute évolution doit respecter l'architecture actuelle.
+
+## 15. RAPPORT FINAL
+
+Fournir un rapport détaillé contenant :
+
+### A. État initial
+- Nombre réel de pages et modules.
+- Nombre de périodes.
+- Nombre de vêtements.
+- Nombre de créateurs.
+- Nombre d'images.
+- Nombre de tests.
+- Fonctionnalités réellement disponibles.
+
+### B. Audit page par page
+Pour chaque module :
+- fonctionnalités existantes ;
+- fonctionnalités partielles ;
+- fonctionnalités absentes ;
+- anomalies ;
+- améliorations recommandées.
+
+### C. Modifications effectuées
+- fichiers créés ;
+- fichiers modifiés ;
+- composants ajoutés ;
+- données ajoutées ;
+- relations créées.
+
+### D. Non-régression
+- fonctionnalités conservées ;
+- tests exécutés ;
+- résultats ;
+- problèmes restants.
+
+### E. Documentation
+- documents actualisés ;
+- incohérences corrigées ;
+- métriques réelles.
+
+### F. Roadmap restante
+Classer les fonctionnalités non développées selon :
+- P1 : indispensable ;
+- P2 : important ;
+- P3 : complémentaire.
+
+## 16. CRITÈRE FINAL DE RÉUSSITE
+
+Le travail est terminé lorsque :
+
+1. Toutes les pages ont été auditées.
+2. Les fonctionnalités existantes ont été identifiées et préservées.
+3. Les doublons ont été évités.
+4. Les relations entre les modules sont cohérentes.
+5. Les nouvelles fonctions utilisent les données existantes lorsque possible.
+6. L'application reste offline-first.
+7. L'application reste installable en PWA.
+8. Les tests et le build réussissent.
+9. La documentation correspond au code réel.
+10. Le rapport final distingue clairement les fonctions terminées et celles restant à développer.
+
+**PRINCIPE DIRECTEUR : MODOR DOIT DEVENIR PLUS RICHE ET PLUS INTELLIGENT, PAS PLUS COMPLEXE À UTILISER.**
