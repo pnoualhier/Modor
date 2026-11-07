@@ -70,5 +70,25 @@ export const HISTORICAL_SOURCES: HistoricalSource[] = [
     url: 'https://madparis.fr/la-mecanique-des-dessous-une-histoire-d-une-silhouette-imposee',
     license: 'Étude universitaire et muséale',
     notes: 'Analyse fondamentale des dessous et artifices mécaniques (vertugadins, corps à baleines, crinolines cages, gaines).'
+  },
+  {
+    id: 'SRC_FONDATION_ALAIA',
+    title: 'Fonds d\'archives, collections patrimoniales et expositions de la Fondation Azzedine Alaïa',
+    author: 'Fondation Azzedine Alaïa & Olivier Saillard',
+    institution: 'Fondation Azzedine Alaïa (18 rue de la Verrerie, Paris)',
+    year: '2018-2024',
+    url: 'https://fondationazzedinealaia.org',
+    license: 'Archives et collections muséales privées d\'intérêt général',
+    notes: 'Centre d\'archives et d\'études consacré à l\'œuvre d\'Azzedine Alaïa et à sa collection personnelle de maîtres couturiers (Vionnet, Balenciaga, Grès).'
+  },
+  {
+    id: 'SRC_FHCM',
+    title: 'Registres officiels de la Haute Couture et du Prêt-à-Porter',
+    author: 'Fédération de la Haute Couture et de la Mode (FHCM)',
+    institution: 'Fédération de la Haute Couture et de la Mode / Ministère de l\'Économie',
+    year: '1868-2024',
+    url: 'https://fhcm.paris/fr/',
+    license: 'Statuts officiels et archives de la Chambre Syndicale',
+    notes: 'Organisme régulateur de l\'appellation juridique protégée « Haute Couture » et du calendrier des Fashion Weeks parisiennes.'
   }
 ];

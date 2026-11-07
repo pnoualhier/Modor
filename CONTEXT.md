@@ -59,12 +59,12 @@ Les fonctionnalités sont réparties selon une arborescence claire, accessible d
 
 L'ensemble des données est centralisé dans des fichiers TypeScript typés de manière stricte dans `src/data/` :
 - `periods.ts` : 22 périodes historiques respectant l'interface `Period`.
-- `garments.ts` : 22 fiches de vêtements et structures avec photographies d'archives.
-- `designers.ts` : 23 fiches de créateurs avec clichés d'époque.
+- `garments.ts` : 34 fiches de vêtements et structures avec photographies d'archives et notices techniques.
+- `designers.ts` : 35 fiches de créateurs avec clichés d'époque et innovations stylistiques.
 - `silhouettes.ts` : Définitions vectorielles SVG paramétriques des silhouettes.
 - `anatomy.ts` : Modèles anatomiques et coordonnées des points tactiles.
 - `quizzes.ts` : Banque de questions avec justifications documentaires.
-- `sources.ts` : Répertoire des 7 institutions partenaires et des licences patrimoniales.
+- `sources.ts` : Répertoire des 9 institutions partenaires (incluant Fondation Azzedine Alaïa et FHCM) et licences patrimoniales.
 
 ---
 

@@ -94,7 +94,7 @@ export interface Designer {
   name: string;
   birthYear: number;
   deathYear?: number;
-  nationality: 'Française' | 'Britannique' | 'Espagnole' | 'Italienne' | 'Allemande';
+  nationality: 'Française' | 'Britannique' | 'Espagnole' | 'Italienne' | 'Allemande' | 'Japonaise' | 'Tunisienne' | 'Belge' | string;
   fashionHouse: string;
   activeDecades: string[];
   periodIds: string[];

@@ -508,7 +508,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_ROBE_BELLE_EPOQUE', 'GAR_CORSET', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_POIRET', 'DES_PAQUIN'],
+    designerIds: ['DES_POIRET', 'DES_PAQUIN', 'DES_LANVIN'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_BNF_GALLICA']
   },
   {
@@ -610,7 +610,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_ROBE_GARCONNE', 'GAR_ROBE_CHARLESTON', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_CHANEL', 'DES_VIONNET', 'DES_PATOU'],
+    designerIds: ['DES_CHANEL', 'DES_VIONNET', 'DES_PATOU', 'DES_LANVIN'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_BNF_GALLICA']
   },
   {
@@ -661,7 +661,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_ROBE_EN_BIAIS', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_VIONNET', 'DES_SCHIAPARELLI'],
+    designerIds: ['DES_VIONNET', 'DES_SCHIAPARELLI', 'DES_GRES', 'DES_BALENCIAGA'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_BNF_GALLICA']
   },
   {
@@ -763,7 +763,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_NEW_LOOK', 'GAR_TAILLEUR_FEMININ', 'GAR_CORSET', 'GAR_JUPON'],
-    designerIds: ['DES_DIOR', 'DES_BALMAIN', 'DES_GIVENCHY', 'DES_CHANEL'],
+    designerIds: ['DES_DIOR', 'DES_BALMAIN', 'DES_GIVENCHY', 'DES_CHANEL', 'DES_BALENCIAGA', 'DES_CARDIN', 'DES_AGHION'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_MET_COSTUME']
   },
   {
@@ -814,7 +814,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_MINI_JUPE', 'GAR_SMOKING_FEMININ', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_YSL', 'DES_COURREGES'],
+    designerIds: ['DES_YSL', 'DES_COURREGES', 'DES_CARDIN', 'DES_RABANNE'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -865,7 +865,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_PANTALON_PATTE_ELEPHANT', 'GAR_SMOKING_FEMININ', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_YSL', 'DES_RYKIEL', 'DES_KENZO'],
+    designerIds: ['DES_YSL', 'DES_RYKIEL', 'DES_KENZO', 'DES_CASTELBAJAC', 'DES_MIYAKE', 'DES_THOMASS'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -916,7 +916,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_TAILLEUR_ANNEES_80', 'GAR_CORSET', 'GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_GAULTIER', 'DES_MUGLER', 'DES_MONTANA', 'DES_LAGERFELD'],
+    designerIds: ['DES_GAULTIER', 'DES_MUGLER', 'DES_MONTANA', 'DES_LAGERFELD', 'DES_ALAIA', 'DES_LACROIX', 'DES_ANDRE'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {
@@ -967,7 +967,7 @@ export const HISTORICAL_PERIODS: Period[] = [
       }
     ],
     garmentIds: ['GAR_TAILLEUR_FEMININ'],
-    designerIds: ['DES_MARGIELA', 'DES_GAULTIER', 'DES_LAGERFELD'],
+    designerIds: ['DES_MARGIELA', 'DES_GAULTIER', 'DES_LAGERFELD', 'DES_ALAIA', 'DES_LACROIX', 'DES_MIYAKE'],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   },
   {

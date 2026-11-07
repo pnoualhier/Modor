@@ -19,6 +19,8 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { usePWAInstall } from '../../hooks/usePWAInstall';
+import { HISTORICAL_GARMENTS } from '../../data/garments';
+import { HISTORICAL_DESIGNERS } from '../../data/designers';
 
 interface HamburgerMenuProps {
   isOpen: boolean;
@@ -107,14 +109,14 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           label: 'Catalogue des Vêtements',
           desc: 'Crinolines, paniers, corsets, robes et structures',
           icon: Scissors,
-          badge: '22 pièces'
+          badge: `${HISTORICAL_GARMENTS.length} pièces`
         },
         {
           id: 'designers' as NavTab,
           label: 'Panthéon des Créateurs',
-          desc: '23 visionnaires de Rose Bertin à Jacquemus',
+          desc: `${HISTORICAL_DESIGNERS.length} visionnaires de Rose Bertin à Jacquemus`,
           icon: Award,
-          badge: '23 créateurs'
+          badge: `${HISTORICAL_DESIGNERS.length} créateurs`
         }
       ]
     },

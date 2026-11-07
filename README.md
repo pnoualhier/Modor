@@ -85,12 +85,12 @@
 - Fiches techniques pour chaque couche : rôle anatomique, architecture de coupe, matières textiles et évolutions d'usage.
 
 ### 4. ✂️ Catalogue Raisonné des Vêtements & Structures
-- Inventaire typologique de 22 pièces emblématiques : robes d'apparat, crinolines cages, corsets sablier, paniers, fraises, tailleurs bar, smokings féminins.
+- Inventaire typologique de 34 pièces emblématiques : robes d'apparat (robe volante, robe à la française, robe à l'anglaise, chemise à la reine, robe Empire, tea-gown, robe fourreau, robe trapèze, robe portefeuille), manteaux et vestes (redingote, spencer, pelisse, tailleur, smoking), structures (crinolines cages, paniers, corsets sablier, vertugadin) et bifurcations émancipatrices (costume de cycliste, jupe-culotte, pantalon flare).
 - Photographies et gravures d'archives issues des fonds publics (Wikipédia, Wikimedia Commons, BnF Gallica, Palais Galliera, MAD Paris, The MET).
 - Visionneuse plein écran haute définition avec métadonnées de conservation muséale.
 
 ### 5. 👑 Panthéon des Grands Créateurs
-- 23 fiches biographiques complètes de Rose Bertin (1770) à Simon Porte Jacquemus (2026).
+- 35 fiches biographiques complètes de Rose Bertin (1770) à Simon Porte Jacquemus (2026), incluant Lanvin, Grès, Balenciaga, Aghion, Cardin, Rabanne, Alaïa, Lacroix, Thomass, André, Miyake et Castelbajac.
 - Clichés photographiques et portraits d'archives patrimoniaux.
 - Citations historiques, innovations stylistiques majeures et créations emblématiques.
 

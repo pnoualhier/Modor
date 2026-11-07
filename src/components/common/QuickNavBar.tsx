@@ -16,6 +16,8 @@ import {
   Command
 } from 'lucide-react';
 import { HISTORICAL_PERIODS } from '../../data/periods';
+import { HISTORICAL_GARMENTS } from '../../data/garments';
+import { HISTORICAL_DESIGNERS } from '../../data/designers';
 
 interface QuickNavBarProps {
   activeTab: NavTab;
@@ -82,7 +84,7 @@ export const QuickNavBar: React.FC<QuickNavBarProps> = ({
       shortLabel: 'Vestiaire',
       icon: Scissors,
       shortcut: '4',
-      badge: '22',
+      badge: String(HISTORICAL_GARMENTS.length),
       hint: 'Catalogue des vêtements historiques'
     },
     {
@@ -91,7 +93,7 @@ export const QuickNavBar: React.FC<QuickNavBarProps> = ({
       shortLabel: 'Créateurs',
       icon: Award,
       shortcut: '5',
-      badge: '23',
+      badge: String(HISTORICAL_DESIGNERS.length),
       hint: 'Panthéon des grands couturiers et modistes'
     },
     {
@@ -100,7 +102,7 @@ export const QuickNavBar: React.FC<QuickNavBarProps> = ({
       shortLabel: 'Galerie',
       icon: Image,
       shortcut: '6',
-      badge: '67',
+      badge: '89',
       hint: 'Iconographie et archives visuelles'
     },
     {

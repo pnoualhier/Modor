@@ -56,6 +56,19 @@ describe('Modor — Intégrité des données historiques', () => {
     expect(garmentIds).toContain('GAR_MINI_JUPE');
     expect(garmentIds).toContain('GAR_PANTALON_PATTE_ELEPHANT');
     expect(garmentIds).toContain('GAR_TAILLEUR_ANNEES_80');
+    // 12 nouvelles pièces historiques
+    expect(garmentIds).toContain('GAR_ROBE_VOLANTE');
+    expect(garmentIds).toContain('GAR_CASAQUIN');
+    expect(garmentIds).toContain('GAR_ROBE_CHEMISE');
+    expect(garmentIds).toContain('GAR_REDINGOTE_FEMININE');
+    expect(garmentIds).toContain('GAR_SPENCER');
+    expect(garmentIds).toContain('GAR_TEA_GOWN');
+    expect(garmentIds).toContain('GAR_PELISSE');
+    expect(garmentIds).toContain('GAR_COSTUME_CYCLISTE');
+    expect(garmentIds).toContain('GAR_JUPE_CULOTTE');
+    expect(garmentIds).toContain('GAR_ROBE_FOURREAU');
+    expect(garmentIds).toContain('GAR_ROBE_TRAPEZE');
+    expect(garmentIds).toContain('GAR_ROBE_PORTEFEUILLE');
   });
 
   it('doit inclure les créateurs majeurs de la mode française', () => {

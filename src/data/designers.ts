@@ -814,5 +814,447 @@ export const HISTORICAL_DESIGNERS: Designer[] = [
       }
     ],
     sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_LANVIN',
+    name: 'Jeanne Lanvin',
+    birthYear: 1867,
+    deathYear: 1946,
+    nationality: 'Française',
+    fashionHouse: 'Maison Lanvin (22 rue du Faubourg Saint-Honoré, Paris)',
+    activeDecades: ['1900s', '1910s', '1920s', '1930s', '1940s'],
+    periodIds: ['PER_XX_1900_1910', 'PER_XX_1910_1920', 'PER_XX_1920_1930', 'PER_XX_1930_1940'],
+    biography: 'Née à Paris, aînée de onze enfants d\'un journaliste, Jeanne Lanvin commence à treize ans comme arpète chez une modiste avant d\'ouvrir son atelier de chapellerie en 1889 au 22 rue du Faubourg Saint-Honoré. Inspirée par l\'amour de sa fille unique Marguerite (future comtesse Marie-Blanche de Polignac), elle conçoit pour elle une garde-robe féerique qui éblouit ses clientes bourgeoises. En 1909, elle rejoint la Chambre Syndicale de la Couture. Créatrice d\'un empire universel (mode enfant, femme, homme, décoration, parfums), elle impose la robe de style et le célèbre « Bleu Lanvin », faisant de Lanvin la doyenne des maisons de couture françaises toujours en activité.',
+    innovations: [
+      'Invention de la « Robe de style », alternative romantique et féminine à la silhouette garçonne tubulaire des années 1920',
+      'Création de la teinte emblématique « Bleu Lanvin », inspirée des fresques de Fra Angelico à Florence',
+      'Pionnière de l\'extension d\'une maison de haute couture à l\'univers de l\'enfant, de l\'homme et du décor d\'intérieur (Lanvin Décoration avec Armand-Albert Rateau)',
+      'Conception du logo patrimonial mère-enfant dessiné par Paul Iribe en 1927'
+    ],
+    iconicCreations: [
+      'La Robe de Style en taffetas de soie rebrodée de perles et rubans (1920-1926)',
+      'Le flacon boule noire et or du parfum mythique Arpège (1927) composé par André Fraysse',
+      'Les cols Marguerite et broderies virtuose exécutés dans ses ateliers parisiens'
+    ],
+    historicalInfluence: 'Doyenne de la haute couture parisienne, elle a incarné l\'élégance poétique, le raffinement des broderies d\'art et l\'art de vivre à la française au XXe siècle.',
+    quote: 'J\'ai agi par impulsion et cru à la beauté, au travail bien fait et à l\'amour.',
+    images: [
+      {
+        id: 'IMG_DES_LANVIN',
+        title: 'Portrait officiel de Jeanne Lanvin par Clémentine-Hélène Dufau',
+        author: 'Clémentine-Hélène Dufau',
+        year: '1925',
+        institution: 'Musée des Arts Décoratifs de Paris / BnF',
+        license: 'Domaine Public',
+        sourceUrl: 'https://gallica.bnf.fr',
+        imageUrl: '/images/historical/jeanne_lanvin_portrait.jpg',
+        caption: 'Jeanne Lanvin (1867-1946), fondatrice de la plus ancienne maison de haute couture française toujours en activité.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_BNF_GALLICA']
+  },
+  {
+    id: 'DES_GRES',
+    name: 'Madame Grès (Germaine Krebs)',
+    birthYear: 1903,
+    deathYear: 1993,
+    nationality: 'Française',
+    fashionHouse: 'Maison Alix (1934-1941) puis Madame Grès (1 rue de la Paix, Paris)',
+    activeDecades: ['1930s', '1940s', '1950s', '1960s', '1970s', '1980s'],
+    periodIds: ['PER_XX_1930_1940', 'PER_XX_1940_1950', 'PER_XX_1950_1960', 'PER_XX_1970_1980'],
+    biography: 'Née Germaine Émilie Krebs à Paris, celle qui rêvait d\'être sculptrice devient couturière d\'abord sous le nom d\'Alix, puis fonde Madame Grès en 1942 au 1 rue de la Paix. Refusant tout compromis, elle sculpte le tissu à même le corps des modèles sans aucun patron en papier. Sous l\'Occupation nazie en 1944, elle défie l\'occupant en présentant une collection exclusivement tricolore bleu, blanc, rouge avant que sa maison ne soit fermée par les autorités allemandes. Figure vénérée pour sa probité artistique, elle est élue présidente de la Chambre Syndicale de la Haute Couture en 1972.',
+    innovations: [
+      'Invention du « Plissé Grès » : technique virtuose réduisant des laizes de jersey de soie de plusieurs mètres à quelques centimètres de drapé sans piqûre apparente',
+      'Sculpture textile néoclassique rejetant les baleines, coussinets et doublures rigides au profit de la chute pure de la matière',
+      'Exploration pionnière des découpes cut-out et asymétries anatomiques épurées dans les années 1970'
+    ],
+    iconicCreations: [
+      'Robes du soir néoclassiques en jersey de soie ivoire drapées à l\'antique (conservées au Palais Galliera)',
+      'Robes de défilé tricolores défiant l\'Occupation allemande (1944)',
+      'Le parfum cuir-chypré Cabochard (1959)'
+    ],
+    historicalInfluence: 'Surnommée le « Sphinx de la mode », elle a élevé le drapé textile au rang de sculpture monumentale et inspiré des générations de créateurs dont Azzedine Alaïa et Haider Ackermann.',
+    quote: 'Je voulais être sculpteur. Pour moi, c\'est la même chose de travailler le tissu ou la pierre.',
+    images: [
+      {
+        id: 'IMG_DES_GRES',
+        title: 'Robe du soir drapée en jersey de soie par Madame Grès',
+        author: 'Maison Grès / Paris Musées',
+        year: '1975',
+        institution: 'Palais Galliera, musée de la Mode de Paris',
+        license: 'CC BY-SA 4.0 / Paris Musées',
+        sourceUrl: 'https://www.parismuseescollections.paris.fr',
+        imageUrl: '/images/historical/madame_gres_creation.jpg',
+        caption: 'Robe du soir sculptée par Madame Grès (1903-1993), chef-d\'œuvre de plissé en jersey de soie sans armature.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_BALENCIAGA',
+    name: 'Cristóbal Balenciaga',
+    birthYear: 1895,
+    deathYear: 1972,
+    nationality: 'Espagnole',
+    fashionHouse: 'Maison Balenciaga (10 avenue George V, Paris)',
+    activeDecades: ['1930s', '1940s', '1950s', '1960s'],
+    periodIds: ['PER_XX_1930_1940', 'PER_XX_1940_1950', 'PER_XX_1950_1960', 'PER_XX_1960_1970'],
+    biography: 'Fils d\'un pêcheur et d\'une couturière basque à Getaria, Cristóbal Balenciaga ouvre ses premiers ateliers en Espagne avant de fuir la guerre civile et d\'ouvrir sa maison au 10 avenue George V à Paris en 1937. Solitaire, exigeant, sachant couper, faufiler et coudre chaque pièce de ses propres mains, il est salué par Christian Dior comme « notre maître à tous ». Il bouleverse la silhouette féminine en la dégageant des contraintes anatomiques pour créer des volumes géométriques architecturaux d\'une pureté absolue.',
+    innovations: [
+      'Maîtrise manuelle intégrale du patronage, de la coupe et de la couture sans égale dans l\'histoire de la haute couture',
+      'Création de silhouettes architecturales révolutionnaires affranchies du cintrage : ligne Tonneau (1947), veste Ballon (1953), robe Baby Doll (1957) et robe Sac (1957)',
+      'Conception du gazar de soie avec la manufacture suisse Abraham pour soutenir des formes autoportantes pures',
+      'Invention du col dégagé en arrière mettant en valeur le port de tête de la femme'
+    ],
+    iconicCreations: [
+      'La robe Sac (1957) rompant radicalement avec le New Look cintré',
+      'La robe trapèze Baby Doll (1957)',
+      'La robe de mariée à une seule couture en gazar de soie blanc (1967)',
+      'Le manteau cocon asymétrique et le tailleur semi-ajusté (1951)'
+    ],
+    historicalInfluence: 'Considéré par ses pairs comme le plus grand architecte du vêtement du XXe siècle, maître spirituel d\'Hubert de Givenchy et mentor d\'André Courrèges et Emanuel Ungaro.',
+    quote: 'Un couturier doit être architecte pour les plans, sculpteur pour la forme, peintre pour la couleur, musicien pour l\'harmonie et philosophe pour la mesure.',
+    images: [
+      {
+        id: 'IMG_DES_BALENCIAGA',
+        title: 'Création architecturale en faille de soie par Cristóbal Balenciaga',
+        author: 'Maison Balenciaga / Cristóbal Balenciaga Museoa',
+        year: '1958',
+        institution: 'Cristóbal Balenciaga Museoa / Palais Galliera',
+        license: 'CC BY-SA 3.0 / Wikimedia Commons',
+        sourceUrl: 'https://www.cristobalbalenciagamuseoa.com',
+        imageUrl: '/images/historical/cristobal_balenciaga_creation.jpg',
+        caption: 'Création haute couture de Cristóbal Balenciaga (1895-1972), « le maître de nous tous » selon Christian Dior.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_MET_COSTUME']
+  },
+  {
+    id: 'DES_AGHION',
+    name: 'Gaby Aghion',
+    birthYear: 1921,
+    deathYear: 2014,
+    nationality: 'Française',
+    fashionHouse: 'Maison Chloé (fondée en 1952, Paris)',
+    activeDecades: ['1950s', '1960s', '1970s', '1980s'],
+    periodIds: ['PER_XX_1950_1960', 'PER_XX_1960_1970', 'PER_XX_1970_1980'],
+    biography: 'Née Gabrielle Hanoka à Alexandrie en Égypte dans une famille francophile cultivée, elle s\'installe à Paris en 1945 avec son époux Raymond Aghion. Constatant le fossé entre la haute couture inabordable et les confections ordinaires médiocres, elle fonde en 1952 la maison Chloé (baptisée d\'après le prénom de son amie Chloé de Brumeaux). Elle invente le concept de « prêt-à-porter de luxe » : des vêtements féminins, fluides, jeunes, confectionnés dans des matières nobles et disponibles immédiatement. Visionnaire et découvreuse de génies, elle recrute Karl Lagerfeld dès 1964, propulsant Chloé au zénith du chic parisien décontracté.',
+    innovations: [
+      'Invention et théorisation du « Prêt-à-porter de luxe » (Luxury Ready-to-Wear) dès 1952',
+      'Désacralisation des présentations de mode : premiers défilés décontractés au Café de Flore et à la brasserie Lipp à Saint-Germain-des-Prés',
+      'Rejet des structures rigides au profit de coupes vaporeuses en popeline de coton et crêpe de soie',
+      'Pépinière de directeurs artistiques légendaires (Karl Lagerfeld, Martine Sitbon, Stella McCartney, Phoebe Philo)'
+    ],
+    iconicCreations: [
+      'Les robes chemisiers fluides en popeline de coton blanc à col souple (1952-1956)',
+      'Les blouses bohèmes romantiques en soie à manches volantées',
+      'Les robes drapées légères portées sans corset ni fond de robe rigide'
+    ],
+    historicalInfluence: 'Pionnière fondamentale de l\'émancipation vestimentaire féminine, elle a transformé le modèle économique de la mode en rendant le style créatif immédiatement portable sans essayages contraignants.',
+    quote: 'Tout ce que je voulais, c\'était que Chloé ait un esprit jeune, joyeux et audacieux.',
+    images: [],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_CARDIN',
+    name: 'Pierre Cardin',
+    birthYear: 1922,
+    deathYear: 2020,
+    nationality: 'Française',
+    fashionHouse: 'Maison Pierre Cardin (rue du Faubourg Saint-Honoré, Paris)',
+    activeDecades: ['1950s', '1960s', '1970s', '1980s'],
+    periodIds: ['PER_XX_1950_1960', 'PER_XX_1960_1970', 'PER_XX_1970_1980'],
+    biography: 'Né Pietro Costante Cardin en Vénétie, sa famille fuit le fascisme et s\'installe en France. Formé chez Paquin, Schiaparelli puis premier tailleur de Christian Dior pour le défilé historique du New Look en 1947, il fonde sa maison en 1950. En 1959, il provoque un séisme en lançant la première collection de prêt-à-porter vendue dans un grand magasin (Le Printemps), ce qui lui vaut d\'être temporairement exclu de la Chambre Syndicale. Visionnaire du « Space Age », passionné par la conquête spatiale et les formes géométriques pures (le cercle, la sphère), il bâtit un empire mondial pionnier des licences internationales.',
+    innovations: [
+      'Pionnier absolu de la démocratisation de la mode en lançant le prêt-à-porter en grand magasin en 1959',
+      'Esthétique spatiale « Cosmocorps » : coupes géométriques circulaires, découpes hublot, chasubles trapèze et vinyle',
+      'Invention de la matière synthétique thermoformée en relief 3D, la « Cardine » (1968)',
+      'Développement avant-gardiste du modèle de licences mondiales et défilés pionniers en Chine (1979) et sur la Place Rouge à Moscou'
+    ],
+    iconicCreations: [
+      'La robe Bulle (Bubble Dress, 1954)',
+      'La collection futuriste Cosmocorps (1964) avec combinaisons unisexe et casques en plexiglas',
+      'Les robes sculptées en Cardine à motifs géométriques thermoformés (1968)',
+      'Le Palais Bulles d\'Antti Lovag à Théoule-sur-Mer'
+    ],
+    historicalInfluence: 'Titan de l\'ère spatiale et bâtisseur visionnaire de la mondialisation de la mode française.',
+    quote: 'Le vêtement que je préfère est celui que j\'invente pour une vie qui n\'existe pas encore, le monde de demain.',
+    images: [
+      {
+        id: 'IMG_DES_CARDIN',
+        title: 'Portrait photographique de Pierre Cardin',
+        author: 'ProstoSasha / Wikimedia Commons',
+        year: '2010',
+        institution: 'Archives Pierre Cardin / Wikimedia Commons',
+        license: 'CC BY-SA 3.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/pierre_cardin_portrait.jpg',
+        caption: 'Pierre Cardin (1922-2020), visionnaire de l\'ère spatiale et pionnier du prêt-à-porter moderne.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_RABANNE',
+    name: 'Paco Rabanne (Francisco Rabaneda Cuervo)',
+    birthYear: 1934,
+    deathYear: 2023,
+    nationality: 'Espagnole',
+    fashionHouse: 'Maison Paco Rabanne (rue Bergère, Paris)',
+    activeDecades: ['1960s', '1970s', '1980s', '1990s'],
+    periodIds: ['PER_XX_1960_1970', 'PER_XX_1970_1980'],
+    biography: 'Né à Pasaia au Pays basque espagnol, fils d\'un général républicain fusillé sous Franco et d\'une première main chez Balenciaga, Francisco Rabaneda se réfugie en France et étudie l\'architecture aux Beaux-Arts de Paris. Le 1er février 1966, à l\'hôtel George V, il présente son défilé manifeste : « Douze robes importables en matériaux contemporains » au son d\'une musique concrète. Surnommé « le métallurgiste de la mode » par Coco Chanel, il remplace le fil et l\'aiguille par des pinces, anneaux d\'acier, plaques d\'aluminium et de rhodoïd fluorescent, incarnant l\'audace expérimentale la plus radicale des Sixties.',
+    innovations: [
+      'Bannissement radical de l\'aiguille et du fil traditionnel au profit du rivetage, du martelage et des anneaux d\'assemblage mécanique',
+      'Utilisation de matériaux industriels inédits en couture : plaques de rhodoïd, métal martelé, fibre de verre, papier et plastique',
+      'Création de vêtements cinétiques réfléchissant la lumière et sonorisant la démarche',
+      'Pionnier des défilés en musique contemporaine avec mannequins pieds nus'
+    ],
+    iconicCreations: [
+      'La robe en pastilles de rhodoïd fluorescent et anneaux d\'acier (1966)',
+      'La robe cotte de mailles en plaques d\'or et diamants portée par Françoise Hardy (1968)',
+      'Le costume vertigineux de Jane Fonda dans le film culte Barbarella (1968)',
+      'Le parfum Calandre (1969) dans son flacon cerclé de métal chromé'
+    ],
+    historicalInfluence: 'Révolutionnaire matériel du vêtement, il a aboli la frontière entre mode, sculpture cinétique et architecture moderne.',
+    quote: 'J\'ai toujours eu le sentiment d\'être un accélérateur de temps, quelqu\'un qui projette le futur dans le présent.',
+    images: [
+      {
+        id: 'IMG_DES_RABANNE',
+        title: 'Paco Rabanne lors d\'une rétrospective de ses créations métalliques',
+        author: 'Victor Korostoyashevsky / Wikimedia Commons',
+        year: '2006',
+        institution: 'Archives Paco Rabanne / Wikimedia Commons',
+        license: 'CC BY-SA 3.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/paco_rabanne_portrait.jpg',
+        caption: 'Paco Rabanne (1934-2023), le métallurgiste de la mode et architecte des matières industrielles.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_ALAIA',
+    name: 'Azzedine Alaïa',
+    birthYear: 1935,
+    deathYear: 2017,
+    nationality: 'Tunisienne',
+    fashionHouse: 'Maison Azzedine Alaïa (rue de Bellechasse puis rue de Moussy, Le Marais, Paris)',
+    activeDecades: ['1980s', '1990s', '2000s', '2010s'],
+    periodIds: ['PER_XX_1980_1990', 'PER_XX_1990_2000', 'PER_XXI_2000_2010'],
+    biography: 'Né à Tunis, formé à la sculpture à l\'Institut supérieur des Beaux-Arts de Tunis, Azzedine Alaïa arrive à Paris en 1957. Après de brefs passages chez Dior, Guy Laroche et Thierry Mugler, il ouvre son atelier secret rue de Bellechasse où il habille l\'aristocratie parisienne et Greta Garbo. Dans les années 1980, son atelier de la rue de Moussy devient le sanctuaire de la mode internationale. Surnommé « le sculpteur du corps féminin » (King of Cling), il coupe et ajuste chaque pièce directement sur les corps vivants de ses muses et amies (Grace Jones, Naomi Campbell, Tina Turner). Rejetant les diktats marketing, il n\'a jamais défilé que selon son propre rythme créatif.',
+    innovations: [
+      'Sculpture du corps féminin en trois dimensions sans croquis préalable, directement par la coupe et l\'épinglage sur modèle vivant',
+      'Révolution du tricotage technique : utilisation inédite du fil stretch, de la rayonne bandage et du jacquard de maille sculptant les formes',
+      'Travail virtuose du cuir perforé au laser et découpé en dentelle géométrique souple',
+      'Indépendance radicale face au calendrier imposé des Fashion Weeks'
+    ],
+    iconicCreations: [
+      'La robe fourreau en jersey bandage seconde peau (1986)',
+      'La robe cagoule en jersey de soie portée par Grace Jones dans Dangereusement vôtre (1985)',
+      'La robe drapée tricolore portée par la cantatrice Jessye Norman pour le Bicentenaire de la Révolution (1989)',
+      'Les corsets sculpturaux en cuir perforé au laser'
+    ],
+    historicalInfluence: 'Maître artisan vénéré par ses pairs, il a incarné l\'intégrité absolue de la coupe et l\'hommage le plus sensuel à l\'anatomie de la femme.',
+    quote: 'Je fais des vêtements, les femmes font la mode.',
+    images: [
+      {
+        id: 'IMG_DES_ALAIA',
+        title: 'Azzedine Alaïa jeune sculpteur aux Beaux-Arts de Tunis',
+        author: 'Archives Fondation Azzedine Alaïa / Wikimedia Commons',
+        year: 'vers 1955',
+        institution: 'Fondation Azzedine Alaïa / Palais Galliera',
+        license: 'Domaine Public',
+        sourceUrl: 'https://fondationazzedinealaia.org',
+        imageUrl: '/images/historical/azzedine_alaia_portrait.jpg',
+        caption: 'Azzedine Alaïa (1935-2017), le sculpteur virtuose du corps féminin et maître de la coupe directe.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_FONDATION_ALAIA']
+  },
+  {
+    id: 'DES_LACROIX',
+    name: 'Christian Lacroix',
+    birthYear: 1951,
+    nationality: 'Française',
+    fashionHouse: 'Maison Jean Patou (1981-1987) puis Maison Christian Lacroix (73 rue du Faubourg Saint-Honoré, Paris)',
+    activeDecades: ['1980s', '1990s', '2000s'],
+    periodIds: ['PER_XX_1980_1990', 'PER_XX_1990_2000', 'PER_XXI_2000_2010'],
+    biography: 'Né à Arles, diplômé d\'histoire de l\'art à l\'École du Louvre et à la Sorbonne, Christian Lacroix rêve d\'abord de devenir conservateur de musée de costume. Après avoir redonné vie à la Maison Jean Patou (où il remporte deux Dés d\'or), il fonde en 1987 sa propre maison de haute couture avec le soutien de Bernard Arnault. Son premier défilé est une déflagration de joie : à l\'opposé du minimalisme noir de l\'époque, il réveille Paris avec un baroque solaire flamboyant, des jupes poufs gonflantes, des broderies d\'or arlésiennes et des couleurs méditerranéennes éclatantes.',
+    innovations: [
+      'Invention de la jupe « Pouf » en taffetas court et gonflant dès 1987, emblème festif de la décennie',
+      'Réconciliation de l\'érudition historique muséale et de la flamboyance haute couture contemporaine',
+      'Mariages chromatiques audacieux et inédits : rouge garance et rose bonbon, jaune safran et violette épiscopale',
+      'Célébration des savoir-faire artisanaux régionaux (costumes de corrida, piqué provençal, dentelles de Mirecourt)'
+    ],
+    iconicCreations: [
+      'La robe courte « Pouf » en satin duchesse fuchsia à pois noirs (1987)',
+      'Les vestes torero brodées de canetilles d\'or et de cabochons de verre par François Lesage',
+      'La robe de mariée d\'Arlésienne en mousseline et dentelle d\'or couronnée d\'œillets rouges'
+    ],
+    historicalInfluence: 'Enchanteur solaire de la haute couture française, il a réinjecté le rêve, la théâtralité et l\'artisanat d\'art au cœur de la création parisienne.',
+    quote: 'La haute couture doit être inutile, extravagante, féerique, faite pour donner du bonheur.',
+    images: [
+      {
+        id: 'IMG_DES_LACROIX',
+        title: 'Portrait de Christian Lacroix saluant lors d\'une présentation couture',
+        author: 'Georges Biard / Wikimedia Commons',
+        year: '2018',
+        institution: 'Palais Galliera / BnF',
+        license: 'CC BY-SA 2.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/christian_lacroix_portrait.jpg',
+        caption: 'Christian Lacroix (né en 1951), le magicien arlésien de la couleur baroque et de la jupe pouf.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_THOMASS',
+    name: 'Chantal Thomass',
+    birthYear: 1947,
+    nationality: 'Française',
+    fashionHouse: 'Ter et Bantine puis Maison Chantal Thomass (rue du Cherche-Midi puis rue Saint-Honoré, Paris)',
+    activeDecades: ['1970s', '1980s', '1990s', '2000s'],
+    periodIds: ['PER_XX_1970_1980', 'PER_XX_1980_1990', 'PER_XX_1990_2000'],
+    biography: 'Née à Paris, Chantal Thomass débute en 1967 avec sa marque Ter et Bantine avant de fonder la maison éponyme Chantal Thomass en 1975. Reconnaissable entre toutes avec sa coupe au carré noir ébène à frange droite et sa bouche rouge carmin, elle accomplit une véritable révolution des mœurs : transformer les sous-vêtements et pièces intimes (guêpières, corsets, bas résille, porte-jarretelles) en vêtements de dessus assumés. À l\'encontre du conformisme unisexe des années 1970, elle réhabilite la séduction choisie par et pour les femmes elles-mêmes, mêlant humour, féminisme et dentelle de Calais.',
+    innovations: [
+      'Transformation du sous-vêtement en vêtement de dessus visible (lingerie en tant qu\'Outerwear)',
+      'Réhabilitation ludique et féministe du corset, de la guêpière et du porte-jarretelles dans le prêt-à-porter de luxe',
+      'Détournement des matières de corseterie noble (soie, dentelle de Calais, résille plumetis) avec des coupes contemporaines confortables',
+      'Invention du défilé-cabaret insolent et joyeux célébrant toutes les féminités'
+    ],
+    iconicCreations: [
+      'La guêpière en satin et dentelle noire portée sous une veste de tailleur ouverte (1978)',
+      'Les collants trompe-l\'œil porte-jarretelles et coutures arrières graphiques',
+      'Le soutien-gorge nœud papillon en satin rose bonbon et tulle noir'
+    ],
+    historicalInfluence: 'Pionnière incontournable de la corseterie moderne et du dessous-dessus, elle a réconcilié féminisme, pouvoir corporel et sensualité raffinée.',
+    quote: 'La lingerie n\'est pas faite pour séduire les hommes, mais pour donner du pouvoir aux femmes.',
+    images: [
+      {
+        id: 'IMG_DES_THOMASS',
+        title: 'Portrait photographique de Chantal Thomass',
+        author: 'Georges Biard / Wikimedia Commons',
+        year: '2011',
+        institution: 'Archives Chantal Thomass / Wikimedia Commons',
+        license: 'CC BY-SA 3.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/chantal_thomass_portrait.jpg',
+        caption: 'Chantal Thomass (née en 1947), créatrice iconique qui a fait de la lingerie un vêtement de mode émancipateur.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
+  },
+  {
+    id: 'DES_ANDRE',
+    name: 'Adeline André',
+    birthYear: 1949,
+    nationality: 'Française',
+    fashionHouse: 'Maison Adeline André (5 rue du Perche, Le Marais, Paris)',
+    activeDecades: ['1980s', '1990s', '2000s', '2010s'],
+    periodIds: ['PER_XX_1980_1990', 'PER_XX_1990_2000', 'PER_XXI_2000_2010'],
+    biography: 'Née à Bangui en Centrafrique de parents français, diplômée de l\'École de la Chambre Syndicale de la Couture Parisienne en 1970, Adeline André fait ses débuts chez Christian Dior aux côtés de Marc Bohan. En 1981, elle fonde sa maison avec Istvan Dohan et Nicolas Puech. En 1982, elle dépose au ministère de l\'Industrie son invention la plus célèbre : la « manche à trois emmanchures ». Membre officiel et permanent de la Chambre Syndicale de la Haute Couture depuis 2005, elle développe une œuvre d\'une poésie géométrique rare, fondée sur la fluidité des soies superposées, la noblesse des camaïeux de couleurs subtils et le refus de tout artifice éphémère.',
+    innovations: [
+      'Invention et brevetage officiel en 1982 de la « manche à trois emmanchures » permettant de moduler l\'aisance du vêtement selon le passage du bras',
+      'Pionnière de la haute couture minimaliste et poétique française, privilégiant l\'épure absolue au spectaculaire tapageur',
+      'Création de palettes chromatiques aquarellées complexes (teintes fanées, ocres d\'Orient, mastic, verts de gris)',
+      'Technique du « Topo-Couture » adaptée à la gestuelle naturelle du corps'
+    ],
+    iconicCreations: [
+      'Le manteau et le spencer à trois emmanchures brevetés (1982)',
+      'Les tuniques impalpables en mousselines de soie superposées créant des vibrations de couleur',
+      'Les robes longues tubulaires fluides en crêpe georgette'
+    ],
+    historicalInfluence: 'Figure de proue de la haute couture intellectuelle et géométrique, célébrée par les musées internationaux pour la rigueur poétique de ses coupes.',
+    images: [],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS', 'SRC_FHCM']
+  },
+  {
+    id: 'DES_MIYAKE',
+    name: 'Issey Miyake',
+    birthYear: 1938,
+    deathYear: 2022,
+    nationality: 'Japonaise',
+    fashionHouse: 'Miyake Design Studio (défilant à Paris dès 1973)',
+    activeDecades: ['1970s', '1980s', '1990s', '2000s'],
+    periodIds: ['PER_XX_1970_1980', 'PER_XX_1980_1990', 'PER_XX_1990_2000'],
+    biography: 'Survivant du bombardement d\'Hiroshima à l\'âge de sept ans, formé aux arts graphiques à Tokyo puis à l\'École de la Chambre Syndicale à Paris, il travaille comme assistant chez Guy Laroche et Hubert de Givenchy. En 1970, il fonde le Miyake Design Studio et commence à présenter ses collections à Paris dès 1973. Créateur d\'une synthèse révolutionnaire entre tradition ancestrale nippone (origami, papier washi, tissages sashimi) et haute technologie industrielle, il invente en 1993 la ligne universelle « Pleats Please » et en 1998 le procédé révolutionnaire « A-POC » (A Piece of Cloth), redéfinissant à jamais la relation entre le corps et le textile.',
+    innovations: [
+      'Révolution technologique du plissé permanent « Pleats Please » (1993) : vêtement d\'abord taillé et cousu à 2,5 fois sa taille puis plissé à chaud sous presse',
+      'Invention du procédé révolutionnaire « A-POC » (A Piece of Cloth, 1998) générant un vêtement fini d\'un seul tenant à partir d\'un fil informatique continu',
+      'Sublimation des matériaux pauvres et traditionnels (papier washi, bambou, crin, plastique moulé) combinés aux fibres synthétiques à mémoire de forme',
+      'Vêtements universels, légers, infroissables et affranchis des contraintes de taille anatomique'
+    ],
+    iconicCreations: [
+      'La collection permanente « Pleats Please » (1993) portée par des danseurs de William Forsythe',
+      'Le bustier sculptural moulé en fibre de verre et plastique rouge (1980)',
+      'Le manteau origami en papier washi (1982)',
+      'Le flacon cône épuré du parfum L\'Eau d\'Issey (1992)'
+    ],
+    historicalInfluence: 'L\'un des plus grands maîtres du design textile mondial du XXe siècle, ayant aboli la distinction entre art contemporain, technologie et prêt-à-porter universel.',
+    quote: 'Le design n\'est pas pour la philosophie ; il est pour la vie.',
+    images: [
+      {
+        id: 'IMG_DES_MIYAKE',
+        title: 'Issey Miyake lors de son exposition rétrospective à Tokyo',
+        author: 'Archives Miyake / Wikimedia Commons',
+        year: '2016',
+        institution: 'The National Art Center Tokyo / Palais Galliera',
+        license: 'CC BY-SA 4.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/issey_miyake_portrait.jpg',
+        caption: 'Issey Miyake (1938-2022), le génie japonais qui a révolutionné la mode parisienne avec Pleats Please et A-POC.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_MAD_PARIS', 'SRC_GALLIERA', 'SRC_MET_COSTUME']
+  },
+  {
+    id: 'DES_CASTELBAJAC',
+    name: 'Jean-Charles de Castelbajac',
+    birthYear: 1949,
+    nationality: 'Française',
+    fashionHouse: 'Maison Jean-Charles de Castelbajac (Paris)',
+    activeDecades: ['1970s', '1980s', '1990s', '2000s', '2010s'],
+    periodIds: ['PER_XX_1970_1980', 'PER_XX_1980_1990', 'PER_XX_1990_2000'],
+    biography: 'Issu d\'une ancienne lignée de la noblesse gasconne, Jean-Charles de Castelbajac commence sa carrière en 1968 en taillant sa première veste dans la couverture en laine de son pensionnat d\'enfance. Pionnier absolu de l\'Artwear, il fait collaborer des figures majeures de l\'art contemporain (Keith Haring, Jean-Michel Basquiat, Robert Mapplethorpe, Ben). Passionné d\'héraldique médiévale, il dynamite la haute couture avec ses couleurs primaires (bleu, jaune, rouge), ses détournements de personnages de dessins animés (Snoopy, Kermit la grenouille) et son goût pour les matériaux de récupération. En 1997, il habille le pape Jean-Paul II et 500 évêques avec des chasubles ornées de croix multicolores pour les JMJ de Paris.',
+    innovations: [
+      'Invention du concept d\'« Artwear » fusionnant les tableaux d\'artistes contemporains (Haring, Basquiat) avec le vêtement de couture',
+      'Détournement pionnier d\'objets populaires et de matériaux pauvres : couvertures militaires, pansements, serpillières, nounours en peluche',
+      'Chromatisme héraldique éclatant reposant sur la triade de couleurs primaires (rouge, jaune, bleu)',
+      'Habilleur liturgique officiel du pape Jean-Paul II et de l\'épiscopat mondial pour les JMJ de 1997'
+    ],
+    iconicCreations: [
+      'Le manteau mythique « Doudou » en ours en peluche Teddy Bear (1989), immortalisé par Diana Ross et Lady Gaga',
+      'Le poncho de survie pour deux personnes confectionné en couverture de l\'armée',
+      'La robe tableau peinte à quatre mains avec Keith Haring et Jean-Michel Basquiat (1984)',
+      'Les chasubles aux croix arc-en-ciel pour le pape Jean-Paul II aux JMJ de Paris (1997)'
+    ],
+    historicalInfluence: 'Pape du pop art et de l\'artwear français, il a prouvé que la mode pouvait être espiègle, politique, subversive et poétique sans jamais perdre sa noblesse artisanale.',
+    quote: 'Mon rôle a toujours été de détourner le quotidien pour en faire de la poésie.',
+    images: [
+      {
+        id: 'IMG_DES_CASTELBAJAC',
+        title: 'Portrait de Jean-Charles de Castelbajac par Nicola Pianalto',
+        author: 'Nicola Pianalto / Wikimedia Commons',
+        year: '2015',
+        institution: 'Archives Castelbajac / Wikimedia Commons',
+        license: 'CC BY-SA 4.0',
+        sourceUrl: 'https://commons.wikimedia.org',
+        imageUrl: '/images/historical/jean_charles_de_castelbajac_portrait.jpg',
+        caption: 'Jean-Charles de Castelbajac (né en 1949), le pionnier du Pop Art vestimentaire et du manteau en peluches.',
+        type: 'patrimoine'
+      }
+    ],
+    sourceIds: ['SRC_GALLIERA', 'SRC_MAD_PARIS']
   }
 ];

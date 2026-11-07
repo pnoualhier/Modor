@@ -113,9 +113,9 @@ describe('Interactions & Parcours Utilisateur', () => {
   describe('4. Disponibilité des Données pour le Mode Hors Ligne', () => {
     it('met à disposition les collections documentaires de manière synchrone et autonome', () => {
       expect(HISTORICAL_PERIODS.length).toBe(22);
-      expect(HISTORICAL_GARMENTS.length).toBe(22);
-      expect(HISTORICAL_DESIGNERS.length).toBe(23);
-      expect(HISTORICAL_SOURCES.length).toBe(7);
+      expect(HISTORICAL_GARMENTS.length).toBe(34);
+      expect(HISTORICAL_DESIGNERS.length).toBe(35);
+      expect(HISTORICAL_SOURCES.length).toBe(9);
       expect(SILHOUETTE_DEFINITIONS.length).toBe(13);
       expect(ANATOMY_MODELS.length).toBe(4);
     });

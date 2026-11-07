@@ -15,11 +15,13 @@ interface GarmentCatalogProps {
 const CATEGORIES: { value: 'all' | GarmentCategory; label: string }[] = [
   { value: 'all', label: 'Toutes les catégories' },
   { value: 'robes', label: 'Robes' },
+  { value: 'corsages', label: 'Corsages & Casaquins' },
+  { value: 'manteaux', label: 'Manteaux & Redingotes' },
   { value: 'structures', label: 'Structures & Cages' },
   { value: 'corsets', label: 'Corsets' },
   { value: 'vestes', label: 'Vestes & Tailleurs' },
   { value: 'jupes', label: 'Jupes' },
-  { value: 'pantalons', label: 'Pantalons' },
+  { value: 'pantalons', label: 'Pantalons & Jupe-culottes' },
   { value: 'accessoires', label: 'Accessoires & Fraises' },
   { value: 'jupons', label: 'Jupons' },
 ];

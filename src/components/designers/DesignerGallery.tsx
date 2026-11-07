@@ -21,6 +21,15 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
   const [selectedDesigner, setSelectedDesigner] = useState<Designer | null>(null);
   const [zoomedImage, setZoomedImage] = useState<{ url: string; title: string; institution: string; license: string } | null>(null);
 
+  const availableNationalities = [
+    'all',
+    ...Array.from(new Set(HISTORICAL_DESIGNERS.map((d) => d.nationality))).sort((a, b) => {
+      if (a === 'Française') return -1;
+      if (b === 'Française') return 1;
+      return a.localeCompare(b);
+    })
+  ];
+
   const filteredDesigners = HISTORICAL_DESIGNERS.filter((d) => {
     if (selectedNationality !== 'all' && d.nationality !== selectedNationality) {
       return false;
@@ -63,10 +72,10 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#242321] mt-1">
-              Grands Créateurs & Maisons de Couture
+              Grands Créateurs &amp; Maisons de Couture
             </h2>
             <p className="text-sm text-[#77736D] max-w-2xl mt-2 leading-relaxed">
-              Découvrez les 23 visionnaires de la mode parisienne accompagnés de leurs portraits photographiques et gravures d'archives patrimoniales (Wikipédia, Gallica, Musées de la Mode).
+              Découvrez les {HISTORICAL_DESIGNERS.length} visionnaires de la mode parisienne accompagnés de leurs portraits photographiques et gravures d'archives patrimoniales (Wikipédia, Gallica, Musées de la Mode).
             </p>
           </div>
 
@@ -76,15 +85,15 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
         </div>
 
         {/* Filter Nationality Tabs */}
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-5 flex flex-wrap items-center gap-2">
           <span className="text-xs text-[#77736D]">Origine :</span>
-          {['all', 'Française', 'Britannique', 'Italienne', 'Allemande'].map((nat) => (
+          {availableNationalities.map((nat) => (
             <button
               key={nat}
               onClick={() => setSelectedNationality(nat)}
               className={`px-3 py-1 text-xs rounded-md transition-colors ${
                 selectedNationality === nat
-                  ? 'bg-[#242321] text-white font-medium'
+                  ? 'bg-[#242321] text-white font-medium shadow-2xs'
                   : 'bg-white text-[#77736D] hover:text-[#242321] border border-[#D9CBB7]/40'
               }`}
             >
@@ -106,8 +115,8 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
               onClick={() => setSelectedDesigner(designer)}
               className="bg-white rounded-xl border border-[#D9CBB7]/60 overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group hover:border-[#D9CBB7]"
             >
-              {/* Designer Archival Portrait Image */}
-              {primaryImage && (
+              {/* Designer Archival Portrait Image or Fallback */}
+              {primaryImage ? (
                 <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40">
                   <ImageWithFallback
                     src={primaryImage.imageUrl}
@@ -123,6 +132,15 @@ export const DesignerGallery: React.FC<DesignerGalleryProps> = ({
                       {primaryImage.institution}
                     </p>
                   </div>
+                </div>
+              ) : (
+                <div className="relative aspect-4/3 w-full bg-[#F4EDE1] overflow-hidden border-b border-[#D9CBB7]/40 flex flex-col items-center justify-center p-6 text-center group-hover:bg-[#EFE8DC] transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-[#E5DCCB] text-[#9A3412] flex items-center justify-center font-serif text-lg font-bold shadow-2xs mb-2">
+                    {designer.name.charAt(0)}
+                  </div>
+                  <span className="text-sm font-serif font-bold text-[#242321]">{designer.name}</span>
+                  <span className="text-[11px] text-[#77736D] truncate max-w-full px-2 mt-0.5">{designer.fashionHouse}</span>
+                  <span className="mt-2 text-[10px] text-[#9A3412] font-semibold tracking-wider uppercase">Fiche d'archives &amp; Biographie</span>
                 </div>
               )}
 
