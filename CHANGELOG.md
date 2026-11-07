@@ -4,6 +4,22 @@ Toutes les modifications notables apportées au projet **Modor** sont consignée
 
 ---
 
+## [1.2.0] — 2026-11-07
+
+### 🎨 Remplacement Intégral des Visuels Historiques
+- **Authenticité Visuelle et Patrimoniale Restaurée** :
+  - Remplacement de l'ensemble des planches génériques schématiques (planches silhouettes synthétiques 800x1000) par les chefs-d'œuvre historiques et photographies d'archives réels issus du domaine public (Wikimedia Commons, Musée du Louvre, Palais Galliera, Metropolitan Museum of Art, BnF / Gallica).
+  - Chaque période historique dispose désormais de sa véritable œuvre iconographique : portrait de Marguerite de Valois par l'atelier de François Clouet (1572), portrait de Madame de Montespan par Pierre Mignard, robe à la française par François Boucher, Juliette Récamier par Jacques-Louis David (1800), Impératrice Joséphine par François Gérard (1806), gravures de Gavarni pour le Romantisme (1830), Impératrice Eugénie par Winterhalter (1855), tournures de la Maison Worth (1885), Jeanne Paquin dans son atelier (1895), planches de la Gazette du Bon Ton (1914), robe garçonne de 1925, Madeleine Vionnet par Jean Dunand (1935), Christian Dior dans son atelier (1947), Hubert de Givenchy avec Audrey Hepburn (1954), Robe Mondrian d'Yves Saint Laurent (1965), smoking Yves Saint Laurent (1966), Jean Paul Gaultier (1984), Martin Margiela (1996), John Galliano pour Dior (2003), Simon Porte Jacquemus (2019) et Marine Serre (2023).
+  - Optimisation et compression des images haute définition via ImageMagick pour garantir des temps de chargement ultra-rapides et une mise en cache PWA optimale.
+  - Ajout d'un test automatisé d'unicité et de non-duplication des images de périodes dans la suite Vitest (`src/test/images-integrity.test.ts`).
+
+### ☁️ Déploiement Cloudflare Pages
+- **Synchronisation du Lockfile & Compatibilité CI/CD** :
+  - Correction de l'erreur `bun install --frozen-lockfile` lors du déploiement Cloudflare Pages suite au retrait de dépendances obsolètes.
+  - Mise à niveau d'`esbuild` (`^0.28.0`) et régénération propre du verrouillage `bun.lock` et `package-lock.json`.
+
+---
+
 ## [1.1.0] — 2026-11-05
 
 ### ✨ Ajouts Majeurs

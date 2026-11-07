@@ -68,4 +68,21 @@ describe('Audit automatisé des ressources visuelles & provenance historique', (
       expect(image.imageUrl.startsWith('/images/')).toBe(true);
     });
   });
+
+  it('les images de périodes doivent être uniques et distinctes sans duplication de planches génériques', () => {
+    const periodImageUrls = HISTORICAL_PERIODS.flatMap((p) => (p.images || []).map((img) => img.imageUrl));
+    const uniqueUrls = new Set(periodImageUrls);
+    expect(uniqueUrls.size).toBe(periodImageUrls.length);
+
+    // Vérifie que les tailles de fichiers des images de périodes sont variées (non issues d'un même gabarit dupliqué)
+    const fileSizes = new Set(
+      periodImageUrls.map((url) => {
+        const fullPath = path.resolve(process.cwd(), 'public', url.replace(/^\//, ''));
+        return fs.statSync(fullPath).size;
+      })
+    );
+    // Au moins 20 tailles de fichiers distinctes sur 22 périodes
+    expect(fileSizes.size).toBeGreaterThanOrEqual(20);
+  });
 });
+
