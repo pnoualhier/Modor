@@ -32,15 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenOnboarding,
   favoritesCount,
 }) => {
-  const navLinks: { id: NavTab; label: string }[] = [
-    { id: 'timeline', label: 'Chronologie' },
-    { id: 'comparator', label: 'Silhouettes' },
-    { id: 'anatomy', label: 'Anatomie' },
-    { id: 'garments', label: 'Vêtements' },
-    { id: 'designers', label: 'Créateurs' },
-    { id: 'quiz', label: 'Quiz' },
-  ];
-
   return (
     <>
       {/* Top Header compliant with Top Bar Contract */}
@@ -65,26 +56,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </button>
 
-          {/* Zone 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-5 text-xs font-semibold uppercase tracking-wider text-[#77736D]">
-            {navLinks.map((link) => {
-              const isActive = activeTab === link.id;
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => onNavigate(link.id)}
-                  className={`whitespace-nowrap shrink-0 transition-colors py-1 relative ${
-                    isActive ? 'text-[#242321]' : 'hover:text-[#242321]'
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#242321] rounded-full" />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
+          {/* Zone 2: Curatorial Heritage Anchor (Desktop) */}
+          <div className="hidden lg:flex items-center gap-2 text-xs text-[#77736D]">
+            <span>Histoire de la mode féminine en France</span>
+            <span aria-hidden="true">·</span>
+            <span>1500–2026</span>
+          </div>
 
           {/* Zone 3: Utility Controls & Hamburger Button */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">

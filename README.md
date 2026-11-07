@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-1.1.0-9A3412?style=flat-square" alt="Version 1.1.0" />
+  <img src="https://img.shields.io/badge/Version-1.3.0-9A3412?style=flat-square" alt="Version 1.3.0" />
   <img src="https://img.shields.io/badge/PWA-100%25%20Hors--Ligne-242321?style=flat-square" alt="PWA Hors-Ligne" />
-  <img src="https://img.shields.io/badge/Tests-59%20passed-10B981?style=flat-square" alt="Tests Vitest" />
+  <img src="https://img.shields.io/badge/Tests-68%20passed-10B981?style=flat-square" alt="Tests Vitest" />
   <img src="https://img.shields.io/badge/Confidentialit%C3%A9-Z%C3%A9ro%20Tracking-242321?style=flat-square" alt="Confidentialité" />
   <img src="https://img.shields.io/badge/Licence-Domaine%20Public%20%2F%20CC0-77736D?style=flat-square" alt="Licence Patrimoniale" />
 </p>
@@ -25,8 +25,19 @@
 
 ---
 
-## 🌟 Nouveautés de la Version 1.1.0
+## 🌟 Nouveautés Récentes (v1.3.0)
 
+- 🧭 **Barre de Menu Rapide Inter-Pages** : Barre de navigation sticky permanente sous l'en-tête permettant de basculer instantanément en un clic entre toutes les sections :
+  - *Chronologie* (22 époques de 1500 à 2026)
+  - *Silhouettes* (Comparateur vectoriel morphologique)
+  - *Anatomie* (Dissection par strates et points tactiles)
+  - *Vestiaire* (Catalogue des 22 pièces et structures)
+  - *Créateurs* (Panthéon des 23 maisons et modistes)
+  - *Galerie* (67 œuvres et photographies d'archives)
+  - *Quiz* (Grand test d'érudition)
+  - *Favoris & Notes* (Espace privé sauvegardé localement)
+  - Défilement tactile fluide sur mobile, chevrons latéraux, fil d'Ariane contextuel, menu « Saut rapide » et raccourcis clavier `Alt+1` à `Alt+8`.
+- 🎨 **Visuels Historiques Authentiques du Domaine Public** : Remplacement de 100% des planches génériques par les véritables œuvres et photographies d'archives (Clouet, Mignard, Boucher, David, Gérard, Winterhalter, Worth, Paquin, Bon Ton, Chanel, Vionnet, Dior, Givenchy, Saint Laurent, Gaultier, Margiela, Serre).
 - 🍔 **Menu Hamburger Catégorisé** : Regroupement méthodique des fonctionnalités en 6 univers :
   1. *Histoire & Époques* (Frise chronologique, Galerie iconographique)
   2. *Morphologie & Silhouettes* (Comparateur vectoriel duo/galerie, Dissection anatomique)

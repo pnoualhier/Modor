@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, NavTab } from './components/common/Navbar';
+import { QuickNavBar } from './components/common/QuickNavBar';
 import { Footer } from './components/common/Footer';
 import { OfflineIndicator } from './components/common/OfflineIndicator';
 import { SearchModal } from './components/common/SearchModal';
@@ -140,6 +141,16 @@ export default function App() {
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenOnboarding={() => setOnboardingOpen(true)}
         favoritesCount={totalFavoritesCount}
+      />
+
+      {/* Barre de Menu & Navigation Rapide entre Pages */}
+      <QuickNavBar
+        activeTab={activeTab}
+        onNavigate={handleNavigate}
+        selectedPeriodId={selectedPeriodId}
+        onBackToTimeline={() => setSelectedPeriodId(null)}
+        favoritesCount={totalFavoritesCount}
+        onOpenSearch={() => setSearchModalOpen(true)}
       />
 
       {/* Main Reading Stage */}

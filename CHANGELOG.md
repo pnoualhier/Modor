@@ -4,6 +4,21 @@ Toutes les modifications notables apportées au projet **Modor** sont consignée
 
 ---
 
+## [1.3.0] — 2026-11-07
+
+### 🧭 Barre de Menu & Navigation Rapide Inter-Pages
+- **Barre de Navigation Rapide Dédiée (`src/components/common/QuickNavBar.tsx`)** :
+  - Barre de menu sticky accessible en permanence sous l'en-tête principal, sur mobile, tablette et desktop.
+  - Accès direct en 1 clic aux 8 sections majeures de l'encyclopédie : *Chronologie*, *Silhouettes*, *Anatomie*, *Vestiaire*, *Créateurs*, *Galerie*, *Quiz* et *Favoris & Notes*.
+  - Défilement horizontal fluide avec chevrons d'assistance et estompage dégradé pour les petits écrans.
+  - Détection automatique et défilement centré vers l'onglet actif.
+  - Fil d'Ariane contextuel (*Chronologie / [Nom de l'époque]*) avec bouton de retour immédiat lors de la lecture d'une fiche d'époque détaillée.
+  - Menu déroulant « Saut rapide » affichant l'inventaire des pages et des touches de raccourci.
+  - Navigation au clavier complète : touches fléchées gauche/droite, Home/End, et raccourcis globaux `Alt+1` à `Alt+8`.
+  - Suite de tests unitaires dédiée (`src/test/quick-nav.test.ts`) validant la complétude des 8 routes, la cyclicité clavier et la résolution des données contextuelles.
+
+---
+
 ## [1.2.0] — 2026-11-07
 
 ### 🎨 Remplacement Intégral des Visuels Historiques
