@@ -302,6 +302,25 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 </div>
                 <ChevronRight className="w-3.5 h-3.5 text-[#77736D]" />
               </button>
+
+              {/* Landing Page Link */}
+              <a
+                href="/landing/"
+                className="w-full flex items-center justify-between p-2.5 rounded-lg text-left hover:bg-[#F7F4ED] text-[#242321] transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <Sparkles className="w-4 h-4 text-[#9A3412]" />
+                  <div>
+                    <div className="text-xs font-semibold text-[#242321]">
+                      Présentation Officielle (Landing Page)
+                    </div>
+                    <div className="text-[11px] text-[#77736D]">
+                      Vitrine culturelle, métriques et aperçu du projet
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight className="w-3.5 h-3.5 text-[#77736D]" />
+              </a>
             </div>
           </div>
         </div>

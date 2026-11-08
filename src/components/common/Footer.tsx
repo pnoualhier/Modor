@@ -142,6 +142,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             © {new Date().getFullYear()} Modor — Projet encyclopédique sous licences libres (Domaine Public &amp; CC0).
           </div>
           <div className="flex items-center gap-4">
+            <a href="/landing/" className="hover:text-white underline transition-colors">
+              Présentation &amp; Landing Page
+            </a>
+            <span>·</span>
             <button onClick={() => onNavigate('favorites')} className="hover:text-white">
               Gestion des données locales
             </button>

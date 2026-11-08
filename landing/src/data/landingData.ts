@@ -70,7 +70,8 @@ export const METRICS = {
   centuriesCovered: 'XVIe au XXIe siècle',
   yearRange: '1515 – 2026',
   license: 'Domaine Public & Code Open Source',
-  appUrl: 'https://modor.pages.dev/',
+  appUrl: '/',
+  productionUrl: 'https://modor.pages.dev/',
   githubUrl: 'https://github.com/pnoualhier/Modor',
 };
 

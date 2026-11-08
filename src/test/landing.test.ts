@@ -74,7 +74,8 @@ describe('Landing Page Metrics & Integrity', () => {
   });
 
   it('should point to valid production app and repository URLs', () => {
-    expect(METRICS.appUrl).toBe('https://modor.pages.dev/');
+    expect(METRICS.appUrl).toBe('/');
+    expect(METRICS.productionUrl).toBe('https://modor.pages.dev/');
     expect(METRICS.githubUrl).toBe('https://github.com/pnoualhier/Modor');
   });
 
