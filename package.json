@@ -10,7 +10,8 @@
     "clean": "rm -rf dist",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:landing": "vite build --config landing/vite.config.ts --outDir landing/dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

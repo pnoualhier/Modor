@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --color-ivoire: #F7F4ED;
+  --color-noir: #242321;
+  --color-beige: #D9CBB7;
+  --color-rose: #D9B8B3;
+  --color-sauge: #A6AA99;
+  --color-gris: #77736D;
+  --color-terracotta: #9A3412;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #F7F4ED;
+  color: #242321;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* WCAG 2.2 AA Focus Indicators */
+:focus-visible {
+  outline: 2px solid #9A3412;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F4ED;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9CBB7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A3412;
+}
+
+/* Utility to hide scrollbars while keeping scroll ability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
