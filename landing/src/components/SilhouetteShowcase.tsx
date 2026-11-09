@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layers, Compass, ArrowRight, Eye } from 'lucide-react';
 import { METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 interface SilhouetteCompareItem {
   id: string;
@@ -25,7 +26,7 @@ export const SilhouetteShowcase: React.FC = () => {
       waistCircumference: 'Comprimée par busc rigide en bois ou fer',
       understructure: 'Vertugadin en tambour & corps piqué',
       keyInnovation: 'Géométrisation rigide masquant les formes naturelles',
-      image: '/images/historical/marguerite_valois_portrait.jpg',
+      image: '/images/historical/marguerite_valois.jpg',
     },
     {
       id: 'rococo',
@@ -36,7 +37,7 @@ export const SilhouetteShowcase: React.FC = () => {
       waistCircumference: 'Taille pincée en V descendant sur le ventre',
       understructure: 'Paniers d’osier ou fanons de baleine & corps à baleines',
       keyInnovation: 'Projection architecturale latérale pour l’apparat de cour',
-      image: '/images/historical/robe_francaise_soie.jpg',
+      image: '/images/historical/robe_francaise_detail.jpg',
     },
     {
       id: 'new-look',
@@ -47,7 +48,7 @@ export const SilhouetteShowcase: React.FC = () => {
       waistCircumference: 'Guêpière resserrant la taille à ~50 cm',
       understructure: 'Guêpière de tulle baleiné & jupons de crin ou nylon',
       keyInnovation: 'Renaissance de la féminité théâtrale après les privations',
-      image: '/images/historical/tailleur_bar_dior.jpg',
+      image: '/images/historical/dior_bar_archive.jpg',
     },
     {
       id: 'power-dressing',
@@ -58,7 +59,7 @@ export const SilhouetteShowcase: React.FC = () => {
       waistCircumference: 'Taille ceinturée large, sans compression osseuse',
       understructure: 'Épaulettes de mousse synthétique thermoformée',
       keyInnovation: 'Appropriation de l’autorité masculine dans le monde du travail',
-      image: '/images/historical/smoking_ysl_1966.jpg',
+      image: '/images/historical/ysl_smoking_1966.jpg',
     },
   ];
 
@@ -164,13 +165,15 @@ export const SilhouetteShowcase: React.FC = () => {
             {/* Visual plate */}
             <div className="lg:col-span-5">
               <div className="rounded-sm overflow-hidden border border-[#D9CBB7] bg-[#EFE9DF] aspect-4/5 relative shadow-inner">
-                <img
+                <ImageWithFallback
                   src={current.image}
                   alt={current.name}
+                  fallbackTitle={current.name}
+                  fallbackSubtitle={current.era}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-1 rounded-xs uppercase tracking-wider">
+                <div className="absolute top-3 left-3 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-1 rounded-xs uppercase tracking-wider z-20">
                   Normalisation Modor
                 </div>
               </div>

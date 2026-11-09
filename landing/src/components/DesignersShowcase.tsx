@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Quote, ArrowRight, Compass } from 'lucide-react';
 import { DESIGNER_HIGHLIGHTS, METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const DesignersShowcase: React.FC = () => {
   return (
@@ -30,13 +31,15 @@ export const DesignersShowcase: React.FC = () => {
               <div>
                 {/* Visual Header */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#EFE9DF] border-b border-[#E5DFD5]">
-                  <img
+                  <ImageWithFallback
                     src={d.imageUrl}
                     alt={d.name}
+                    fallbackTitle={d.name}
+                    fallbackSubtitle={d.house}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3 bg-[#242321]/85 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-0.5 rounded-xs">
+                  <div className="absolute top-3 left-3 bg-[#242321]/85 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-0.5 rounded-xs z-20">
                     {d.lifespan}
                   </div>
                   <div className="absolute top-3 right-3 bg-[#FAF6F0] border border-[#D9CBB7] text-[#9A3412] text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-xs">

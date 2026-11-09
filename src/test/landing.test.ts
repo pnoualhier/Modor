@@ -79,13 +79,30 @@ describe('Landing Page Metrics & Integrity', () => {
     expect(METRICS.githubUrl).toBe('https://github.com/pnoualhier/Modor');
   });
 
-  it('should provide complete period highlights with valid historical images', () => {
+  it('should provide complete period highlights with valid historical images that exist on disk', () => {
     expect(PERIOD_HIGHLIGHTS.length).toBe(6);
     for (const p of PERIOD_HIGHLIGHTS) {
       expect(p.id).toBeTruthy();
       expect(p.name).toBeTruthy();
       expect(p.years).toBeTruthy();
       expect(p.imageUrl).toMatch(/^\/images\/historical\/.+\.jpg$/);
+    }
+  });
+
+  it('should verify all image files referenced in landingData actually exist in public directory', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+
+    const allImages = [
+      ...PERIOD_HIGHLIGHTS.map((p) => p.imageUrl),
+      ...GARMENT_HIGHLIGHTS.map((g) => g.imageUrl),
+      ...DESIGNER_HIGHLIGHTS.map((d) => d.imageUrl),
+      ...APPLICATION_SCREENSHOTS.map((s) => s.imagePath),
+    ];
+
+    for (const imgPath of allImages) {
+      const fullPath = path.join(process.cwd(), 'public', imgPath);
+      expect(fs.existsSync(fullPath), `Image file must exist: ${imgPath}`).toBe(true);
     }
   });
 });

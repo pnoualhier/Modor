@@ -9,6 +9,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { APPLICATION_SCREENSHOTS, METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const AppPreviewSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -112,9 +113,11 @@ export const AppPreviewSection: React.FC = () => {
           {/* Screenshot Display Frame */}
           <div className="mt-6 relative rounded-sm overflow-hidden border border-[#D9CBB7] bg-[#242321]/5 shadow-inner">
             <div className="relative group cursor-pointer" onClick={() => setLightboxOpen(true)}>
-              <img
+              <ImageWithFallback
                 src={current.imagePath}
                 alt={current.title}
+                fallbackTitle={current.title}
+                fallbackSubtitle={current.subtitle}
                 className="w-full h-auto max-h-[640px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.01]"
                 loading="lazy"
               />

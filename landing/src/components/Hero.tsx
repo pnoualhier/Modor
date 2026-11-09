@@ -1,6 +1,7 @@
 import React from 'react';
 import { Compass, BookOpen, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const Hero: React.FC = () => {
   return (
@@ -97,13 +98,15 @@ export const Hero: React.FC = () => {
 
                 {/* Real screenshot embed */}
                 <div className="relative rounded-xs overflow-hidden border border-[#E5DFD5] bg-[#242321]/5 aspect-4/3 group">
-                  <img
+                  <ImageWithFallback
                     src="/screenshots/01_chronologie_frise.png"
                     alt="Capture d'écran réelle de la chronologie interactive Modor"
+                    fallbackTitle="Frise chronologique Modor"
+                    fallbackSubtitle="22 périodes historiques"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#242321]/80 via-transparent to-transparent flex items-end p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#242321]/80 via-transparent to-transparent flex items-end p-4 pointer-events-none">
                     <div className="text-white">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-[#D9CBB7]">
                         Chronologie dynamique

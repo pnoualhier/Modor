@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Compass, Sparkles } from 'lucide-react';
 import { PERIOD_HIGHLIGHTS, METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const TimelinePreview: React.FC = () => {
   const [selectedEraIndex, setSelectedEraIndex] = useState(0);
@@ -120,13 +121,15 @@ export const TimelinePreview: React.FC = () => {
             {/* Right: Museum Artwork / Archive Plate */}
             <div className="lg:col-span-5">
               <div className="relative rounded-sm overflow-hidden border border-[#D9CBB7] bg-[#EFE9DF] aspect-4/5 shadow-md group">
-                <img
+                <ImageWithFallback
                   src={currentEra.imageUrl}
                   alt={`Illustration patrimoniale pour la période ${currentEra.name}`}
+                  fallbackTitle={currentEra.name}
+                  fallbackSubtitle={currentEra.century}
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#242321]/90 via-[#242321]/20 to-transparent flex flex-col justify-end p-5 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#242321]/90 via-[#242321]/20 to-transparent flex flex-col justify-end p-5 text-white pointer-events-none">
                   <div className="flex items-center gap-1.5 text-[11px] text-[#D9CBB7] uppercase tracking-wider font-semibold">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Archive patrimoniale d’époque</span>

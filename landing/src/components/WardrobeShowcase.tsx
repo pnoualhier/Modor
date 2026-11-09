@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, Sparkles, ArrowRight, Tag } from 'lucide-react';
 import { GARMENT_HIGHLIGHTS, METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const WardrobeShowcase: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -60,13 +61,15 @@ export const WardrobeShowcase: React.FC = () => {
               <div>
                 {/* Visual Header */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#EFE9DF] border-b border-[#E5DFD5]">
-                  <img
+                  <ImageWithFallback
                     src={item.imageUrl}
                     alt={item.name}
+                    fallbackTitle={item.name}
+                    fallbackSubtitle={item.period}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-medium px-2 py-0.5 rounded-xs">
+                  <div className="absolute top-3 left-3 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-medium px-2 py-0.5 rounded-xs z-20">
                     {item.century}
                   </div>
                   <div className="absolute top-3 right-3 bg-[#FAF6F0] border border-[#D9CBB7] text-[#9A3412] text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-xs">

@@ -86,7 +86,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: 'Catherine de Médicis & Marguerite de Valois',
     description: 'Le corps féminin devient une forteresse géométrique : corsage rigide à busc de fer ou de bois, jupe tendue sur vertugadin et collerette plissée isolant le visage.',
     accentColor: '#9A3412',
-    imageUrl: '/images/historical/marguerite_valois_portrait.jpg',
+    imageUrl: '/images/historical/marguerite_valois.jpg',
   },
   {
     id: 'grand-siecle-lumieres',
@@ -98,7 +98,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: 'Madame de Pompadour & Marie-Antoinette',
     description: "Apogée du faste versaillais. Le pli Watteau flotte dans le dos tandis que les paniers déploient la jupe latéralement jusqu'à plus de deux mètres d'envergure.",
     accentColor: '#B45309',
-    imageUrl: '/images/historical/robe_francaise_soie.jpg',
+    imageUrl: '/images/historical/robe_francaise_met.jpg',
   },
   {
     id: 'revolution-empire',
@@ -110,7 +110,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: 'Joséphine de Beauharnais & Madame Récamier',
     description: 'Rupture radicale : abandon momentané des corsets et des paniers. La mousseline blanche translucide ceinturée sous la gorge évoque les statues de la Grèce antique.',
     accentColor: '#5F6B58',
-    imageUrl: '/images/historical/robe_empire_mousseline.jpg',
+    imageUrl: '/images/historical/robe_empire_met.jpg',
   },
   {
     id: 'romantisme-second-empire',
@@ -122,7 +122,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: "Impératrice Eugénie & Charles Frederick Worth",
     description: "L'industrialisation métallurgique libère les jambes du poids des jupons grâce à la crinoline cage d'acier flexible, avant que Worth n'invente la haute couture.",
     accentColor: '#7C2D12',
-    imageUrl: '/images/historical/crinoline_cage_brevet.jpg',
+    imageUrl: '/images/historical/crinoline_cage_archive.jpg',
   },
   {
     id: 'belle-epoque-annees-folles',
@@ -134,7 +134,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: 'Paul Poiret, Jeanne Lanvin & Madeleine Vionnet',
     description: "Après l'extrême cambrure de la tournure, Poiret supprime le corset, Vionnet invente la coupe en biais libérant le tombé naturel de l'étoffe, et Chanel impose le confort.",
     accentColor: '#881337',
-    imageUrl: '/images/historical/tournure_promenade.jpg',
+    imageUrl: '/images/historical/robe_tournure_worth.jpg',
   },
   {
     id: 'apres-guerre-contemporain',
@@ -146,7 +146,7 @@ export const PERIOD_HIGHLIGHTS: PeriodHighlight[] = [
     emblematicFigure: 'Christian Dior, André Courrèges & Yves Saint Laurent',
     description: "Dior fait renaître la splendeur parisienne avec le New Look (1947), rapidement bousculé par la révolte des années 1960, le pantalon pour toutes et la mode conceptuelle.",
     accentColor: '#242321',
-    imageUrl: '/images/historical/tailleur_bar_dior.jpg',
+    imageUrl: '/images/historical/dior_bar_archive.jpg',
   },
 ];
 
@@ -243,7 +243,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Armature & Structure',
     description: "Cercle rigide de jonc ou de fil de fer posé horizontalement sur les hanches, conférant à la jupe une forme tubulaire rappelant la surface d'un tambour.",
     innovation: "Première rigidification mécanique de la silhouette féminine en France, importée d'Espagne et adaptée par Catherine de Médicis.",
-    imageUrl: '/images/historical/vertugadin_gravure.jpg',
+    imageUrl: '/images/historical/vertugadin_wiki.jpg',
   },
   {
     id: 'corps-a-baleines',
@@ -254,7 +254,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Armature & Structure',
     description: 'Corsage rigide structuré par des dizaines de fanons de baleine resserrés, écrasant la poitrine et imposant un port de tête altier et vertical.',
     innovation: 'Véritable exo-squelette textile façonnant la posture aristocratique selon les règles strictes de la cour royale.',
-    imageUrl: '/images/historical/corps_baleines_patron.jpg',
+    imageUrl: '/images/historical/corps_baleine_mad.jpg',
   },
   {
     id: 'robe-a-la-francaise',
@@ -265,7 +265,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Robe & Parure',
     description: 'Composée d’un manteau ouvert sur une pièce d’estomac triangulaire, ornée dans le dos des célèbres plis Watteau cousus à l’encolure.',
     innovation: 'Le symbole absolu du goût français sous Louis XV, alliant majesté frontale et grâce mouvante dans le dos.',
-    imageUrl: '/images/historical/robe_francaise_soie.jpg',
+    imageUrl: '/images/historical/robe_francaise_detail.jpg',
   },
   {
     id: 'crinoline-cage',
@@ -276,7 +276,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Armature & Structure',
     description: 'Armature de cerceaux d’acier flexible reliés par des rubans de toile, brevetée par Tavernier en France en 1856.',
     innovation: 'Allège spectaculairement les femmes du poids de 6 à 8 jupons superposés, tout en atteignant des diamètres records.',
-    imageUrl: '/images/historical/crinoline_cage_brevet.jpg',
+    imageUrl: '/images/historical/crinoline_cage_archive.jpg',
   },
   {
     id: 'tournure',
@@ -287,7 +287,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Armature & Structure',
     description: 'Armature semi-circulaire rejetant l’ampleur de la traîne exclusivement vers l’arrière, cambrant la silhouette en une courbe sinueuse.',
     innovation: 'Transfère le volume latéral vers la croupe, créant la démarche chaloupée caractéristique des tableaux impressionnistes.',
-    imageUrl: '/images/historical/tournure_promenade.jpg',
+    imageUrl: '/images/historical/tournure_wiki.jpg',
   },
   {
     id: 'robe-en-biais',
@@ -309,7 +309,7 @@ export const GARMENT_HIGHLIGHTS: GarmentHighlight[] = [
     categoryLabel: 'Bifurcation & Émancipation',
     description: 'Adaptation féminine du smoking masculin de soirée, combinant veste cintrée à revers de satin et pantalon droit noir.',
     innovation: 'Yves Saint Laurent offre aux femmes le pouvoir symbolique du costume masculin tout en affirmant une sensualité audacieuse.',
-    imageUrl: '/images/historical/smoking_ysl_1966.jpg',
+    imageUrl: '/images/historical/ysl_smoking_1966.jpg',
   },
 ];
 
@@ -331,7 +331,7 @@ export const DESIGNER_HIGHLIGHTS: DesignerHighlight[] = [
     lifespan: '1825 – 1895',
     era: 'Second Empire & Début Belle Époque',
     significance: 'Père fondateur de la haute couture parisienne, premier à signer ses créations d’une étiquette et à défiler sur mannequins vivants.',
-    imageUrl: '/images/historical/worth_portrait.jpg',
+    imageUrl: '/images/historical/charles_frederick_worth.jpg',
   },
   {
     id: 'paul-poiret',
@@ -341,7 +341,7 @@ export const DESIGNER_HIGHLIGHTS: DesignerHighlight[] = [
     era: 'Belle Époque & Années 1910',
     significance: 'Libérateur du corps féminin au début du XXe siècle : il bannit le corset, invente la silhouette hellénique et la jupe-culotte.',
     quote: '« C’est au nom de la liberté que j’ai proclamé la chute du corset. »',
-    imageUrl: '/images/historical/poiret_portrait.jpg',
+    imageUrl: '/images/historical/paul_poiret_portrait.jpg',
   },
   {
     id: 'gabrielle-chanel',
@@ -351,7 +351,7 @@ export const DESIGNER_HIGHLIGHTS: DesignerHighlight[] = [
     era: 'Années 1920 – 1970',
     significance: 'Révolutionnaire du confort moderne : petite robe noire, jersey souple, tailleur en tweed sans entoilage rigide.',
     quote: '« La mode passe, le style reste. »',
-    imageUrl: '/images/historical/chanel_portrait.jpg',
+    imageUrl: '/images/historical/coco_chanel_portrait.jpg',
   },
   {
     id: 'christian-dior',
@@ -361,7 +361,7 @@ export const DESIGNER_HIGHLIGHTS: DesignerHighlight[] = [
     era: 'Après-Guerre (1947 – 1957)',
     significance: 'Inventeur du New Look (printemps 1947), ressuscitant l’extrême féminité, la taille de guêpe et les métrages généreux après les privations.',
     quote: '« Nous sortions d’une époque de guerre, de pénuries. Mes robes étaient faites pour rendre les femmes heureuses. »',
-    imageUrl: '/images/historical/dior_portrait.jpg',
+    imageUrl: '/images/historical/christian_dior_portrait.jpg',
   },
   {
     id: 'yves-saint-laurent',
@@ -371,7 +371,7 @@ export const DESIGNER_HIGHLIGHTS: DesignerHighlight[] = [
     era: 'Années 1960 – 2000',
     significance: 'Démocratise le luxe avec le prêt-à-porter Rive Gauche et dote la femme du vestiaire du pouvoir : smoking, saharienne, trench-coat.',
     quote: '« Chanel a donné la liberté aux femmes. J’ai donné le pouvoir. »',
-    imageUrl: '/images/historical/ysl_portrait.jpg',
+    imageUrl: '/images/historical/yves_saint_laurent_portrait.jpg',
   },
 ];
 

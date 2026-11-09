@@ -1,6 +1,7 @@
 import React from 'react';
 import { Landmark, ExternalLink, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { METRICS } from '../data/landingData';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const GalleryShowcase: React.FC = () => {
   const sampleArchives = [
@@ -9,28 +10,28 @@ export const GalleryShowcase: React.FC = () => {
       source: 'Musée Carnavalet / BnF',
       date: 'vers 1572',
       type: 'Peinture de cour — Époque Renaissance',
-      image: '/images/historical/marguerite_valois_portrait.jpg',
+      image: '/images/historical/marguerite_valois.jpg',
     },
     {
       title: 'Planche de robe à la française en soie façonnée',
       source: 'Palais Galliera, musée de la Mode de la Ville de Paris',
       date: 'vers 1765',
       type: 'Textile d’apparat — Siècle des Lumières',
-      image: '/images/historical/robe_francaise_soie.jpg',
+      image: '/images/historical/robe_francaise_met.jpg',
     },
     {
       title: 'Brevet technique de la crinoline cage',
       source: 'INPI / Archives nationales',
       date: '1856',
       type: 'Schéma industriel & brevet métallurgique',
-      image: '/images/historical/crinoline_cage_brevet.jpg',
+      image: '/images/historical/crinoline_cage_archive.jpg',
     },
     {
       title: 'Silhouette New Look — Tailleur Bar de Christian Dior',
       source: 'Fonds Dior Héritage / Palais Galliera',
       date: '1947',
       type: 'Photographie d’archive de haute couture',
-      image: '/images/historical/tailleur_bar_dior.jpg',
+      image: '/images/historical/dior_bar_archive.jpg',
     },
   ];
 
@@ -67,13 +68,15 @@ export const GalleryShowcase: React.FC = () => {
               className="bg-[#F7F4ED] rounded-sm border border-[#D9CBB7] overflow-hidden flex flex-col justify-between group hover:border-[#9A3412] hover:shadow-md transition-all duration-300"
             >
               <div className="relative aspect-3/4 overflow-hidden bg-[#EFE9DF]">
-                <img
+                <ImageWithFallback
                   src={arch.image}
                   alt={arch.title}
+                  fallbackTitle={arch.title}
+                  fallbackSubtitle={arch.source}
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute top-2.5 left-2.5 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-0.5 rounded-xs">
+                <div className="absolute top-2.5 left-2.5 bg-[#242321]/80 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-0.5 rounded-xs z-20">
                   {arch.date}
                 </div>
               </div>
